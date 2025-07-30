@@ -51,7 +51,8 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
 	for i = 1, #questTurnIns do
 		local quest = questTurnIns[i]
-		if not C_QuestLog.IsQuestFlaggedCompleted(quest.questId) then
+
+		if C_QuestLog.IsComplete(quest.questId) then
 			BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")")
 
 			BANETO_DefineQuestId(quest.questId)
@@ -61,11 +62,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 			inProgress = true
 
 			return
-		else
-			BANETO_Print(quest.questName .. " (" .. quest.questId .. ") already turned in!")
 		end
 	end
 
-	BANETO_Print("No more quest to turn in!")
+	BANETO_Print("No more completed quests to turn in!")
 	BANETO_Stop()
 end
