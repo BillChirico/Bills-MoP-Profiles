@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["BANETO", "Laosy", "Turnin"],
+  "cSpell.words": ["BANETO", "Laosy", "Questmaster", "Turnin"],
   "Lua.diagnostics.globals": [
     "BANETO_SetNextLocalQuestProfile",
     "BANETO_DefineQuestTargetId",
@@ -15,6 +15,12 @@
     "BANETO_AddMobToGuidBlacklist",
     "UnitGUID",
     "BANETO_Object",
-    "C_QuestLog"
+    "C_QuestLog",
+    "BANETO_GetTarget",
+    "BANETO_GetUnitMovementFlags",
+    "BANETO_ObjectId",
+    "BANETO_IsGuidContainedInGuidBlacklist",
+    "BANETO_PRINT",
+    "BANETO_ClearTarget"
   ]
 }

@@ -20,31 +20,18 @@ BANETO_DefineCenter(1434.1118164062, 1131.5428466797, 434.8391418457, 300)
 -- BANETO_SetNextLocalQuestProfile([[Golden_Lotus_06_Next_Quest]])
 
 -- Quest Pulse
+-- Pulse
+_G.BANETO_ExecuteCustomQuestPulse_Questmaster = true
+
 function _G.BANETO_ExecuteCustomQuestPulse()
-	local questID = 30312
-	local stepIndex = 1 -- Step index to check
-	local questData = C_QuestLog.GetQuestObjectives(questID)
-	local isFinishedStep = questData[stepIndex]["finished"]
-	local numFulfilled = questData[stepIndex]["numFulfilled"]
+	local tgt = BANETO_GetTarget()
 
-	-- Check if we have stored progress from the last pulse, if not, initialize it
-	if _G.lastStepProgress == nil then
-		_G.lastStepProgress = numFulfilled
-	end
-
-	-- If progress has increased by 1, add the current mob to the blacklist
-	if numFulfilled > _G.lastStepProgress and numFulfilled == _G.lastStepProgress + 1 then
-		local currentTarget = BANETO_Object("target")
-
-		if currentTarget then
-			BANETO_AddMobToGuidBlacklist("target")
-			BANETO_AddMobToGuidBlacklist(currentTarget)
-			BANETO_AddMobToGuidBlacklist(UnitGUID("target"))
-
-			print("Added target to blacklist due to quest progress increase.")
+	-- Check if the peon is being lazy
+	if BANETO_ObjectId(tgt) then
+		if not BANETO_IsGuidContainedInGuidBlacklist(tgt) then
+			BANETO_PRINT("Healed Wounded Defender - Adding to blacklist!")
+			BANETO_AddMobToGuidBlacklist(tgt)
+			BANETO_ClearTarget()
 		end
 	end
-
-	-- Update the stored progress for the next pulse
-	_G.lastStepProgress = numFulfilled
 end
