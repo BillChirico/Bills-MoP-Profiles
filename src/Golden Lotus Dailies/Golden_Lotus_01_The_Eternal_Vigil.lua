@@ -1,7 +1,6 @@
 -- Quest Information
 BANETO_DefineProfileName("Golden_Lotus_01_The_Eternal_Vigil")
 BANETO_DefineProfileType("Questing")
--- BANETO_SetToSkipPulseQuest()
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(30307)

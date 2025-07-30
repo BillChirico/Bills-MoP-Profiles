@@ -1,7 +1,6 @@
 -- Quest Information
 BANETO_DefineProfileName("Golden_Lotus_04_Laosy_Scouting")
 BANETO_DefineProfileType("Questing")
--- BANETO_SetToSkipPulseQuest()
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(31758)

@@ -1,7 +1,7 @@
 -- Quest Information
 BANETO_DefineProfileName("Golden_Lotus_05_Given_a_Second_Chance")
 BANETO_DefineProfileType("Questing")
--- BANETO_SetToSkipTurnInQuest()
+BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[UseItemOnNpc]])
 BANETO_DefineQuestId(30312)
 
