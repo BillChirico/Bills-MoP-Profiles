@@ -19,8 +19,8 @@ BANETO_DefineQuestTargetId(59183)
 BANETO_DefineCenter(1443.3646240234, 1143.2777099609, 429.45077514648, 130)
 BANETO_DefineCenter(1487.8192138672, 1098.7009277344, 431.32638549805, 130)
 
--- Next Quest - Chain to turn-in sequence after completing all quest objectives
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_TurnIn_01_The_Eternal_Vigil]])
+-- Next Quest - Chain to consolidated turn-in handler after completing all quest objectives
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_TurnIn_All]])
 
 -- Quest Pulse
 -- Pulse
