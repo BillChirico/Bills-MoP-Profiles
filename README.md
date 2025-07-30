@@ -35,8 +35,8 @@
 ### Prerequisites
 
 - ✅ World of Warcraft: Mists of Pandaria
-- ✅ [Baneto Bot Framework](https://github.com/baneto) installed and configured
-- ✅ Character with access to Vale of Eternal Blossoms
+- ✅ [Baneto Bot](https://baneto-bot.com) installed and configured
+- ✅ Character with access to the dailies
 
 ### Installation
 
@@ -66,7 +66,7 @@ Baneto-MoP-Dailies/
 ├── 📄 LICENSE
 ├── ⚙️ .luacheckrc              # Lua linting configuration
 └── 📂 src/
-    └── 📂 Golden Lotus/
+    └── 📂 Golden Lotus Dailies/
         ├── 🎯 Golden_Lotus_01_The_Eternal_Vigil.lua
         ├── 👻 Golden_Lotus_02_Unleashed_Spirits.lua
         ├── 🗿 Golden_Lotus_03_Crumbling_Behemoth.lua
