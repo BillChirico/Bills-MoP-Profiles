@@ -20,7 +20,8 @@
     "BANETO_GetUnitMovementFlags",
     "BANETO_ObjectId",
     "BANETO_IsGuidContainedInGuidBlacklist",
-    "BANETO_PRINT",
-    "BANETO_ClearTarget"
+    "BANETO_ClearTarget",
+    "BANETO_GetTargetId",
+    "BANETO_Print"
   ]
 }
