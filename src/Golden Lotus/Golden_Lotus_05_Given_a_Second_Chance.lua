@@ -14,7 +14,7 @@ BANETO_DefineQuestTargetId(59183)
 BANETO_DefineQuestTargetId(84242)
 
 -- Quest Locations
-BANETO_DefineCenter(-420.32574462891, -4206.9638671875, 52.409133911133, 300)
+BANETO_DefineCenter(1434.1118164062, 1131.5428466797, 434.8391418457, 300)
 
 -- Next Quest
 -- BANETO_SetNextLocalQuestProfile([[Golden_Lotus_06_Next_Quest]])
