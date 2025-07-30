@@ -20,12 +20,10 @@ BANETO_DefineCenter(1443.3646240234, 1143.2777099609, 429.45077514648, 130)
 BANETO_DefineCenter(1487.8192138672, 1098.7009277344, 431.32638549805, 130)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_05_Given_a_Second_Chance_TurnIn]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_01_The_Eternal_Vigil_TurnIn]])
 
 -- Quest Pulse
--- Pulse
-_G.BANETO_ExecuteCustomQuestPulse_Questmaster = true
--- _G.BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = true
+local healedNPCs = {}
 
 function _G.BANETO_ExecuteCustomQuestPulse()
 	local targetId = BANETO_GetTargetId()
@@ -51,9 +49,14 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 		end
 
 		-- Let Baneto handle the quest item usage automatically
-		-- Just add to blacklist after Baneto uses the item
-		BANETO_Print("Healed Wounded Defender - Adding to blacklist!")
+		-- Just add to blacklist after a short delay to give quest time to update
+		BANETO_Sleep(1000)
+		
+		-- Add to blacklist to prevent re-targeting
 		BANETO_AddMobToGuidBlacklist(tgt)
+		BANETO_Print("Added healed defender to blacklist")
+		
+		-- Clear target so we can find the next one
 		BANETO_ClearTarget()
 	end
 end

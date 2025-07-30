@@ -8,4 +8,4 @@ BANETO_DefineQuestId(31758)
 BANETO_DefineQuestTurninNPC(1215.7375488281, 1047.44921875, 425.9674987793, 58471)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_05_Given_a_Second_Chance]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_05_Given_a_Second_Chance_TurnIn]])

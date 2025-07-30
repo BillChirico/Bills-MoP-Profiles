@@ -8,4 +8,4 @@ BANETO_DefineQuestId(31757)
 BANETO_DefineQuestTurninNPC(1215.7375488281, 1047.44921875, 425.9674987793, 58465)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_03_Crumbling_Behemoth]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_03_Crumbling_Behemoth_TurnIn]])
