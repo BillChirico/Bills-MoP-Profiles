@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![WoW Version](https://img.shields.io/badge/WoW-Mists%20of%20Pandaria-orange.svg)](https://worldofwarcraft.com/)
-[![Baneto Compatible](https://img.shields.io/badge/Baneto-Compatible-green.svg)](https://github.com/baneto)
+[![Baneto Compatible](https://img.shields.io/badge/Baneto-Compatible-green.svg)](https://baneto-bot.com/)
 
 ---
 
@@ -36,7 +36,7 @@
 
 - ✅ World of Warcraft: Mists of Pandaria
 - ✅ [Baneto Bot](https://baneto-bot.com) installed and configured
-- ✅ Character with access to the dailies
+- ✅ Character with access to quests you want to do
 
 ### Installation
 
@@ -160,6 +160,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ from Bill**
 
-[Report Bug](https://github.com/yourusername/Baneto-MoP-Dailies/issues) • [Request Feature](https://github.com/yourusername/Baneto-MoP-Dailies/issues) • [Contribute](https://github.com/yourusername/Baneto-MoP-Dailies/pulls)
+[Report Bug](https://github.com/BillChirico/Bills-MoP-Profiles/issues) • [Request Feature](https://github.com/BillChirico/Bills-MoP-Profiles/issues) • [Contribute](https://github.com/BillChirico/Bills-MoP-Profiles/pulls)
 
 </div>
