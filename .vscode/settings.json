@@ -15,7 +15,6 @@
     "BANETO_AddMobToGuidBlacklist",
     "UnitGUID",
     "BANETO_Object",
-    "C_QuestLog",
     "BANETO_GetTarget",
     "BANETO_GetUnitMovementFlags",
     "BANETO_ObjectId",
@@ -24,7 +23,9 @@
     "BANETO_GetTargetId",
     "BANETO_Print",
     "BANETO_LoadProfile",
-    "BANETO_Stop"
+    "BANETO_Stop",
+    "IsQuestComplete",
+    "C_QuestLog"
   ],
   "Lua.diagnostics.disable": ["duplicate-set-field"]
 }

@@ -1,6 +1,7 @@
 -- Quest Information
 BANETO_DefineProfileName("Golden_Lotus_03_Crumbling_Behemoth")
 BANETO_DefineProfileType("Questing")
+BANETO_SetToSkipPulseQuest()
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(31762)

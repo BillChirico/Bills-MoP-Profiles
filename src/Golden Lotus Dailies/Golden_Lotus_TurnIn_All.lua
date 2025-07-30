@@ -52,12 +52,14 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 	for i = 1, #questTurnIns do
 		local quest = questTurnIns[i]
 
-		if C_QuestLog.IsComplete(quest.questId) then
+		if IsQuestComplete(quest.questId) then
 			BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")")
 
 			BANETO_DefineQuestId(quest.questId)
+			BANETO_DefineQuestPickupNPC(npcCoords.x, npcCoords.y, npcCoords.z, quest.npcId)
 			BANETO_DefineQuestTurninNPC(npcCoords.x, npcCoords.y, npcCoords.z, quest.npcId)
 			BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
+			BANETO_ExecuteCustomQuestPulse_Questmaster = false
 			BANETO_SetNextLocalQuestProfile([[Golden_Lotus_TurnIn_All]])
 			inProgress = true
 

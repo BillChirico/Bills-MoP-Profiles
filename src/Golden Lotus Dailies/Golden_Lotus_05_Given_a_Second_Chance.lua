@@ -25,21 +25,22 @@ BANETO_SetNextLocalQuestProfile([[Golden_Lotus_TurnIn_All]])
 -- Quest Pulse
 _G.BANETO_ExecuteCustomQuestPulse_Questmaster = true
 -- _G.BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = true
+local lastStepProgress = nil
+local questID = 30312
+local stepIndex = 1
 
 function _G.BANETO_ExecuteCustomQuestPulse()
-	local questID = 30312
-	local stepIndex = 1
 	local questData = C_QuestLog.GetQuestObjectives(questID)
 	local finished = questData[stepIndex]["finished"]
 	local stepProgress = questData[stepIndex]["numFulfilled"]
 
 	-- Check if we have stored progress from the last pulse, if not, initialize it
-	if _G.lastStepProgress == nil then
-		_G.lastStepProgress = stepProgress
+	if lastStepProgress == nil then
+		lastStepProgress = stepProgress
 	end
 
 	-- If progress has increased by 1, add the current mob to the blacklist
-	if stepProgress > _G.lastStepProgress and stepProgress == _G.lastStepProgress + 1 then
+	if stepProgress > lastStepProgress and stepProgress == lastStepProgress + 1 then
 		local currentTarget = BANETO_Object("target")
 
 		-- Check if target is already blacklisted (already healed)
@@ -59,7 +60,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 	end
 
 	-- Update the stored progress for the next pulse
-	_G.lastStepProgress = stepProgress
+	lastStepProgress = stepProgress
 
 	if finished then
 		BANETO_LoadProfile([[Golden_Lotus_TurnIn_All]])
