@@ -25,7 +25,8 @@
     "BANETO_LoadProfile",
     "BANETO_Stop",
     "IsQuestComplete",
-    "C_QuestLog"
+    "C_QuestLog",
+    "BANETO_HasQuestCompleted"
   ],
   "Lua.diagnostics.disable": ["duplicate-set-field"]
 }

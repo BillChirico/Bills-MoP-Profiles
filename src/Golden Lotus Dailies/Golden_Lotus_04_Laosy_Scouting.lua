@@ -26,10 +26,17 @@ local lastTarget = nil
 function _G.BANETO_ExecuteCustomQuestPulse()
 	local currentTarget = GetObjectWithIdClose(214948)
 
+	if BANETO_IsGuidContainedInGuidBlacklist(currentTarget) then
+		BANETO_Print("Cage already blacklisted - Clearing target!")
+		BANETO_ClearTarget()
+		return
+	end
+
 	-- If the bot has a target and it's a new one since the last pulse
 	if currentTarget and currentTarget ~= lastTarget then
 		BANETO_Print("Checked cage - Adding to blacklist!")
 		BANETO_AddMobToGuidBlacklist(currentTarget)
+		BANETO_BlacklistID(currentTarget)
 		lastTarget = currentTarget
 
 		return

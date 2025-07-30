@@ -52,7 +52,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 	for i = 1, #questTurnIns do
 		local quest = questTurnIns[i]
 
-		if IsQuestComplete(quest.questId) then
+		if BANETO_HasQuestCompleted(quest.questId) then
 			BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")")
 
 			BANETO_DefineQuestId(quest.questId)
