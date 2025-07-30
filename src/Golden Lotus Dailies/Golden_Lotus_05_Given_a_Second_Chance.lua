@@ -23,37 +23,45 @@ BANETO_DefineCenter(1487.8192138672, 1098.7009277344, 431.32638549805, 130)
 BANETO_SetNextLocalQuestProfile([[Golden_Lotus_TurnIn_All]])
 
 -- Quest Pulse
--- Pulse
 _G.BANETO_ExecuteCustomQuestPulse_Questmaster = true
 -- _G.BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = true
 
 function _G.BANETO_ExecuteCustomQuestPulse()
-	local targetId = BANETO_GetTargetId()
+	local questID = 30312
+	local stepIndex = 1
+	local questData = C_QuestLog.GetQuestObjectives(questID)
+	local finished = questData[stepIndex]["finished"]
+	local stepProgress = questData[stepIndex]["numFulfilled"]
 
-	-- Debug: Check if we have a target at all
-	if not targetId then
-		return
+	-- Check if we have stored progress from the last pulse, if not, initialize it
+	if _G.lastStepProgress == nil then
+		_G.lastStepProgress = stepProgress
 	end
 
-	-- Check if target is a Wounded Defender (quest target)
-	if targetId == 59183 then
-		-- Get the target object for blacklisting
-		local tgt = BANETO_GetTarget()
-		if not tgt then
-			return
-		end
+	-- If progress has increased by 1, add the current mob to the blacklist
+	if stepProgress > _G.lastStepProgress and stepProgress == _G.lastStepProgress + 1 then
+		local currentTarget = BANETO_Object("target")
 
 		-- Check if target is already blacklisted (already healed)
-		if BANETO_IsGuidContainedInGuidBlacklist(tgt) then
-			BANETO_Print("Target already blacklisted (healed) - clearing target")
+		if BANETO_IsGuidContainedInGuidBlacklist(currentTarget) then
+			BANETO_Print("Wounded Defender already blacklisted (healed) - Clearing target!")
 			BANETO_ClearTarget()
 			return
 		end
 
-		-- Let Baneto handle the quest item usage automatically
-		-- Just add to blacklist after Baneto uses the item
-		BANETO_Print("Healed Wounded Defender - Adding to blacklist!")
-		BANETO_AddMobToGuidBlacklist(tgt)
-		BANETO_ClearTarget()
+		if currentTarget then
+			BANETO_AddMobToGuidBlacklist("target")
+			BANETO_AddMobToGuidBlacklist(currentTarget)
+			BANETO_AddMobToGuidBlacklist(UnitGUID("target"))
+
+			BANETO_Print("Healed Wounded Defender - Adding to blacklist!")
+		end
+	end
+
+	-- Update the stored progress for the next pulse
+	_G.lastStepProgress = stepProgress
+
+	if finished then
+		BANETO_LoadProfile([[Golden_Lotus_TurnIn_All]])
 	end
 end
