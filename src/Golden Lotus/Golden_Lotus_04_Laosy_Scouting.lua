@@ -17,4 +17,4 @@ BANETO_DefineQuestTargetId(65868)
 BANETO_DefineCenter(-420.32574462891, -4206.9638671875, 52.409133911133, 300)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_05_Next_Quest]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_05_Given_a_Second_Chance]])

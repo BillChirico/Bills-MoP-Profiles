@@ -11,6 +11,10 @@
     "BANETO_DefineQuestStepType",
     "BANETO_DefineQuestId",
     "BANETO_DefineCenter",
-    "BANETO_SetToSkipTurnInQuest"
+    "BANETO_SetToSkipTurnInQuest",
+    "BANETO_AddMobToGuidBlacklist",
+    "UnitGUID",
+    "BANETO_Object",
+    "C_QuestLog"
   ]
 }
