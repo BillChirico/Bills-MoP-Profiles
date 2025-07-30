@@ -1,0 +1,16 @@
+{
+  "cSpell.words": ["BANETO", "Turnin"],
+  "Lua.diagnostics.globals": [
+    "BANETO_SetNextLocalQuestProfile",
+    "BANETO_DefineQuestTargetId",
+    "BANETO_DefineQuestPickupNPC",
+    "BANETO_DefineQuestTurninNPC",
+    "BANETO_DefineProfileName",
+    "BANETO_DefineProfileType",
+    "BANETO_SetToSkipPulseQuest",
+    "BANETO_DefineQuestStepType",
+    "BANETO_DefineQuestId",
+    "BANETO_DefineCenter",
+    "BANETO_SetToSkipTurnInQuest"
+  ]
+}
