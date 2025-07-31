@@ -581,3 +581,4 @@ FodyWeavers.xsd
 
 # Custom Ignore
 Samples/
+.DS_Store
