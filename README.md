@@ -85,6 +85,7 @@ Baneto-MoP-Dailies/
     │   ├── 🗿 Golden_Lotus_03_Crumbling_Behemoth.lua
     │   ├── 🔍 Golden_Lotus_04_Laosy_Scouting.lua
     │   ├── 💚 Golden_Lotus_05_Given_a_Second_Chance.lua
+    │   ├── 📊 Golden_Lotus_Data.lua
     │   └── 🔄 Golden_Lotus_TurnIn_All.lua
     └── 📂 Klaxxi Dailies/
         ├── ⚔️ Klaxxi_01_The_Fight_Against_Fear.lua
@@ -146,6 +147,14 @@ Some quests include custom logic for advanced automation:
 - **Turn-In Logic** - Automatically detects completed quests in log and turns them in to appropriate NPCs
 
 ## 🛠️ Development
+
+### Shared Data Files
+
+To reduce code duplication, quest information is stored in shared data files:
+
+- **`Golden_Lotus_Data.lua`** - Contains quest IDs, NPC IDs, coordinates, and names for all Golden Lotus dailies
+- Both `!Golden_Lotus_Accept_All.lua` and `Golden_Lotus_TurnIn_All.lua` load this shared data using `dofile()`
+- When adding new Golden Lotus quests, update the shared data file instead of duplicating information
 
 ### Adding New Quest Profiles
 
