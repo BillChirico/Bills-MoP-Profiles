@@ -1,5 +1,7 @@
 -- Golden Lotus Quest Accept Handler
-BANETO_DefineProfileName("!Golden_Lotus_Accept_All")
+-- ⭐ START HERE: This is the entry point for Golden Lotus dailies!
+-- This profile will automatically accept all available quests and start the quest chain.
+BANETO_DefineProfileName("!Start_Here_Golden_Lotus_Accept_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
@@ -32,7 +34,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 			BANETO_DefineQuestPickupNPC(npcCoords.x, npcCoords.y, npcCoords.z, quest.npcId)
 			BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
 			BANETO_ExecuteCustomQuestPulse_Questmaster = false
-			BANETO_SetNextLocalQuestProfile([[!Golden_Lotus_Accept_All]])
+			BANETO_SetNextLocalQuestProfile([[!Start_Here_Golden_Lotus_Accept_All]])
 			inProgress = true
 
 			return
