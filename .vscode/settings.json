@@ -45,7 +45,9 @@
     "BANETO_BlacklistID",
     "BlacklistID",
     "BANETO_DefineBlacklistIDGlobal",
-    "GetObjectWithIdClose"
+    "GetObjectWithIdClose",
+    "BANETO_DefineProfileUnstuck",
+    "BANETO_HasQuest"
   ],
   "Lua.diagnostics.disable": ["duplicate-set-field"]
 }
