@@ -78,15 +78,15 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 	for i = 1, #questTurnIns do
 		local quest = questTurnIns[i]
 
-		if BANETO_HasQuest(quest.questId) and BANETO_HasQuestCompleted(quest.questId) then
+		if BANETO_HasQuest(quest.questId) and not BANETO_HasQuestCompleted(quest.questId) then
 			BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")")
 
 			local coords = npcCoords[quest.npcId]
 			BANETO_DefineQuestId(quest.questId)
 			BANETO_DefineQuestPickupNPC(coords.x, coords.y, coords.z, quest.npcId)
 			BANETO_DefineQuestTurninNPC(coords.x, coords.y, coords.z, quest.npcId)
-			BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = nil
-			BANETO_ExecuteCustomQuestPulse_Questmaster = nil
+			BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
+			BANETO_ExecuteCustomQuestPulse_Questmaster = false
 			BANETO_SetNextLocalQuestProfile([[Klaxxi_TurnIn_All]])
 			inProgress = true
 
