@@ -19,27 +19,68 @@ BANETO_DefineCenter(1392.3897705078, 1291.5573730469, 401.01940917969, 300)
 BANETO_DefineCenter(1674.5532226562, 1352.6085205078, 453.59204101562, 300)
 
 -- Quest Pulse
+--[[
+    @Description:
+        This quest pulse monitors quest progress and blacklists cage objects only after successful interaction.
+        It tracks quest objective progress to ensure the bot doesn't blacklist cages prematurely.
+]]
 _G.BANETO_ExecuteCustomQuestPulse_Questmaster = true
-
-local lastTarget = nil
+local lastQuestProgress = nil
+local lastTargetGuid = nil
+local targetStartTime = nil
+local maxWaitTime = 10000 -- 10 seconds max wait before blacklisting
 
 function _G.BANETO_ExecuteCustomQuestPulse()
 	local currentTarget = BANETO_GetTarget()
+	local currentTime = GetTime() * 1000 -- Convert to milliseconds
 
-	if BANETO_IsGuidContainedInGuidBlacklist(currentTarget) then
-		BANETO_Print("Cage already blacklisted - Clearing target!")
-		BANETO_ClearTarget()
+	-- Get current quest progress
+	local questData = C_QuestLog.GetQuestObjectives(31758)
+	local currentProgress = questData and questData[1] and questData[1].numFulfilled or 0
 
-		return
+	-- Initialize progress tracking on first run
+	if lastQuestProgress == nil then
+		lastQuestProgress = currentProgress
 	end
 
-	-- If the bot has a target and it's a new one since the last pulse
-	if currentTarget and currentTarget ~= lastTarget then
-		BANETO_Print("Checked cage - Adding to blacklist!")
-		BANETO_AddMobToGuidBlacklist(currentTarget)
-		lastTarget = currentTarget
+	-- If we have a target and it's a cage object
+	if currentTarget then
+		-- Check if this is a new target
+		if currentTarget ~= lastTargetGuid then
+			lastTargetGuid = currentTarget
+			targetStartTime = currentTime
+		end
 
-		return
+		-- Check if quest progress has increased (successful interaction)
+		if currentProgress > lastQuestProgress then
+			BANETO_Print("Quest progress increased! Blacklisting cage!")
+			BANETO_AddMobToGuidBlacklist(currentTarget)
+			lastQuestProgress = currentProgress
+			lastTargetGuid = nil
+			targetStartTime = nil
+			return
+		end
+
+		-- Check if we've been targeting this cage too long without progress
+		if targetStartTime and (currentTime - targetStartTime) > maxWaitTime then
+			BANETO_Print("No progress after " .. (maxWaitTime / 1000) .. " seconds. Blacklisting cage!")
+			BANETO_AddMobToGuidBlacklist(currentTarget) -- Shorter blacklist time for failed interactions
+			lastTargetGuid = nil
+			targetStartTime = nil
+			return
+		end
+	else
+		-- No target, reset tracking
+		if lastTargetGuid then
+			lastTargetGuid = nil
+			targetStartTime = nil
+		end
+	end
+
+	-- Clear target if it's already blacklisted
+	if currentTarget and BANETO_IsGuidContainedInGuidBlacklist(currentTarget) then
+		BANETO_Print("Target is blacklisted - Clearing target!")
+		BANETO_ClearTarget()
 	end
 end
 

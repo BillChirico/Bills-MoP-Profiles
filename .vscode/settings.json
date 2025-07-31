@@ -48,7 +48,17 @@
     "BANETO_DefineProfileUnstuck",
     "BANETO_HasQuest",
     "BANETO_LoadQuestProfile",
-    "BANETO_RecordLandingspot"
+    "BANETO_RecordLandingspot",
+    "C_QuestLog",
+    "GetTime",
+    "GetObjectWithIdIncludingBlacklistCheck",
+    "BANETO_MeshTo",
+    "UnlockedTargetUnit",
+    "BANETO_ObjectPosition",
+    "BANETO_GetState",
+    "BANETO_PlayerPosition",
+    "BANETO_ReadFile",
+    "BANETO_JsonDecode"
   ],
   "Lua.diagnostics.disable": ["duplicate-set-field"]
 }

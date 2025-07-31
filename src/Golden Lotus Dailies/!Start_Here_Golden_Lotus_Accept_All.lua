@@ -5,12 +5,41 @@ BANETO_DefineProfileName("!Start_Here_Golden_Lotus_Accept_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
--- Load shared Golden Lotus quest data
-dofile("Golden_Lotus_Data.lua")
+-- Golden Lotus Quest Accept Information Table
+local questAccepts = {
+	{
+		questId = 30307,
+		npcId = 58408,
+		questName = "The Eternal Vigil",
+	},
+	{
+		questId = 31757,
+		npcId = 58465,
+		questName = "Unleashed Spirits",
+	},
+	{
+		questId = 31762,
+		npcId = 58465,
+		questName = "Crumbling Behemoth",
+	},
+	{
+		questId = 31758,
+		npcId = 58471,
+		questName = "Laosy Scouting",
+	},
+	{
+		questId = 30312,
+		npcId = 58468,
+		questName = "Given a Second Chance",
+	},
+}
 
--- Use shared data
-local questAccepts = GoldenLotusData.quests
-local npcCoords = GoldenLotusData.npcCoords
+-- NPC Coordinates (all quest NPCs are at the same location - Temple of the White Tiger)
+local npcCoords = {
+	x = 1215.7375488281,
+	y = 1047.44921875,
+	z = 425.9674987793,
+}
 
 -- Quest Pulse
 -- BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = true
