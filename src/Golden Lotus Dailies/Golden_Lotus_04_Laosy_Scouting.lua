@@ -37,8 +37,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 		BANETO_Print("Checked cage - Adding to blacklist!")
 		BANETO_AddMobToGuidBlacklist(currentTarget)
 		BANETO_BlacklistID(currentTarget)
+		BANETO_DefineBlacklistIDGlobal(currentTarget)
+		BlacklistID(currentTarget)
 		lastTarget = currentTarget
-
 		return
 	end
 end

@@ -1,5 +1,20 @@
 {
-  "cSpell.words": ["BANETO", "Laosy", "Questmaster", "Turnin"],
+  "cSpell.words": [
+    "Amberstinger",
+    "BANETO",
+    "Chillwater",
+    "Genemancer",
+    "Horrorscale",
+    "Ik'thik",
+    "Klaxxi",
+    "Korven",
+    "Kunchong",
+    "Laosy",
+    "Mistblade",
+    "Questmaster",
+    "Scorpid",
+    "Turnin"
+  ],
   "Lua.diagnostics.globals": [
     "BANETO_SetNextLocalQuestProfile",
     "BANETO_DefineQuestTargetId",
@@ -26,7 +41,11 @@
     "BANETO_Stop",
     "IsQuestComplete",
     "C_QuestLog",
-    "BANETO_HasQuestCompleted"
+    "BANETO_HasQuestCompleted",
+    "BANETO_BlacklistID",
+    "BlacklistID",
+    "BANETO_DefineBlacklistIDGlobal",
+    "GetObjectWithIdClose"
   ],
   "Lua.diagnostics.disable": ["duplicate-set-field"]
 }

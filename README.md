@@ -27,8 +27,19 @@
 | **The Eternal Vigil**     | KillAndLoot  | Eliminate threats to maintain the vigil  |
 | **Unleashed Spirits**     | KillAndLoot  | Contain escaped spirits                  |
 | **Crumbling Behemoth**    | KillAndLoot  | Defeat the ancient stone guardian        |
-| **Laosy Scouting**        | KillAndLoot  | Gather intelligence from enemy forces    |
+| **Laosy Scouting**        | GatherObject | Gather intelligence from enemy cages     |
 | **Given a Second Chance** | UseItemOnNpc | Heal wounded defenders with sacred items |
+
+### 🦂 Klaxxi Faction
+
+| Quest Name                 | Type        | Description                                |
+| -------------------------- | ----------- | ------------------------------------------ |
+| **The Fight Against Fear** | KillAndLoot | Eliminate Horrorscale Scorpids             |
+| **The Scale-Lord**         | KillAndLoot | Defeat Mistblade Scale-Lords               |
+| **A Little Brain Work**    | KillAndLoot | Collect brains from Ik'thik Amberstingers  |
+| **Kunchong Treats**        | KillAndLoot | Hunt Chillwater Turtles for kunchong       |
+| **Bad Genes**              | KillAndLoot | Eliminate Genemancers and Egg-Drones       |
+| **Mistblade Destruction**  | KillAndLoot | Destroy Mistblade Rippers at Lake of Stars |
 
 ## 🚀 Quick Start
 
@@ -56,7 +67,7 @@
 3. **Load profiles in Baneto**
    - Start Baneto
    - Navigate to the quest profile directory
-   - Load desired Golden Lotus profiles
+   - Load desired profiles
 
 ## 📁 Project Structure
 
@@ -66,12 +77,21 @@ Baneto-MoP-Dailies/
 ├── 📄 LICENSE
 ├── ⚙️ .luacheckrc              # Lua linting configuration
 └── 📂 src/
-    └── 📂 Golden Lotus Dailies/
-        ├── 🎯 Golden_Lotus_01_The_Eternal_Vigil.lua
-        ├── 👻 Golden_Lotus_02_Unleashed_Spirits.lua
-        ├── 🗿 Golden_Lotus_03_Crumbling_Behemoth.lua
-        ├── 🔍 Golden_Lotus_04_Laosy_Scouting.lua
-        └── 💚 Golden_Lotus_05_Given_a_Second_Chance.lua
+    ├── 📂 Golden Lotus Dailies/
+    │   ├── 🎯 Golden_Lotus_01_The_Eternal_Vigil.lua
+    │   ├── 👻 Golden_Lotus_02_Unleashed_Spirits.lua
+    │   ├── 🗿 Golden_Lotus_03_Crumbling_Behemoth.lua
+    │   ├── 🔍 Golden_Lotus_04_Laosy_Scouting.lua
+    │   ├── 💚 Golden_Lotus_05_Given_a_Second_Chance.lua
+    │   └── 🔄 Golden_Lotus_TurnIn_All.lua
+    └── 📂 Klaxxi Dailies/
+        ├── ⚔️ Klaxxi_01_The_Fight_Against_Fear.lua
+        ├── 🐉 Klaxxi_02_The_Scale_Lord.lua
+        ├── 🧠 Klaxxi_03_A_Little_Brain_Work.lua
+        ├── 🐢 Klaxxi_04_Kunchong_Treats.lua
+        ├── 🧬 Klaxxi_05_Bad_Genes.lua
+        ├── ⚔️ Klaxxi_06_Mistblade_Destruction.lua
+        └── 🔄 Klaxxi_TurnIn_All.lua
 ```
 
 ## ⚙️ Configuration
@@ -80,8 +100,16 @@ Baneto-MoP-Dailies/
 
 Quest profiles are designed to chain together automatically:
 
+**Golden Lotus Chain:**
+
 ```
-The Eternal Vigil → Unleashed Spirits → Crumbling Behemoth → Laosy Scouting → Given a Second Chance
+The Eternal Vigil → Unleashed Spirits → Crumbling Behemoth → Laosy Scouting → Given a Second Chance → TurnIn All
+```
+
+**Klaxxi Chain:**
+
+```
+The Fight Against Fear → The Scale-Lord → A Little Brain Work → Kunchong Treats → Bad Genes → Mistblade Destruction → TurnIn All
 ```
 
 ### Custom Pulse Functions
@@ -138,6 +166,8 @@ We welcome contributions! Please follow these guidelines:
 
 ## 📋 Roadmap
 
+- [x] 🏮 **Golden Lotus** faction dailies (5 quests)
+- [x] 🦂 **Klaxxi** faction dailies (6 quests)
 - [ ] 🏛️ **August Celestials** faction dailies
 - [ ] 🐉 **Order of the Cloud Serpent** faction dailies
 - [ ] 🌅 **Shado-Pan** faction dailies
