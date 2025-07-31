@@ -67,7 +67,7 @@
 3. **Load profiles in Baneto**
    - Start Baneto
    - Navigate to the quest profile directory
-   - **For Golden Lotus:** Load `Golden_Lotus_Accept_All.lua` to automatically accept all available quests and start the full quest chain
+   - **For Golden Lotus:** Load `!Golden_Lotus_Accept_All.lua` to automatically accept all available quests and start the full quest chain
    - **For Klaxxi:** Load `Klaxxi_01_The_Fight_Against_Fear.lua` to start the quest chain (quests must be accepted manually first)
 
 ## 📁 Project Structure
@@ -79,7 +79,7 @@ Baneto-MoP-Dailies/
 ├── ⚙️ .luacheckrc              # Lua linting configuration
 └── 📂 src/
     ├── 📂 Golden Lotus Dailies/
-    │   ├── ✅ Golden_Lotus_Accept_All.lua
+    │   ├── ✅ !Golden_Lotus_Accept_All.lua
     │   ├── 🎯 Golden_Lotus_01_The_Eternal_Vigil.lua
     │   ├── 👻 Golden_Lotus_02_Unleashed_Spirits.lua
     │   ├── 🗿 Golden_Lotus_03_Crumbling_Behemoth.lua
@@ -108,7 +108,7 @@ Quest profiles are designed to chain together automatically:
 Accept All → Execute Quests (The Eternal Vigil → Unleashed Spirits → Crumbling Behemoth → Laosy Scouting → Given a Second Chance) → TurnIn All
 ```
 
-- **Accept Phase:** `Golden_Lotus_Accept_All.lua` accepts all available daily quests
+- **Accept Phase:** `!Golden_Lotus_Accept_All.lua` accepts all available daily quests
 - **Execute Phase:** Automatically transitions to `Golden_Lotus_01_The_Eternal_Vigil.lua` and chains through all quest objectives
 - **TurnIn Phase:** Final quest chains to `Golden_Lotus_TurnIn_All.lua` to submit completed quests
 
@@ -126,7 +126,7 @@ Manual Quest Acceptance → Execute Quests (The Fight Against Fear → The Scale
 
 **🏮 Golden Lotus - Fully Automated:**
 
-- ✅ Automatic quest acceptance via `Golden_Lotus_Accept_All.lua`
+- ✅ Automatic quest acceptance via `!Golden_Lotus_Accept_All.lua`
 - ✅ All quests picked up from the same location (Temple of the White Tiger)
 - ✅ Seamless transition from quest acceptance to execution to turn-in
 
