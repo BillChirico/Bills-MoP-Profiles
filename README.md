@@ -67,7 +67,8 @@
 3. **Load profiles in Baneto**
    - Start Baneto
    - Navigate to the quest profile directory
-   - Load desired profiles
+   - **For Golden Lotus:** Load `Golden_Lotus_Accept_All.lua` to automatically accept all available quests and start the full quest chain
+   - **For Klaxxi:** Load `Klaxxi_01_The_Fight_Against_Fear.lua` to start the quest chain (quests must be accepted manually first)
 
 ## 📁 Project Structure
 
@@ -78,6 +79,7 @@ Baneto-MoP-Dailies/
 ├── ⚙️ .luacheckrc              # Lua linting configuration
 └── 📂 src/
     ├── 📂 Golden Lotus Dailies/
+    │   ├── ✅ Golden_Lotus_Accept_All.lua
     │   ├── 🎯 Golden_Lotus_01_The_Eternal_Vigil.lua
     │   ├── 👻 Golden_Lotus_02_Unleashed_Spirits.lua
     │   ├── 🗿 Golden_Lotus_03_Crumbling_Behemoth.lua
@@ -103,14 +105,36 @@ Quest profiles are designed to chain together automatically:
 **Golden Lotus Chain:**
 
 ```
-The Eternal Vigil → Unleashed Spirits → Crumbling Behemoth → Laosy Scouting → Given a Second Chance → TurnIn All
+Accept All → Execute Quests (The Eternal Vigil → Unleashed Spirits → Crumbling Behemoth → Laosy Scouting → Given a Second Chance) → TurnIn All
 ```
+
+- **Accept Phase:** `Golden_Lotus_Accept_All.lua` accepts all available daily quests
+- **Execute Phase:** Automatically transitions to `Golden_Lotus_01_The_Eternal_Vigil.lua` and chains through all quest objectives
+- **TurnIn Phase:** Final quest chains to `Golden_Lotus_TurnIn_All.lua` to submit completed quests
 
 **Klaxxi Chain:**
 
 ```
-The Fight Against Fear → The Scale-Lord → A Little Brain Work → Kunchong Treats → Bad Genes → Mistblade Destruction → TurnIn All
+Manual Quest Acceptance → Execute Quests (The Fight Against Fear → The Scale-Lord → A Little Brain Work → Kunchong Treats → Bad Genes → Mistblade Destruction) → TurnIn All
 ```
+
+- **Manual Phase:** Player manually accepts available Klaxxi daily quests
+- **Execute Phase:** Start with `Klaxxi_01_The_Fight_Against_Fear.lua` and chain through all objectives
+- **TurnIn Phase:** Final quest chains to `Klaxxi_TurnIn_All.lua` to submit completed quests
+
+### Key Differences Between Factions
+
+**🏮 Golden Lotus - Fully Automated:**
+
+- ✅ Automatic quest acceptance via `Golden_Lotus_Accept_All.lua`
+- ✅ All quests picked up from the same location (Temple of the White Tiger)
+- ✅ Seamless transition from quest acceptance to execution to turn-in
+
+**🦂 Klaxxi - Semi-Automated:**
+
+- ⚠️ Manual quest acceptance required (quests come from different NPCs)
+- ✅ Automated quest execution once started
+- ✅ Automated turn-in via `Klaxxi_TurnIn_All.lua`
 
 ### Custom Pulse Functions
 
@@ -119,6 +143,7 @@ Some quests include custom logic for advanced automation:
 - **Smart Targeting** - Intelligent mob selection and blacklisting
 - **Item Usage** - Automated quest item interaction
 - **Error Recovery** - Handles edge cases and stuck scenarios
+- **Turn-In Logic** - Automatically detects completed quests in log and turns them in to appropriate NPCs
 
 ## 🛠️ Development
 

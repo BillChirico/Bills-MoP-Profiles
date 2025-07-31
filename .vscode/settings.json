@@ -9,6 +9,7 @@
     "Klaxxi",
     "Korven",
     "Kunchong",
+    "Landingspot",
     "Laosy",
     "Mistblade",
     "Questmaster",
@@ -39,15 +40,15 @@
     "BANETO_Print",
     "BANETO_LoadProfile",
     "BANETO_Stop",
-    "IsQuestComplete",
-    "C_QuestLog",
     "BANETO_HasQuestCompleted",
     "BANETO_BlacklistID",
     "BlacklistID",
     "BANETO_DefineBlacklistIDGlobal",
     "GetObjectWithIdClose",
     "BANETO_DefineProfileUnstuck",
-    "BANETO_HasQuest"
+    "BANETO_HasQuest",
+    "BANETO_LoadQuestProfile",
+    "BANETO_RecordLandingspot"
   ],
   "Lua.diagnostics.disable": ["duplicate-set-field"]
 }
