@@ -65,6 +65,22 @@ local npcCoords = {
 	},
 }
 
+-- Helper function to check if all quest objectives are complete
+local function IsQuestObjectivesComplete(questId)
+	local objectives = C_QuestLog.GetQuestObjectives(questId)
+	if not objectives or #objectives == 0 then
+		return false
+	end
+
+	for i = 1, #objectives do
+		if not objectives[i].finished then
+			return false
+		end
+	end
+
+	return true
+end
+
 -- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = true
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
@@ -78,8 +94,13 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 	for i = 1, #questTurnIns do
 		local quest = questTurnIns[i]
 
-		if BANETO_HasQuest(quest.questId) and not BANETO_HasQuestCompleted(quest.questId) then
-			BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")")
+		-- Check if quest is in log, not already completed, and all objectives are finished
+		if
+			BANETO_HasQuest(quest.questId)
+			and not BANETO_HasQuestCompleted(quest.questId)
+			and IsQuestObjectivesComplete(quest.questId)
+		then
+			BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")!")
 
 			local coords = npcCoords[quest.npcId]
 			BANETO_DefineQuestId(quest.questId)
