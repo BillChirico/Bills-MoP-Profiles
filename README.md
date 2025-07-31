@@ -68,7 +68,7 @@
    - Start Baneto
    - Navigate to the quest profile directory
    - **For Golden Lotus:** Load `!Start_Here_Golden_Lotus_Accept_All.lua` to automatically accept all available quests and start the full quest chain
-   - **For Klaxxi:** Load `Klaxxi_01_The_Fight_Against_Fear.lua` to start the quest chain (quests must be accepted manually first)
+   - **For Klaxxi:** Load `!Start_Here_Klaxxi_Accept_All.lua` to automatically accept all available quests and start the full quest chain
 
 ## 📁 Project Structure
 
@@ -87,6 +87,7 @@ Baneto-MoP-Dailies/
     │   ├── 💚 Golden_Lotus_05_Given_a_Second_Chance.lua
     │   └── 🔄 Golden_Lotus_TurnIn_All.lua
     └── 📂 Klaxxi Dailies/
+        ├── ✅ !Start_Here_Klaxxi_Accept_All.lua
         ├── ⚔️ Klaxxi_01_The_Fight_Against_Fear.lua
         ├── 🐉 Klaxxi_02_The_Scale_Lord.lua
         ├── 🧠 Klaxxi_03_A_Little_Brain_Work.lua
@@ -115,26 +116,12 @@ Accept All → Execute Quests (The Eternal Vigil → Unleashed Spirits → Crumb
 **Klaxxi Chain:**
 
 ```
-Manual Quest Acceptance → Execute Quests (The Fight Against Fear → The Scale-Lord → A Little Brain Work → Kunchong Treats → Bad Genes → Mistblade Destruction) → TurnIn All
+Accept All → Execute Quests (The Fight Against Fear → The Scale-Lord → A Little Brain Work → Kunchong Treats → Bad Genes → Mistblade Destruction) → TurnIn All
 ```
 
-- **Manual Phase:** Player manually accepts available Klaxxi daily quests
-- **Execute Phase:** Start with `Klaxxi_01_The_Fight_Against_Fear.lua` and chain through all objectives
+- **Accept Phase:** `!Start_Here_Klaxxi_Accept_All.lua` accepts all available daily quests from multiple NPCs
+- **Execute Phase:** Automatically transitions to `Klaxxi_01_The_Fight_Against_Fear.lua` and chains through all objectives
 - **TurnIn Phase:** Final quest chains to `Klaxxi_TurnIn_All.lua` to submit completed quests
-
-### Key Differences Between Factions
-
-**🏮 Golden Lotus - Fully Automated:**
-
-- ✅ Automatic quest acceptance via `!Start_Here_Golden_Lotus_Accept_All.lua`
-- ✅ All quests picked up from the same location (Temple of the White Tiger)
-- ✅ Seamless transition from quest acceptance to execution to turn-in
-
-**🦂 Klaxxi - Semi-Automated:**
-
-- ⚠️ Manual quest acceptance required (quests come from different NPCs)
-- ✅ Automated quest execution once started
-- ✅ Automated turn-in via `Klaxxi_TurnIn_All.lua`
 
 ### Custom Pulse Functions
 
