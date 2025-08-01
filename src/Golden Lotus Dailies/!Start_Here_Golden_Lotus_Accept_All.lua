@@ -71,5 +71,5 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 	end
 
 	BANETO_Print("All available quests accepted! Starting quest chain...")
-	BANETO_LoadQuestProfile([[Golden_Lotus_01_The_Eternal_Vigil]])
+	BANETO_LoadQuestProfile([[Golden_Lotus_01_Laosy_Scouting]])
 end

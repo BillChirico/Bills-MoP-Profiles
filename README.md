@@ -24,10 +24,10 @@
 
 | Quest Name                | Type         | Description                              |
 | ------------------------- | ------------ | ---------------------------------------- |
-| **The Eternal Vigil**     | KillAndLoot  | Eliminate threats to maintain the vigil  |
-| **Unleashed Spirits**     | KillAndLoot  | Contain escaped spirits                  |
-| **Crumbling Behemoth**    | KillAndLoot  | Defeat the ancient stone guardian        |
 | **Laosy Scouting**        | GatherObject | Gather intelligence from enemy cages     |
+| **Unleashed Spirits**     | KillAndLoot  | Contain escaped spirits                  |
+| **The Eternal Vigil**     | KillAndLoot  | Eliminate threats to maintain the vigil  |
+| **Crumbling Behemoth**    | KillAndLoot  | Defeat the ancient stone guardian        |
 | **Given a Second Chance** | UseItemOnNpc | Heal wounded defenders with sacred items |
 
 ### 🦂 Klaxxi Faction
@@ -80,10 +80,10 @@ Baneto-MoP-Dailies/
 └── 📂 src/
     ├── 📂 Golden Lotus Dailies/
     │   ├── ✅ !Start_Here_Golden_Lotus_Accept_All.lua
-    │   ├── 🎯 Golden_Lotus_01_The_Eternal_Vigil.lua
+    │   ├── 🔍 Golden_Lotus_01_Laosy_Scouting.lua
     │   ├── 👻 Golden_Lotus_02_Unleashed_Spirits.lua
-    │   ├── 🗿 Golden_Lotus_03_Crumbling_Behemoth.lua
-    │   ├── 🔍 Golden_Lotus_04_Laosy_Scouting.lua
+    │   ├── 🎯 Golden_Lotus_03_The_Eternal_Vigil.lua
+    │   ├── 🗿 Golden_Lotus_04_Crumbling_Behemoth.lua
     │   ├── 💚 Golden_Lotus_05_Given_a_Second_Chance.lua
     │   └── 🔄 Golden_Lotus_TurnIn_All.lua
     └── 📂 Klaxxi Dailies/
@@ -106,11 +106,11 @@ Quest profiles are designed to chain together automatically:
 **Golden Lotus Chain:**
 
 ```
-Accept All → Execute Quests (The Eternal Vigil → Unleashed Spirits → Crumbling Behemoth → Laosy Scouting → Given a Second Chance) → TurnIn All
+Accept All → Execute Quests (Laosy Scouting → Unleashed Spirits → The Eternal Vigil → Crumbling Behemoth → Given a Second Chance) → TurnIn All
 ```
 
 - **Accept Phase:** `!Start_Here_Golden_Lotus_Accept_All.lua` accepts all available daily quests
-- **Execute Phase:** Automatically transitions to `Golden_Lotus_01_The_Eternal_Vigil.lua` and chains through all quest objectives
+- **Execute Phase:** Automatically transitions to `Golden_Lotus_01_Laosy_Scouting.lua` and chains through all quest objectives
 - **TurnIn Phase:** Final quest chains to `Golden_Lotus_TurnIn_All.lua` to submit completed quests
 
 **Klaxxi Chain:**

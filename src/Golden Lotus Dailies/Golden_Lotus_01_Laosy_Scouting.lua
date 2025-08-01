@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Golden_Lotus_04_Laosy_Scouting")
+BANETO_DefineProfileName("Golden_Lotus_01_Laosy_Scouting")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[GatherObject]])
@@ -14,7 +14,7 @@ BANETO_DefineQuestTargetId(214948)
 
 -- Quest Locations
 BANETO_DefineCenter(1551.1240234375, 1201.814453125, 443.14520263672, 130)
-BANETO_DefineCenter(1162.54030761719, 1273.8989257812, 463.28009033203, 130)
+-- BANETO_DefineCenter(1162.54030761719, 1273.8989257812, 463.28009033203, 130)
 BANETO_DefineCenter(1678.9040527344, 1388.1376953125, 453.60244750977, 130)
 BANETO_DefineCenter(1573.8038330078, 1389.3203125, 445.32727050781, 130)
 BANETO_DefineCenter(1511.4365234375, 1475.9962158203, 441.88012695312, 130)
@@ -87,4 +87,4 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 end
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_05_Given_a_Second_Chance]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_02_Unleashed_Spirits]])

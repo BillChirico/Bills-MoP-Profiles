@@ -22,6 +22,8 @@ BANETO_DefineCenter(1443.3646240234, 1143.2777099609, 429.45077514648, 200)
 BANETO_SetNextLocalQuestProfile([[Golden_Lotus_TurnIn_All]])
 
 -- Quest Pulse
+_G.BANETO_SCAN_FLYINGMOBS = true
+_G.BANETO_ALLOWSCAN_COMBATMOBS = true
 -- _G.BANETO_ExecuteCustomQuestPulse_Questmaster = true
 -- _G.BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = true
 -- local lastStepProgress = nil

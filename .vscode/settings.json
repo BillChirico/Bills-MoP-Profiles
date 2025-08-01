@@ -58,7 +58,10 @@
     "BANETO_GetState",
     "BANETO_PlayerPosition",
     "BANETO_ReadFile",
-    "BANETO_JsonDecode"
+    "BANETO_JsonDecode",
+    "UnitExists",
+    "BANETO_GetDistance3D",
+    "GetObjectWithIdMedium"
   ],
   "Lua.diagnostics.disable": ["duplicate-set-field"]
 }

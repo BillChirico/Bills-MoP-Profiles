@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Golden_Lotus_01_The_Eternal_Vigil")
+BANETO_DefineProfileName("Golden_Lotus_03_The_Eternal_Vigil")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
@@ -19,4 +19,4 @@ BANETO_DefineCenter(1392.3897705078, 1291.5573730469, 401.01940917969, 300)
 BANETO_DefineCenter(1674.5532226562, 1352.6085205078, 453.59204101562, 300)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_02_Unleashed_Spirits]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_04_Crumbling_Behemoth]])
