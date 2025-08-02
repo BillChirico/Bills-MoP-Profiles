@@ -62,7 +62,8 @@
 		"UnitExists",
 		"BANETO_GetDistance3D",
 		"GetObjectWithIdMedium",
-		"BANETO_DefineWhitelist"
+		"BANETO_DefineWhitelist",
+		"BANETO_UnitHealth"
 	],
 	"Lua.diagnostics.disable": ["duplicate-set-field"],
 	"emmylua.spell.dict": ["Whitelist"]

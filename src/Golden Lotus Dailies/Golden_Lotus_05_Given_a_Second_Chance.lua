@@ -25,46 +25,16 @@ BANETO_DefineWhitelist(1443.3646240234, 1143.2777099609, 429.45077514648, 200)
 BANETO_SetNextLocalQuestProfile([[Golden_Lotus_TurnIn_All]])
 
 -- Quest Pulse
--- _G.BANETO_ExecuteCustomQuestPulse_Questmaster = true
--- _G.BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = true
--- local lastStepProgress = nil
--- local questID = 30312
--- local stepIndex = 1
+_G.BANETO_ExecuteCustomQuestPulse_Questmaster = true
 
--- function _G.BANETO_ExecuteCustomQuestPulse()
--- 	local questData = C_QuestLog.GetQuestObjectives(questID)
--- 	local finished = questData[stepIndex]["finished"]
--- 	local stepProgress = questData[stepIndex]["numFulfilled"]
+function _G.BANETO_ExecuteCustomQuestPulse()
+    local currentTarget = BANETO_Object("target")
+    local currentTargetId = BANETO_GetTargetId()
 
--- 	-- Check if we have stored progress from the last pulse, if not, initialize it
--- 	if lastStepProgress == nil then
--- 		lastStepProgress = stepProgress
--- 	end
+    if currentTarget and BANETO_UnitHealth(currentTarget) >= 50 and currentTargetId == 59183 then
+        BANETO_AddMobToGuidBlacklist(currentTarget)
 
--- 	-- If progress has increased by 1, add the current mob to the blacklist
--- 	if stepProgress > lastStepProgress and stepProgress == lastStepProgress + 1 then
--- 		local currentTarget = BANETO_Object("target")
-
--- 		-- Check if target is already blacklisted (already healed)
--- 		if BANETO_IsGuidContainedInGuidBlacklist(currentTarget) then
--- 			BANETO_Print("Wounded Defender already blacklisted (healed) - Clearing target!")
--- 			BANETO_ClearTarget()
--- 			return
--- 		end
-
--- 		if currentTarget then
--- 			BANETO_AddMobToGuidBlacklist("target")
--- 			BANETO_AddMobToGuidBlacklist(currentTarget)
--- 			BANETO_AddMobToGuidBlacklist(UnitGUID("target"))
-
--- 			BANETO_Print("Healed Wounded Defender - Adding to blacklist!")
--- 		end
--- 	end
-
--- 	-- Update the stored progress for the next pulse
--- 	lastStepProgress = stepProgress
-
--- 	if finished then
--- 		BANETO_LoadProfile([[Golden_Lotus_TurnIn_All]])
--- 	end
--- end
+        BANETO_Print("Healed Wounded Defender - Adding to blacklist!")
+        BANETO_ClearTarget()
+    end
+end
