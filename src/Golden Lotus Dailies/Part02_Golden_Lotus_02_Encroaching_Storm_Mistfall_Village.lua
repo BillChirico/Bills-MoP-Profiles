@@ -21,4 +21,4 @@ BANETO_DefineCenter(1001.3810424805, 1843.0981445312, 372.3623046875, 130)
 BANETO_DefineCenter(840.20239257812, 1776.7647705078, 382.08474731445, 130)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Part02_Golden_Lotus_03_Sprite_Plight_Mistfall_Village]])
+BANETO_SetNextLocalQuestProfile([[Part02_Golden_Lotus_03_My_Town_Its_on_Fire_Mistfall_Village]])
