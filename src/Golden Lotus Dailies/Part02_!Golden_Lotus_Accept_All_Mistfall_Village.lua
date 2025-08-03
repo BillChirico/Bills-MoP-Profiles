@@ -28,9 +28,9 @@ local questAccepts = {
         },
     },
     {
-        questId = 30190,
+        questId = 30192,
         npcId = 58819,
-        questName = "Sprite Plight",
+        questName = "My Town, It's on Fire",
         coords = {
             x = 699.212890625,
             y = 1587.1867675781,
@@ -38,9 +38,9 @@ local questAccepts = {
         },
     },
     {
-        questId = 30192,
+        questId = 30190,
         npcId = 58819,
-        questName = "My Town, It's on Fire",
+        questName = "Sprite Plight",
         coords = {
             x = 699.212890625,
             y = 1587.1867675781,
