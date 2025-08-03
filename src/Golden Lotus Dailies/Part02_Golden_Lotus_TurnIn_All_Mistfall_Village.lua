@@ -98,5 +98,4 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
     BANETO_Print("All Part 2 quests completed! Starting Part 3...")
     BANETO_LoadQuestProfile([[Part03_Golden_Lotus_01_Quid_Pro_Quo_Mistfall_Village]])
-    BANETO_Stop()
 end
