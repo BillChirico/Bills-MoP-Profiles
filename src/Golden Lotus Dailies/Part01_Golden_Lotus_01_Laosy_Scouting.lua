@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Golden_Lotus_01_Laosy_Scouting")
+BANETO_DefineProfileName("Part01_Golden_Lotus_01_Laosy_Scouting")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[GatherObject]])
@@ -87,4 +87,4 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 end
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_02_Unleashed_Spirits]])
+BANETO_SetNextLocalQuestProfile([[Part01_Golden_Lotus_02_Unleashed_Spirits]])

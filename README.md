@@ -54,8 +54,8 @@
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/Baneto-MoP-Dailies.git
-   cd Baneto-MoP-Dailies
+   git clone https://github.com/BillChirico/Bills-MoP-Profiles.git
+   cd Bills-MoP-Profiles
    ```
 
 2. **Copy quest profiles to Baneto directory**
@@ -67,7 +67,7 @@
 3. **Load profiles in Baneto**
    - Start Baneto
    - Navigate to the quest profile directory
-   - **For Golden Lotus:** Load `!Start_Here_Golden_Lotus_Accept_All.lua` to automatically accept all available quests and start the full quest chain
+   - **For Golden Lotus:** Load `Part01_!Start_Here_Golden_Lotus_Accept_All.lua` to automatically accept all available quests and start the full quest chain
    - **For Klaxxi:** Load `!Start_Here_Klaxxi_Accept_All.lua` to automatically accept all available quests and start the full quest chain
 
 ## 📁 Project Structure
@@ -79,13 +79,13 @@ Baneto-MoP-Dailies/
 ├── ⚙️ .luacheckrc              # Lua linting configuration
 └── 📂 src/
     ├── 📂 Golden Lotus Dailies/
-    │   ├── ✅ !Start_Here_Golden_Lotus_Accept_All.lua
-    │   ├── 🔍 Golden_Lotus_01_Laosy_Scouting.lua
-    │   ├── 👻 Golden_Lotus_02_Unleashed_Spirits.lua
-    │   ├── 🎯 Golden_Lotus_03_The_Eternal_Vigil.lua
-    │   ├── 🗿 Golden_Lotus_04_Crumbling_Behemoth.lua
-    │   ├── 💚 Golden_Lotus_05_Given_a_Second_Chance.lua
-    │   └── 🔄 Golden_Lotus_TurnIn_All.lua
+    │   ├── ✅ Part01_!Start_Here_Golden_Lotus_Accept_All.lua
+    │   ├── 🔍 Part01_Golden_Lotus_01_Laosy_Scouting.lua
+    │   ├── 👻 Part01_Golden_Lotus_02_Unleashed_Spirits.lua
+    │   ├── 🎯 Part01_Golden_Lotus_03_The_Eternal_Vigil.lua
+    │   ├── 🗿 Part01_Golden_Lotus_04_Crumbling_Behemoth.lua
+    │   ├── 💚 Part01_Golden_Lotus_05_Given_a_Second_Chance.lua
+    │   └── 🔄 Part01_Golden_Lotus_TurnIn_All.lua
     └── 📂 Klaxxi Dailies/
         ├── ✅ !Start_Here_Klaxxi_Accept_All.lua
         ├── ⚔️ Klaxxi_01_The_Fight_Against_Fear.lua
@@ -109,9 +109,9 @@ Quest profiles are designed to chain together automatically:
 Accept All → Execute Quests (Laosy Scouting → Unleashed Spirits → The Eternal Vigil → Crumbling Behemoth → Given a Second Chance) → TurnIn All
 ```
 
-- **Accept Phase:** `!Start_Here_Golden_Lotus_Accept_All.lua` accepts all available daily quests
-- **Execute Phase:** Automatically transitions to `Golden_Lotus_01_Laosy_Scouting.lua` and chains through all quest objectives
-- **TurnIn Phase:** Final quest chains to `Golden_Lotus_TurnIn_All.lua` to submit completed quests
+- **Accept Phase:** `Part01_!Start_Here_Golden_Lotus_Accept_All.lua` accepts all available daily quests
+- **Execute Phase:** Automatically transitions to `Part01_Golden_Lotus_01_Laosy_Scouting.lua` and chains through all quest objectives
+- **TurnIn Phase:** Final quest chains to `Part01_Golden_Lotus_TurnIn_All.lua` to submit completed quests
 
 **Klaxxi Chain:**
 

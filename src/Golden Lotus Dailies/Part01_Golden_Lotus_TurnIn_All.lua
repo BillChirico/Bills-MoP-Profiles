@@ -1,5 +1,5 @@
 -- Golden Lotus Quest Turn-In Handler
-BANETO_DefineProfileName("Golden_Lotus_TurnIn_All")
+BANETO_DefineProfileName("Part01_Golden_Lotus_TurnIn_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
@@ -81,7 +81,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 			BANETO_DefineQuestTurninNPC(npcCoords.x, npcCoords.y, npcCoords.z, quest.npcId)
 			BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
 			BANETO_ExecuteCustomQuestPulse_Questmaster = false
-			BANETO_SetNextLocalQuestProfile([[Golden_Lotus_TurnIn_All]])
+			BANETO_SetNextLocalQuestProfile([[Part01_Golden_Lotus_TurnIn_All]])
 			inProgress = true
 
 			return
