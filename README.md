@@ -22,13 +22,27 @@
 
 ### 🏮 Golden Lotus Faction
 
-| Quest Name                | Type         | Description                              |
+**Part 1 - Temple of the White Tiger:**
+| Quest Name | Type | Description |
 | ------------------------- | ------------ | ---------------------------------------- |
-| **Laosy Scouting**        | GatherObject | Gather intelligence from enemy cages     |
-| **Unleashed Spirits**     | KillAndLoot  | Contain escaped spirits                  |
-| **The Eternal Vigil**     | KillAndLoot  | Eliminate threats to maintain the vigil  |
-| **Crumbling Behemoth**    | KillAndLoot  | Defeat the ancient stone guardian        |
+| **Laosy Scouting** | GatherObject | Gather intelligence from enemy cages |
+| **Unleashed Spirits** | KillAndLoot | Contain escaped spirits |
+| **The Eternal Vigil** | KillAndLoot | Eliminate threats to maintain the vigil |
+| **Crumbling Behemoth** | KillAndLoot | Defeat the ancient stone guardian |
 | **Given a Second Chance** | UseItemOnNpc | Heal wounded defenders with sacred items |
+
+**Part 2 - Mistfall Village:**
+| Quest Name | Type | Description |
+| ------------------------- | ------------ | ---------------------------------------- |
+| **Pomfruit Pickup** | GatherObject | Collect pomfruits for the village |
+| **Encroaching Storm** | KillAndLoot | Defeat Thundermaw enemies |
+| **My Town, It's on Fire** | GatherObject | Extinguish fires with water buckets |
+| **Sprite Plight** | KillAndLoot | Eliminate Slateskin Troublemakers |
+
+**Part 3 - Final Quest:**
+| Quest Name | Type | Description |
+| ------------------------- | ------------ | ---------------------------------------- |
+| **Quid Pro Quo** | KillAndLoot | Defeat Quid in the final challenge |
 
 ### 🦂 Klaxxi Faction
 
@@ -85,7 +99,15 @@ Baneto-MoP-Dailies/
     │   ├── 🎯 Part01_Golden_Lotus_03_The_Eternal_Vigil.lua
     │   ├── 🗿 Part01_Golden_Lotus_04_Crumbling_Behemoth.lua
     │   ├── 💚 Part01_Golden_Lotus_05_Given_a_Second_Chance.lua
-    │   └── 🔄 Part01_Golden_Lotus_TurnIn_All.lua
+    │   ├── 🔄 Part01_Golden_Lotus_TurnIn_All.lua
+    │   ├── 🚶 Part02_!!Golden_Lotus_Transition_Mistfall_Village.lua
+    │   ├── ✅ Part02_!Golden_Lotus_Accept_All_Mistfall_Village.lua
+    │   ├── 🍎 Part02_Golden_Lotus_01_Pomfruit_Pickup_Mistfall_Village.lua
+    │   ├── ⚡ Part02_Golden_Lotus_02_Encroaching_Storm_Mistfall_Village.lua
+    │   ├── 🔥 Part02_Golden_Lotus_03_My_Town_Its_on_Fire_Mistfall_Village.lua
+    │   ├── 🧚 Part02_Golden_Lotus_04_Sprite_Plight_Mistfall_Village.lua
+    │   ├── 🔄 Part02_Golden_Lotus_TurnIn_All_Mistfall_Village.lua
+    │   └── 🏆 Part03_Golden_Lotus_01_Quid_Pro_Quo_Mistfall_Village.lua
     └── 📂 Klaxxi Dailies/
         ├── ✅ !Start_Here_Klaxxi_Accept_All.lua
         ├── ⚔️ Klaxxi_01_The_Fight_Against_Fear.lua
@@ -103,15 +125,20 @@ Baneto-MoP-Dailies/
 
 Quest profiles are designed to chain together automatically:
 
-**Golden Lotus Chain:**
+**Golden Lotus Chain (3-Part Structure):**
 
 ```
-Accept All → Execute Quests (Laosy Scouting → Unleashed Spirits → The Eternal Vigil → Crumbling Behemoth → Given a Second Chance) → TurnIn All
+Part 1: Accept All → Execute Quests (Laosy Scouting → Unleashed Spirits → The Eternal Vigil → Crumbling Behemoth → Given a Second Chance) → TurnIn All
+↓
+Part 2: Transition → Accept All → Execute Quests (Pomfruit Pickup → Encroaching Storm → My Town, It's on Fire → Sprite Plight) → TurnIn All
+↓
+Part 3: Quid Pro Quo → Complete (Final Quest)
 ```
 
-- **Accept Phase:** `Part01_!Start_Here_Golden_Lotus_Accept_All.lua` accepts all available daily quests
-- **Execute Phase:** Automatically transitions to `Part01_Golden_Lotus_01_Laosy_Scouting.lua` and chains through all quest objectives
-- **TurnIn Phase:** Final quest chains to `Part01_Golden_Lotus_TurnIn_All.lua` to submit completed quests
+- **Part 1:** `Part01_!Start_Here_Golden_Lotus_Accept_All.lua` accepts all available daily quests at Temple of the White Tiger
+- **Part 2:** `Part02_!Golden_Lotus_Accept_All_Mistfall_Village.lua` accepts all available daily quests at Mistfall Village
+- **Part 3:** `Part03_Golden_Lotus_01_Quid_Pro_Quo_Mistfall_Village.lua` completes the final quest
+- **Automatic Transitions:** Each part seamlessly chains to the next with consolidated turn-in handlers
 
 **Klaxxi Chain:**
 
@@ -131,6 +158,7 @@ Some quests include custom logic for advanced automation:
 - **Progress Monitoring** - Tracks quest objective completion using WoW API
 - **Turn-In Logic** - Automatically detects completed quests and turns them in to appropriate NPCs
 - **Quest Chaining** - Seamlessly transitions between quest profiles
+- **Multi-Part Structure** - Organized quest chains with consolidated accept and turn-in handlers
 
 ## 🛠️ Development
 
@@ -178,7 +206,7 @@ We welcome contributions! Please follow these guidelines:
 
 ## 📋 Roadmap
 
-- [x] 🏮 **Golden Lotus** faction dailies (5 quests)
+- [x] 🏮 **Golden Lotus** faction dailies (9 quests across 3 parts)
 - [x] 🦂 **Klaxxi** faction dailies (6 quests)
 - [ ] 🏛️ **August Celestials** faction dailies
 - [ ] 🐉 **Order of the Cloud Serpent** faction dailies
