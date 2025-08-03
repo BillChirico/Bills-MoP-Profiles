@@ -12,9 +12,13 @@
 		"Landingspot",
 		"Laosy",
 		"Mistblade",
+		"Mistfall",
+		"Pomfruit",
 		"Questmaster",
 		"Scorpid",
-		"Turnin"
+		"Thundermaw",
+		"Turnin",
+		"Wildwalker"
 	],
 	"Lua.diagnostics.globals": [
 		"BANETO_SetNextLocalQuestProfile",
@@ -66,5 +70,5 @@
 		"BANETO_UnitHealth"
 	],
 	"Lua.diagnostics.disable": ["duplicate-set-field"],
-	"emmylua.spell.dict": ["Whitelist"]
+	"emmylua.spell.dict": ["Whitelist", "Questmaster", "Coords", "Turnin", "Laosy", "Mistfall", "Pomfruit"]
 }
