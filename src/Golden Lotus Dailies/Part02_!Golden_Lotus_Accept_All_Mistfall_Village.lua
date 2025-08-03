@@ -15,7 +15,7 @@ local questAccepts = {
             x = 727.81665039062,
             y = 1621.7716064453,
             z = 377.74417114258,
-        }
+        },
     },
     {
         questId = 30231,
@@ -25,7 +25,27 @@ local questAccepts = {
             x = 758.8076171875,
             y = 1624.3572998047,
             z = 370.361328125,
-        }
+        },
+    },
+    {
+        questId = 30190,
+        npcId = 58819,
+        questName = "Sprite Plight",
+        coords = {
+            x = 699.212890625,
+            y = 1587.1867675781,
+            z = 384.44644165039,
+        },
+    },
+    {
+        questId = 30192,
+        npcId = 58819,
+        questName = "My Town, It's on Fire",
+        coords = {
+            x = 699.212890625,
+            y = 1587.1867675781,
+            z = 384.44644165039,
+        },
     }
 }
 
@@ -58,5 +78,5 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     end
 
     BANETO_Print("All available Part 2 quests accepted! Starting quest chain...")
-    BANETO_LoadQuestProfile([[Part02_Golden_Lotus_01_Encroaching_Storm_Mistfall_Village]])
+    BANETO_LoadQuestProfile([[Part02_Golden_Lotus_01_Pomfruit_Pickup_Mistfall_Village]])
 end

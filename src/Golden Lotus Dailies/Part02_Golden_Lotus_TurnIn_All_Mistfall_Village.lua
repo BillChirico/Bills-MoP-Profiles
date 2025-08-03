@@ -6,6 +6,16 @@ BANETO_DefineQuestStepType([[TalkTo]])
 -- Golden Lotus Part 2 Quest Turn-In Information Table
 local questTurnIns = {
     {
+        questId = 30231,
+        npcId = 58818,
+        questName = "Pomfruit Pickup",
+        coords = {
+            x = 758.8076171875,
+            y = 1624.3572998047,
+            z = 370.361328125,
+        }
+    },
+    {
         questId = 30194,
         npcId = 59338,
         questName = "Encroaching Storm",
@@ -16,13 +26,23 @@ local questTurnIns = {
         }
     },
     {
-        questId = 30231,
-        npcId = 58818,
-        questName = "Pomfruit Pickup",
+        questId = 30190,
+        npcId = 58819,
+        questName = "Sprite Plight",
         coords = {
-            x = 758.8076171875,
-            y = 1624.3572998047,
-            z = 370.361328125,
+            x = 699.212890625,
+            y = 1587.1867675781,
+            z = 384.44644165039,
+        }
+    },
+    {
+        questId = 30192,
+        npcId = 58819,
+        questName = "My Town, It's on Fire",
+        coords = {
+            x = 699.212890625,
+            y = 1587.1867675781,
+            z = 384.44644165039,
         }
     }
 }
