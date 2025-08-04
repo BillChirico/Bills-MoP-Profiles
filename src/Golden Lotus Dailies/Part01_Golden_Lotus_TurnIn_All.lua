@@ -90,5 +90,4 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
 	BANETO_Print("No more completed quests to turn in! Starting transition to Part 2...")
 	BANETO_SetNextLocalQuestProfile([[Part02_Golden_Lotus_Transition_Mistfall_Village]])
-	BANETO_Stop()
 end
