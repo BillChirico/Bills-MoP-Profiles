@@ -3,7 +3,9 @@
 		"Amberstinger",
 		"BANETO",
 		"Chillwater",
+		"Dreadspinner",
 		"Genemancer",
+		"Gurthani",
 		"Horrorscale",
 		"Ik'thik",
 		"Klaxxi",
@@ -13,6 +15,7 @@
 		"Laosy",
 		"Mistblade",
 		"Mistfall",
+		"Npcs",
 		"Pomfruit",
 		"Questmaster",
 		"Scorpid",
@@ -69,8 +72,23 @@
 		"BANETO_GetDistance3D",
 		"GetObjectWithIdMedium",
 		"BANETO_DefineWhitelist",
-		"BANETO_UnitHealth"
+		"BANETO_UnitHealth",
+		"time",
+		"C_GossipInfo",
+		"BANETO_Interact"
 	],
 	"Lua.diagnostics.disable": ["duplicate-set-field"],
-	"emmylua.spell.dict": ["Whitelist", "Questmaster", "Coords", "Turnin", "Laosy", "Mistfall", "Pomfruit"]
+	"emmylua.spell.dict": [
+		"Whitelist",
+		"Questmaster",
+		"Coords",
+		"Turnin",
+		"Laosy",
+		"Mistfall",
+		"Pomfruit",
+		"Kunchong",
+		"Dreadspinner",
+		"Npcs",
+		"Klaxxi"
+	]
 }
