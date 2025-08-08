@@ -6,14 +6,14 @@ BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(31235)
 
 -- NPC Information
-BANETO_DefineQuestPickupNPC(136.87948608398, 3193.1166992188, 214.7607421875, 62538) -- Kil'ruk the Wind-Reaver
-BANETO_DefineQuestTurninNPC(136.87948608398, 3193.1166992188, 214.7607421875, 62538) -- Kil'ruk the Wind-Reaver
+-- BANETO_DefineQuestPickupNPC(136.87948608398, 3193.1166992188, 214.7607421875, 62538) -- Kil'ruk the Wind-Reaver
+-- BANETO_DefineQuestTurninNPC(136.87948608398, 3193.1166992188, 214.7607421875, 62538) -- Kil'ruk the Wind-Reaver
 
 -- Quest item
 BANETO_DefineQuestTargetId(82807) -- Shado-Pan Dragon Gun
 
 -- Quest Objective
-BANETO_DefineQuestTargetId(620077) -- Dreadspinner Egg
+BANETO_DefineQuestTargetId(62077) -- Dreadspinner Egg
 
 -- Quest Locations
 BANETO_DefineCenter(322.75918579102, 2384.0385742188, 202.71076965332, 300)

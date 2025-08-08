@@ -6,8 +6,8 @@ BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(31270)
 
 -- NPC Information
-BANETO_DefineQuestPickupNPC(130.63441467285, 3231.4921875, 215.64880371094, 62180) -- Korven the Prime
-BANETO_DefineQuestTurninNPC(130.63441467285, 3231.4921875, 215.64880371094, 62180) -- Korven the Prime
+-- BANETO_DefineQuestPickupNPC(130.63441467285, 3231.4921875, 215.64880371094, 62180) -- Korven the Prime
+-- BANETO_DefineQuestTurninNPC(130.63441467285, 3231.4921875, 215.64880371094, 62180) -- Korven the Prime
 
 -- Quest Objective
 BANETO_DefineQuestTargetId(62162) -- Horrorscale Scorpid
@@ -19,6 +19,7 @@ BANETO_DefineCenter(-606.00811767578, 2879.7368164062, 168.73880004883, 300)
 -- Next Quest
 BANETO_SetNextLocalQuestProfile([[Klaxxi_02_The_Scale_Lord]])
 
+-- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
 
 function _G.BANETO_ExecuteCustomQuestPulse()

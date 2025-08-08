@@ -6,8 +6,8 @@ BANETO_DefineQuestStepType([[GatherObject]])
 BANETO_DefineQuestId(31232)
 
 -- NPC Information
-BANETO_DefineQuestPickupNPC(127.87126922607, 3233.3774414062, 215.64855957031, 62180) -- Korven the Prime
-BANETO_DefineQuestTurninNPC(127.87126922607, 3233.3774414062, 215.64855957031, 62180) -- Korven the Prime
+-- BANETO_DefineQuestPickupNPC(127.87126922607, 3233.3774414062, 215.64855957031, 62180) -- Korven the Prime
+-- BANETO_DefineQuestTurninNPC(127.87126922607, 3233.3774414062, 215.64855957031, 62180) -- Korven the Prime
 
 -- Quest Objective
 BANETO_DefineQuestTargetId(213314) -- Gurthani Tablet

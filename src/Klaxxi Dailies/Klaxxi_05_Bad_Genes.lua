@@ -6,8 +6,8 @@ BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(31271)
 
 -- NPC Information
-BANETO_DefineQuestPickupNPC(133.96636962891, 3228.0466308594, 215.70733642578, 63072) -- Rik'kal the Dissector
-BANETO_DefineQuestTurninNPC(133.96636962891, 3228.0466308594, 215.70733642578, 63072) -- Rik'kal the Dissector
+-- BANETO_DefineQuestPickupNPC(133.96636962891, 3228.0466308594, 215.70733642578, 63072) -- Rik'kal the Dissector
+-- BANETO_DefineQuestTurninNPC(133.96636962891, 3228.0466308594, 215.70733642578, 63072) -- Rik'kal the Dissector
 
 -- Quest Objectives
 BANETO_DefineQuestTargetId(63257) -- Ik'thik Genemancer

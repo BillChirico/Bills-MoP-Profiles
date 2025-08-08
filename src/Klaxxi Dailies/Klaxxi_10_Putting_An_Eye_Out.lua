@@ -6,8 +6,8 @@ BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(31234)
 
 -- NPC Information
-BANETO_DefineQuestPickupNPC(134.97793579102, 3228.5539550781, 215.59104919434, 63072) -- Rik'kal the Dissector
-BANETO_DefineQuestTurninNPC(134.97793579102, 3228.5539550781, 215.59104919434, 63072) -- Rik'kal the Dissector
+-- BANETO_DefineQuestPickupNPC(134.97793579102, 3228.5539550781, 215.59104919434, 63072) -- Rik'kal the Dissector
+-- BANETO_DefineQuestTurninNPC(134.97793579102, 3228.5539550781, 215.59104919434, 63072) -- Rik'kal the Dissector
 
 -- Quest Objective
 BANETO_DefineQuestTargetId(63731) -- Mire Beast
