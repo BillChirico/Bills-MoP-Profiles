@@ -10,7 +10,7 @@ BANETO_DefineQuestId(31235)
 -- BANETO_DefineQuestTurninNPC(136.87948608398, 3193.1166992188, 214.7607421875, 62538) -- Kil'ruk the Wind-Reaver
 
 -- Quest item
-BANETO_DefineQuestTargetId(82807) -- Shado-Pan Dragon Gun
+-- BANETO_DefineQuestTargetId(82807) -- Shado-Pan Dragon Gun
 
 -- Quest Objective
 BANETO_DefineQuestTargetId(62077) -- Dreadspinner Egg
@@ -26,13 +26,32 @@ BANETO_SetNextLocalQuestProfile([[Klaxxi_10_Putting_An_Eye_Out]])
 -- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
 
+local wait = nil
+
 function _G.BANETO_ExecuteCustomQuestPulse()
     if not BANETO_HasQuest(31235) then
         BANETO_Print("Quest not found, skipping!")
 
         BANETO_LoadQuestProfile([[Klaxxi_10_Putting_An_Eye_Out]])
         return
-    else
-        BANETO_ExecuteCustomQuestPulse_Questmaster = false
+    end
+
+    local object = GetObjectWithId(62077)
+    UnlockedTargetUnit(object)
+
+    local currentTarget = object
+    local targetX, targetY, targetZ = BANETO_ObjectPosition(currentTarget)
+
+    if currentTarget and object and BANETO_HasItem(82807) then
+        if not wait and BANETO_PlayerPosition(targetX, targetY, targetZ, 5) then
+            BANETO_UseItem(82807)
+            wait = time() + 5
+        elseif wait and time() > wait then
+            wait = nil
+            BANETO_AddMobToGuidBlacklist(currentTarget)
+            BANETO_ClearTarget()
+        else
+            BANETO_MeshTo(targetX, targetY, targetZ)
+        end
     end
 end

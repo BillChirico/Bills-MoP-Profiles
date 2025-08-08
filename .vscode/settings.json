@@ -78,7 +78,10 @@
 		"BANETO_UnitHealth",
 		"time",
 		"C_GossipInfo",
-		"BANETO_Interact"
+		"BANETO_Interact",
+		"BANETO_UseItem",
+		"BANETO_HasItem",
+		"GetObjectWithId"
 	],
 	"Lua.diagnostics.disable": ["duplicate-set-field"],
 	"emmylua.spell.dict": [
@@ -92,6 +95,7 @@
 		"Kunchong",
 		"Dreadspinner",
 		"Npcs",
-		"Klaxxi"
+		"Klaxxi",
+		"Guid"
 	]
 }
