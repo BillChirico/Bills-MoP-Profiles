@@ -46,14 +46,34 @@
 
 ### 🦂 Klaxxi Faction
 
-| Quest Name                 | Type        | Description                                |
+**Core Quest Chain (Basic 6 Quests):**
+| Quest Name | Type | Description |
 | -------------------------- | ----------- | ------------------------------------------ |
-| **The Fight Against Fear** | KillAndLoot | Eliminate Horrorscale Scorpids             |
-| **The Scale-Lord**         | KillAndLoot | Defeat Mistblade Scale-Lords               |
-| **A Little Brain Work**    | KillAndLoot | Collect brains from Ik'thik Amberstingers  |
-| **Kunchong Treats**        | KillAndLoot | Hunt Chillwater Turtles for kunchong       |
-| **Bad Genes**              | KillAndLoot | Eliminate Genemancers and Egg-Drones       |
-| **Mistblade Destruction**  | KillAndLoot | Destroy Mistblade Rippers at Lake of Stars |
+| **The Fight Against Fear** | KillAndLoot | Eliminate Horrorscale Scorpids |
+| **The Scale-Lord** | KillAndLoot | Defeat Mistblade Scale-Lords |
+| **A Little Brain Work** | KillAndLoot | Collect brains from Ik'thik Amberstingers |
+| **Kunchong Treats** | KillAndLoot | Hunt Chillwater Turtles for kunchong |
+| **Bad Genes** | KillAndLoot | Eliminate Genemancers and Egg-Drones |
+| **Mistblade Destruction** | KillAndLoot | Destroy Mistblade Rippers at Lake of Stars |
+
+**Extended Quest Collection (Additional 13 Quests):**
+| Quest Name | NPC | Type | Description |
+| ------------------------------- | ----------------------- | ------------ | ---------------------------------------------- |
+| **An Ancient Empire** | Korven the Prime | GatherObject | Collect 8 Gurthani Tablets from Terrace |
+| **Dreadspinner Extermination** | Kil'ruk the Wind-Reaver| KillAndLoot | Slay 8 Dreadspinner Tenders |
+| **Nope Nope Nope** | Kil'ruk the Wind-Reaver| KillAndLoot | Destroy 20 Dreadspinner Eggs with Dragon Gun |
+| **Putting An Eye Out** | Rik'kal the Dissector | KillAndLoot | Collect Pristine Mire Beast Eye |
+| **Brain Food** | Kaz'tik the Manipulator| KillAndLoot | Hunt Greatback Mushan for 4 Mushan Tongues |
+| **Sap Tapping** | Korven the Prime | GatherObject | Collect 6 Amber Sap from extractors on trees |
+| **Sampling the Empire's Finest**| Korven the Prime | _TBD_ | Empire sampling quest |
+| **Wing Clip** | Rik'kal the Dissector | _TBD_ | Wing clipping operations |
+| **Shortcut to Ruin** | Rik'kal the Dissector | _TBD_ | Sabotage mission |
+| **Sonic Disruption** | Kaz'tik the Manipulator| _TBD_ | Sonic-based disruption quest |
+| **Free From Her Clutches** | Kaz'tik the Manipulator| _TBD_ | Liberation rescue mission |
+| **Rampage Against the Machine** | Kaz'tik the Manipulator| _TBD_ | Anti-machine warfare |
+| **Culling the Swarm** | Kil'ruk the Wind-Reaver| _TBD_ | Swarm elimination quest |
+
+**Total: 19 Different Daily Quests Available**
 
 ## 🚀 Quick Start
 
@@ -116,6 +136,12 @@ Baneto-MoP-Dailies/
         ├── 🐢 Klaxxi_04_Kunchong_Treats.lua
         ├── 🧬 Klaxxi_05_Bad_Genes.lua
         ├── ⚔️ Klaxxi_06_Mistblade_Destruction.lua
+        ├── 🏺 Klaxxi_07_An_Ancient_Empire.lua
+        ├── 🕷️ Klaxxi_08_Dreadspinner_Extermination.lua
+        ├── 🚫 Klaxxi_09_Nope_Nope_Nope.lua
+        ├── 👁️ Klaxxi_10_Putting_An_Eye_Out.lua
+        ├── 🍖 Klaxxi_11_Brain_Food.lua
+        ├── 🌳 Klaxxi_12_Sap_Tapping.lua
         └── 🔄 Klaxxi_TurnIn_All.lua
 ```
 
@@ -143,12 +169,16 @@ Part 3: Quid Pro Quo → Complete (Final Quest)
 **Klaxxi Chain:**
 
 ```
-Accept All → Execute Quests (The Fight Against Fear → The Scale-Lord → A Little Brain Work → Kunchong Treats → Bad Genes → Mistblade Destruction) → TurnIn All
+Accept All → Execute Individual Quests (Parallel/Sequential Execution) → TurnIn All
 ```
 
-- **Accept Phase:** `!Start_Here_Klaxxi_Accept_All.lua` accepts all available daily quests from multiple NPCs
-- **Execute Phase:** Automatically transitions to `Klaxxi_01_The_Fight_Against_Fear.lua` and chains through all objectives
-- **TurnIn Phase:** Final quest chains to `Klaxxi_TurnIn_All.lua` to submit completed quests
+- **Accept Phase:** `!Start_Here_Klaxxi_Accept_All.lua` accepts all available daily quests from 4 different NPCs (19 total quests)
+- **Execute Phase:** Individual quest files handle specific objectives with quest skipping logic:
+  - **Core 6 Quests:** Chain through basic daily sequence
+  - **Extended 13 Quests:** Specialized quest files for collection, kill, and interaction objectives
+- **TurnIn Phase:** `Klaxxi_TurnIn_All.lua` intelligently submits all completed quests to appropriate NPCs
+
+**Quest Skipping Logic:** Each individual quest file includes smart logic to skip to the next quest if not available, ensuring seamless automation even when dailies reset or specific quests aren't offered.
 
 ### Custom Pulse Functions
 
@@ -207,7 +237,7 @@ We welcome contributions! Please follow these guidelines:
 ## 📋 Roadmap
 
 - [x] 🏮 **Golden Lotus** faction dailies (9 quests across 3 parts)
-- [x] 🦂 **Klaxxi** faction dailies (6 quests)
+- [x] 🦂 **Klaxxi** faction dailies (19 quests - 6 individual quest files + comprehensive accept/turn-in system)
 - [ ] 🏛️ **August Celestials** faction dailies
 - [ ] 🐉 **Order of the Cloud Serpent** faction dailies
 - [ ] 🌅 **Shado-Pan** faction dailies
