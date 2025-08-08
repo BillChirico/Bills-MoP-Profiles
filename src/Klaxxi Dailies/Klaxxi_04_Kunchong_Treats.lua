@@ -6,7 +6,7 @@ BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(31024)
 
 -- NPC Information
-BANETO_DefineQuestPickupNPC(139.79104614258, 3234.7741699219, 212.32595825195, 63758) -- Kaz'tik the Manipulator
+BANETO_DefineQuestPickupNPC(139.79104614258, 3234.7741699219, 212.32595825195, 63758)  -- Kaz'tik the Manipulator
 BANETO_DefineQuestTurninNPC(139.79104614258, 3234.7741699219, 212.325958251954, 63758) -- Kaz'tik the Manipulator
 
 -- Quest Objective
@@ -19,3 +19,16 @@ BANETO_DefineCenter(-451.47494506836, 3030.1540527344, 190.53112792969, 300)
 
 -- Next Quest
 BANETO_SetNextLocalQuestProfile([[Klaxxi_05_Bad_Genes]])
+
+BANETO_ExecuteCustomQuestPulse_Questmaster = true
+
+function _G.BANETO_ExecuteCustomQuestPulse()
+    if not BANETO_HasQuest(31024) then
+        BANETO_Print("Quest not found, skipping!")
+
+        BANETO_LoadQuestProfile([[Klaxxi_05_Bad_Genes]])
+        return
+    else
+        BANETO_ExecuteCustomQuestPulse_Questmaster = false
+    end
+end

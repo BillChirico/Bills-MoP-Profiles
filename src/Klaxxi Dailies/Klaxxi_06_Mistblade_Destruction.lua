@@ -19,3 +19,16 @@ BANETO_DefineCenter(-642.70220947266, 2806.474609375, 135.87733459473, 300)
 
 -- Next Quest
 BANETO_SetNextLocalQuestProfile([[Klaxxi_TurnIn_All]])
+
+BANETO_ExecuteCustomQuestPulse_Questmaster = true
+
+function _G.BANETO_ExecuteCustomQuestPulse()
+    if not BANETO_HasQuest(31267) then
+        BANETO_Print("Quest not found, skipping!")
+
+        BANETO_LoadQuestProfile([[Klaxxi_TurnIn_All]])
+        return
+    else
+        BANETO_ExecuteCustomQuestPulse_Questmaster = false
+    end
+end

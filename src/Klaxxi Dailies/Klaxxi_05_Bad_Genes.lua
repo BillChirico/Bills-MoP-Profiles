@@ -19,3 +19,16 @@ BANETO_DefineCenter(-880.50927734375, 2810.1728515625, 114.3451461792, 300)
 
 -- Next Quest
 BANETO_SetNextLocalQuestProfile([[Klaxxi_06_Mistblade_Destruction]])
+
+BANETO_ExecuteCustomQuestPulse_Questmaster = true
+
+function _G.BANETO_ExecuteCustomQuestPulse()
+    if not BANETO_HasQuest(31271) then
+        BANETO_Print("Quest not found, skipping!")
+
+        BANETO_LoadQuestProfile([[Klaxxi_06_Mistblade_Destruction]])
+        return
+    else
+        BANETO_ExecuteCustomQuestPulse_Questmaster = false
+    end
+end

@@ -23,3 +23,16 @@ BANETO_DefineProfileUnstuck(5, -941.00616455078, 2582.0427246094, 101.1328811645
 
 -- Next Quest
 BANETO_SetNextLocalQuestProfile([[Klaxxi_03_A_Little_Brain_Work]])
+
+BANETO_ExecuteCustomQuestPulse_Questmaster = true
+
+function _G.BANETO_ExecuteCustomQuestPulse()
+    if not BANETO_HasQuest(31269) then
+        BANETO_Print("Quest not found, skipping!")
+
+        BANETO_LoadQuestProfile([[Klaxxi_03_A_Little_Brain_Work]])
+        return
+    else
+        BANETO_ExecuteCustomQuestPulse_Questmaster = false
+    end
+end
