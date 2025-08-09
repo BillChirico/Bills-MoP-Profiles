@@ -14,8 +14,8 @@ BANETO_DefineCenter(1533.8942871094, 1442.2365722656, 442.35995483398, 300)
 BANETO_DefineCenter(1392.3897705078, 1291.5573730469, 401.01940917969, 300)
 BANETO_DefineCenter(1674.5532226562, 1352.6085205078, 453.59204101562, 300)
 
--- Next Quest - Chain to consolidated turn-in handler after completing all quest objectives
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_08_TurnIn_All]])
+-- Next Quest - Chain to High Chance of Rain quest
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_08_High_Chance_of_Rain]])
 
 -- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
@@ -24,7 +24,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     if not BANETO_HasQuest(31755) then
         BANETO_Print("Quest not found, skipping!")
 
-        BANETO_LoadQuestProfile([[Golden_Lotus_08_TurnIn_All]])
+        BANETO_LoadQuestProfile([[Golden_Lotus_08_High_Chance_of_Rain]])
         return
     else
         BANETO_ExecuteCustomQuestPulse_Questmaster = false

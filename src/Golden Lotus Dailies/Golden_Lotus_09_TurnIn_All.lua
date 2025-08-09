@@ -1,10 +1,10 @@
 -- Golden Lotus Quest Turn-In Handler
-BANETO_DefineProfileName("Golden_Lotus_08_TurnIn_All")
+BANETO_DefineProfileName("Golden_Lotus_09_TurnIn_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
 -- Golden Lotus Quest Turn-In Information Table
--- Contains all 7 possible Golden Lotus daily quests that can be turned in
+-- Contains all 8 possible Golden Lotus daily quests that can be turned in
 local questTurnIns = {
     {
         questId = 30307,
@@ -30,6 +30,11 @@ local questTurnIns = {
         questId = 31758,
         npcId = 58471,
         questName = "Laosy Scouting",
+    },
+    {
+        questId = 31756,
+        npcId = 58471,
+        questName = "High Chance of Rain",
     },
     {
         questId = 30312,
@@ -116,7 +121,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             BANETO_DefineQuestTurninNPC(coords.x, coords.y, coords.z, quest.npcId)
             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_08_TurnIn_All]])
+            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_09_TurnIn_All]])
             inProgress = true
 
             return

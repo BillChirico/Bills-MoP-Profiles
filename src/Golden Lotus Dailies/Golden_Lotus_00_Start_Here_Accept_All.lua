@@ -7,14 +7,14 @@
 -- 3. Handle the rotating daily quest system intelligently
 -- 4. Start the quest execution chain once all available quests are accepted
 --
--- The Golden Lotus daily system rotates quests each day, so not all 7 quests
+-- The Golden Lotus daily system rotates quests each day, so not all 8 quests
 -- will be available every day. This handler adapts to whatever is offered.
 BANETO_DefineProfileName("Golden_Lotus_00_Start_Here_Accept_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
 -- Quest Information Table
--- Contains all 7 possible Golden Lotus daily quests with their associated NPCs
+-- Contains all 8 possible Golden Lotus daily quests with their associated NPCs
 -- Each quest has a rotating availability - not all will be offered each day
 local questAccepts = {
     {
@@ -41,6 +41,11 @@ local questAccepts = {
         questId = 31758,
         npcId = 58471,
         questName = "Laosy Scouting",
+    },
+    {
+        questId = 31756,
+        npcId = 58471,
+        questName = "High Chance of Rain",
     },
     {
         questId = 30312,
