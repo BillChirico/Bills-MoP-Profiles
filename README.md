@@ -6,6 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![WoW Version](https://img.shields.io/badge/WoW-Mists%20of%20Pandaria-orange.svg)](https://worldofwarcraft.com/)
 [![Baneto Compatible](https://img.shields.io/badge/Baneto-Compatible-green.svg)](https://baneto-bot.com/)
+[![Lua Lint](https://github.com/BillChirico/Baneto-MoP-Dailies/actions/workflows/lua-lint.yml/badge.svg)](https://github.com/BillChirico/Baneto-MoP-Dailies/actions/workflows/lua-lint.yml)
 
 ---
 
@@ -218,9 +219,21 @@ Some quests include custom logic for advanced automation:
 
 ### Code Quality
 
-- 🔍 **Lua Linting** - Configured with `.luacheckrc`
-- 📝 **Documentation** - All functions and sections properly commented
+- 🔍 **Automated Lua Linting** - GitHub Actions runs luacheck on every push and PR
+- 📝 **Documentation** - All functions and sections properly commented  
 - 🧪 **Testing** - Validate coordinates and quest IDs
+- ✅ **CI/CD Pipeline** - Automated code quality checks via GitHub Actions
+
+#### Running Linting Locally
+
+```bash
+# Install luacheck (one-time setup)
+brew install luacheck        # macOS
+sudo apt-get install luacheck # Linux
+
+# Run linting
+luacheck src/
+```
 
 ## 🤝 Contributing
 
@@ -228,9 +241,10 @@ We welcome contributions! Please follow these guidelines:
 
 1. 🍴 Fork the repository
 2. 🌿 Create a feature branch (`git checkout -b feature/new-quest`)
-3. 💾 Commit your changes (`git commit -am 'Add new quest profile'`)
-4. 📤 Push to the branch (`git push origin feature/new-quest`)
-5. 🔄 Create a Pull Request
+3. ✅ Ensure your code passes linting (`luacheck src/`)
+4. 💾 Commit your changes (`git commit -am 'Add new quest profile'`)
+5. 📤 Push to the branch (`git push origin feature/new-quest`)
+6. 🔄 Create a Pull Request (automated checks will run)
 
 ## 📋 Roadmap
 
