@@ -1,9 +1,14 @@
 -- Klaxxi Quest Turn-In Handler
+-- Automatically turns in all completed Klaxxi daily quests
+-- This handler intelligently detects which quests are ready for turn-in
+-- and submits them to the appropriate NPCs at Klaxxi'vess
 BANETO_DefineProfileName("Klaxxi_TurnIn_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
--- Klaxxi Quest Turn-In Information Table
+-- Quest Turn-In Information
+-- Contains all possible Klaxxi daily quests that can be turned in
+-- The handler will check each quest to see if it's completed and ready
 local questTurnIns = {
     {
         questId = 31270,
@@ -67,7 +72,8 @@ local questTurnIns = {
     },
 }
 
--- NPC Coordinates for different quest givers
+-- NPC Coordinates
+-- Locations of all 4 Klaxxi Paragons at Klaxxi'vess for quest turn-ins
 local npcCoords = {
     -- Korven the Prime
     [62180] = {
@@ -96,6 +102,8 @@ local npcCoords = {
 }
 
 -- Helper function to check if all quest objectives are complete
+-- @param questId: The quest ID to check
+-- @return: true if all objectives are finished, false otherwise
 local function IsQuestObjectivesComplete(questId)
     local objectives = C_QuestLog.GetQuestObjectives(questId)
     if not objectives or #objectives == 0 then
@@ -111,20 +119,23 @@ local function IsQuestObjectivesComplete(questId)
     return true
 end
 
--- Quest Pulse
+-- Quest Pulse Configuration
 BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = true
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
-local inProgress = false
+local inProgress = false -- Prevents multiple simultaneous turn-ins
 
+-- Main turn-in logic
+-- Continuously checks for completed quests and turns them in one by one
 function _G.BANETO_ExecuteCustomQuestPulse()
     if inProgress then
         return
     end
 
+    -- Check each quest to see if it's ready for turn-in
     for i = 1, #questTurnIns do
         local quest = questTurnIns[i]
 
-        -- Check if quest is in log, not already completed, and all objectives are finished
+        -- Quest must be: in our log, not yet turned in, and all objectives complete
         if
             BANETO_HasQuest(quest.questId)
             and not BANETO_HasQuestCompleted(quest.questId)
@@ -132,19 +143,23 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         then
             BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")!")
 
+            -- Configure Baneto to turn in this specific quest
             local coords = npcCoords[quest.npcId]
             BANETO_DefineQuestId(quest.questId)
             BANETO_DefineQuestPickupNPC(coords.x, coords.y, coords.z, quest.npcId)
             BANETO_DefineQuestTurninNPC(coords.x, coords.y, coords.z, quest.npcId)
+
+            -- Switch to normal Baneto behavior to handle turn-in
             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-            BANETO_SetNextLocalQuestProfile([[Klaxxi_TurnIn_All]])
+            BANETO_SetNextLocalQuestProfile([[Klaxxi_TurnIn_All]]) -- Return here after turn-in
             inProgress = true
 
             return
         end
     end
 
-    BANETO_Print("No more completed quests to turn in!")
+    -- No more quests to turn in - all Klaxxi dailies are complete!
+    BANETO_Print("No more completed quests to turn in! Successfully completed all Klaxxi dailies. Stopping...")
     BANETO_Stop()
 end
