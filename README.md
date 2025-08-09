@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![WoW Version](https://img.shields.io/badge/WoW-Mists%20of%20Pandaria-orange.svg)](https://worldofwarcraft.com/)
 [![Baneto Compatible](https://img.shields.io/badge/Baneto-Compatible-green.svg)](https://baneto-bot.com/)
-[![Lua Lint](https://github.com/BillChirico/Baneto-MoP-Dailies/actions/workflows/lua-lint.yml/badge.svg)](https://github.com/BillChirico/Baneto-MoP-Dailies/actions/workflows/lua-lint.yml)
+[![Lua Lint](https://github.com/BillChirico/Bills-MoP-Profiles/actions/workflows/lua-lint.yml/badge.svg)](https://github.com/BillChirico/Bills-MoP-Profiles/actions/workflows/lua-lint.yml)
 
 ---
 
@@ -77,7 +77,8 @@
 
 - ✅ World of Warcraft: Mists of Pandaria
 - ✅ [Baneto Bot](https://baneto-bot.com) installed and configured
-- ✅ **Horde** character with access to quests you want to do
+- ✅ **Horde** character level 90 with access to Vale of Eternal Blossoms and Dread Wastes
+- ✅ Appropriate faction reputation to access dailies (Friendly+ for most quests)
 - ⚠️ **Note:** These profiles have only been tested on Horde. Alliance compatibility not guaranteed.
 
 ### Installation
