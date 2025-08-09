@@ -1,0 +1,45 @@
+name: Lua Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  luacheck:
+    name: Lint Lua Code
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Install Lua and LuaRocks
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y lua5.1 luarocks
+    
+    - name: Install luacheck
+      run: |
+        sudo luarocks install luacheck
+    
+    - name: Run luacheck
+      run: |
+        luacheck src/ --config .luacheckrc
+    
+    - name: Run luacheck formatter
+      run: |
+        luacheck src/ --config .luacheckrc --formatter plain > luacheck-results.txt || true
+        echo "## Luacheck Results" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        cat luacheck-results.txt >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+    
+    - name: Upload luacheck results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: luacheck-results
+        path: luacheck-results.txt
+        retention-days: 7
