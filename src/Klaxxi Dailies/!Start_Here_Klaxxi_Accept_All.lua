@@ -186,7 +186,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 break
             end
 
-            BANETO_Print("Checking NPC: " .. npcId .. " for " .. #npcQuests .. " possible quests!")
+            BANETO_Print("Checking NPC: " .. npcId .. " for " .. #npcQuests .. " possible quests")
 
             -- Ensure we're in position to interact with the NPC
             if not BANETO_PlayerPosition(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z, 5) then
@@ -253,15 +253,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
                         if offeredInfo then
                             -- Quest is available! Accept it now
-                            BANETO_Print(
-                                "Accepting "
-                                .. (offeredInfo.title or quest.questName)
-                                .. " ("
-                                .. quest.questId
-                                .. ") from NPC ("
-                                .. npcId
-                                .. ")"
-                            )
+                            BANETO_Print("Accepting " ..
+                                (offeredInfo.title or quest.questName) ..
+                                " (" .. quest.questId .. ") from NPC (" .. npcId .. ")")
 
                             -- Mark quest as processed and configure Baneto to accept it
                             _G.checkedQuests[quest.questId] = true
@@ -289,7 +283,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             -- Mark NPC as complete if all their quests have been processed
             if _G.processedCount >= _G.totalQuests then
                 _G.checkedNpcs[npcId] = true
-                BANETO_Print("Completed checking NPC " ..
+                BANETO_Print("Finished checking NPC " ..
                     npcId .. " (" .. _G.processedCount .. "/" .. _G.totalQuests .. " quests processed)")
             end
 

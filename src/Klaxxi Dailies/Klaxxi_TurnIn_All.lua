@@ -141,7 +141,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             and not BANETO_HasQuestCompleted(quest.questId)
             and IsQuestObjectivesComplete(quest.questId)
         then
-            BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")!")
+            BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")")
 
             -- Configure Baneto to turn in this specific quest
             local coords = npcCoords[quest.npcId]
