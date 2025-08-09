@@ -1,9 +1,10 @@
 -- Golden Lotus Quest Turn-In Handler
-BANETO_DefineProfileName("Golden_Lotus_06_TurnIn_All")
+BANETO_DefineProfileName("Golden_Lotus_08_TurnIn_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
 -- Golden Lotus Quest Turn-In Information Table
+-- Contains all 7 possible Golden Lotus daily quests that can be turned in
 local questTurnIns = {
     {
         questId = 30307,
@@ -21,6 +22,11 @@ local questTurnIns = {
         questName = "Crumbling Behemoth",
     },
     {
+        questId = 31760,
+        npcId = 58465,
+        questName = "Striking First",
+    },
+    {
         questId = 31758,
         npcId = 58471,
         questName = "Laosy Scouting",
@@ -30,13 +36,41 @@ local questTurnIns = {
         npcId = 58468,
         questName = "Given a Second Chance",
     },
+    {
+        questId = 31755,
+        npcId = 58468,
+        questName = "Acts of Cruelty",
+    },
 }
 
--- NPC Coordinates (all quest NPCs are at the same location - Temple of the White Tiger)
+-- NPC Coordinates
+-- All Golden Lotus NPCs are located at the Temple of the White Tiger
+-- These coordinates ensure proper positioning for quest turn-ins
 local npcCoords = {
-    x = 1215.7375488281,
-    y = 1047.44921875,
-    z = 425.9674987793,
+    -- Leven Dawnblade (58408)
+    [58408] = {
+        x = 1211.8581542969,
+        y = 1044.7891845703,
+        z = 425.96737670898,
+    },
+    -- Anji Autumnlight (58465)
+    [58465] = {
+        x = 1211.6048583984,
+        y = 1048.1136474609,
+        z = 425.96737670898,
+    },
+    -- Kun Autumnlight (58471)
+    [58471] = {
+        x = 1211.3977050781,
+        y = 1049.5463867188,
+        z = 425.96737670898,
+    },
+    -- Sun Tenderheart (58468)
+    [58468] = {
+        x = 1215.8614501953,
+        y = 1050.3850097656,
+        z = 425.96737670898,
+    },
 }
 
 -- Helper function to check if all quest objectives are complete
@@ -77,11 +111,12 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")!")
 
             BANETO_DefineQuestId(quest.questId)
-            BANETO_DefineQuestPickupNPC(npcCoords.x, npcCoords.y, npcCoords.z, quest.npcId)
-            BANETO_DefineQuestTurninNPC(npcCoords.x, npcCoords.y, npcCoords.z, quest.npcId)
+            local coords = npcCoords[quest.npcId]
+            BANETO_DefineQuestPickupNPC(coords.x, coords.y, coords.z, quest.npcId)
+            BANETO_DefineQuestTurninNPC(coords.x, coords.y, coords.z, quest.npcId)
             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_06_TurnIn_All]])
+            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_08_TurnIn_All]])
             inProgress = true
 
             return

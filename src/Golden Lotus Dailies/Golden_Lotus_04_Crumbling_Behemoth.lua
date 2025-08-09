@@ -20,3 +20,17 @@ BANETO_DefineCenter(1674.5532226562, 1352.6085205078, 453.59204101562, 300)
 
 -- Next Quest
 BANETO_SetNextLocalQuestProfile([[Golden_Lotus_05_Given_a_Second_Chance]])
+
+-- Quest Pulse
+BANETO_ExecuteCustomQuestPulse_Questmaster = true
+
+function _G.BANETO_ExecuteCustomQuestPulse()
+    if not BANETO_HasQuest(31762) then
+        BANETO_Print("Quest not found, skipping!")
+
+        BANETO_LoadQuestProfile([[Golden_Lotus_05_Given_a_Second_Chance]])
+        return
+    else
+        BANETO_ExecuteCustomQuestPulse_Questmaster = false
+    end
+end

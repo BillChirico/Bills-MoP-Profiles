@@ -115,7 +115,9 @@ Baneto-MoP-Dailies/
     │   ├── 🎯 Golden_Lotus_03_The_Eternal_Vigil.lua
     │   ├── 🗿 Golden_Lotus_04_Crumbling_Behemoth.lua
     │   ├── 💚 Golden_Lotus_05_Given_a_Second_Chance.lua
-    │   ├── 🔄 Golden_Lotus_06_TurnIn_All.lua
+    │   ├── ⚔️ Golden_Lotus_06_Striking_First.lua
+    │   ├── 🔥 Golden_Lotus_07_Acts_of_Cruelty.lua
+    │   ├── 🔄 Golden_Lotus_08_TurnIn_All.lua
     │   ├── 🚶 Golden_Lotus_Mistfall_Village_00_Transition.lua
     │   ├── ✅ Golden_Lotus_Mistfall_Village_01_Accept_All.lua
     │   ├── 🍎 Golden_Lotus_Mistfall_Village_02_Pomfruit_Pickup.lua

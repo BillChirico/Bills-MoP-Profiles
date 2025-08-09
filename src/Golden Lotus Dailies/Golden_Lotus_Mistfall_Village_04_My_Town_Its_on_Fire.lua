@@ -22,3 +22,17 @@ BANETO_DefineCenter(680.28063964844, 1654.4566650391, 377.74417114258, 130)
 
 -- Next Quest
 BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_05_Sprite_Plight]])
+
+-- Quest Pulse
+BANETO_ExecuteCustomQuestPulse_Questmaster = true
+
+function _G.BANETO_ExecuteCustomQuestPulse()
+    if not BANETO_HasQuest(30192) then
+        BANETO_Print("Quest not found, skipping!")
+
+        BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_05_Sprite_Plight]])
+        return
+    else
+        BANETO_ExecuteCustomQuestPulse_Questmaster = false
+    end
+end

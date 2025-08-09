@@ -2,9 +2,12 @@
 	"cSpell.words": [
 		"Amberstinger",
 		"Amberstingers",
+		"Anji",
+		"Autumnlight",
 		"BANETO",
 		"Celestials",
 		"Chillwater",
+		"Dawnblade",
 		"Dreadspinner",
 		"Genemancer",
 		"Genemancers",
@@ -12,6 +15,7 @@
 		"Gurthani",
 		"Horrorscale",
 		"Ik'thik",
+		"Kauru",
 		"Klaxxi",
 		"Klaxxi'vess",
 		"Korven",
@@ -34,6 +38,7 @@
 		"Shieldwall",
 		"Shiyo",
 		"Slateskin",
+		"Tenderheart",
 		"Thundermaw",
 		"Turnin",
 		"Wildwalker"
@@ -93,7 +98,8 @@
 		"BANETO_HasItem",
 		"GetObjectWithId",
 		"BANETO_GetFacingValue",
-		"BANETO_SetPlayerAnglesLuabox"
+		"BANETO_SetPlayerAnglesLuabox",
+		"AcceptQuest"
 	],
 	"Lua.diagnostics.disable": ["duplicate-set-field"],
 	"emmylua.spell.dict": [

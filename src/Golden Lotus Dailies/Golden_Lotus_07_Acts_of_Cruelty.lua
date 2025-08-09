@@ -1,16 +1,12 @@
 -- Quest Information
-BANETO_DefineProfileName("Golden_Lotus_03_The_Eternal_Vigil")
+BANETO_DefineProfileName("Golden_Lotus_07_Acts_of_Cruelty")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
-BANETO_DefineQuestId(30307)
-
--- NPC Information
-BANETO_DefineQuestPickupNPC(1215.7375488281, 1047.44921875, 425.9674987793, 58408)
-BANETO_DefineQuestTurninNPC(1215.7375488281, 1047.44921875, 425.9674987793, 58408)
+BANETO_DefineQuestId(31755)
 
 -- Quest Objective
-BANETO_DefineQuestTargetId(65810)
+BANETO_DefineQuestTargetId(65826) -- Target (placeholder - needs verification)
 
 -- Quest Locations
 BANETO_DefineCenter(1467.1362304688, 1356.7120361328, 445.89776611328, 300)
@@ -18,17 +14,17 @@ BANETO_DefineCenter(1533.8942871094, 1442.2365722656, 442.35995483398, 300)
 BANETO_DefineCenter(1392.3897705078, 1291.5573730469, 401.01940917969, 300)
 BANETO_DefineCenter(1674.5532226562, 1352.6085205078, 453.59204101562, 300)
 
--- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_04_Crumbling_Behemoth]])
+-- Next Quest - Chain to consolidated turn-in handler after completing all quest objectives
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_08_TurnIn_All]])
 
 -- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
 
 function _G.BANETO_ExecuteCustomQuestPulse()
-    if not BANETO_HasQuest(30307) then
+    if not BANETO_HasQuest(31755) then
         BANETO_Print("Quest not found, skipping!")
 
-        BANETO_LoadQuestProfile([[Golden_Lotus_04_Crumbling_Behemoth]])
+        BANETO_LoadQuestProfile([[Golden_Lotus_08_TurnIn_All]])
         return
     else
         BANETO_ExecuteCustomQuestPulse_Questmaster = false

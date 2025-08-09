@@ -23,3 +23,17 @@ BANETO_DefineCenter(840.20239257812, 1776.7647705078, 382.08474731445, 130)
 
 -- Next Quest
 BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_03_Encroaching_Storm]])
+
+-- Quest Pulse
+BANETO_ExecuteCustomQuestPulse_Questmaster = true
+
+function _G.BANETO_ExecuteCustomQuestPulse()
+    if not BANETO_HasQuest(30231) then
+        BANETO_Print("Quest not found, skipping!")
+
+        BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_03_Encroaching_Storm]])
+        return
+    else
+        BANETO_ExecuteCustomQuestPulse_Questmaster = false
+    end
+end

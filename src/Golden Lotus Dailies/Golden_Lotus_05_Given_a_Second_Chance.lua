@@ -22,12 +22,19 @@ BANETO_DefineCenter(1443.3646240234, 1143.2777099609, 429.45077514648, 200)
 BANETO_DefineWhitelist(1443.3646240234, 1143.2777099609, 429.45077514648, 200)
 
 -- Next Quest - Chain to consolidated turn-in handler after completing all quest objectives
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_06_TurnIn_All]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_06_Striking_First]])
 
 -- Quest Pulse
 _G.BANETO_ExecuteCustomQuestPulse_Questmaster = true
 
 function _G.BANETO_ExecuteCustomQuestPulse()
+    if not BANETO_HasQuest(30312) then
+        BANETO_Print("Quest not found, skipping!")
+
+        BANETO_LoadQuestProfile([[Golden_Lotus_06_Striking_First]])
+        return
+    end
+
     local currentTarget = BANETO_Object("target")
     local currentTargetId = BANETO_GetTargetId()
 

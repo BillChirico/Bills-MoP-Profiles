@@ -33,6 +33,13 @@ local targetStartTime = nil
 local maxWaitTime = 10000 -- 10 seconds max wait before blacklisting
 
 function _G.BANETO_ExecuteCustomQuestPulse()
+    if not BANETO_HasQuest(31758) then
+        BANETO_Print("Quest not found, skipping!")
+
+        BANETO_LoadQuestProfile([[Golden_Lotus_02_Unleashed_Spirits]])
+        return
+    end
+
     local currentTarget = BANETO_GetTarget()
     local currentTime = GetTime() * 1000 -- Convert to milliseconds
 
@@ -48,6 +55,12 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     -- If we have a target and it's a cage object
     if currentTarget then
         -- Check if this is a new target
+        local targetX, targetY, targetZ = BANETO_ObjectPosition(currentTarget)
+
+        if not BANETO_PlayerPosition(targetX, targetY, targetZ, 5) then
+            return
+        end
+
         if currentTarget ~= lastTargetGuid then
             lastTargetGuid = currentTarget
             targetStartTime = currentTime
