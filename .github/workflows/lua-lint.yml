@@ -8,7 +8,7 @@ on:
 
 jobs:
   luacheck:
-    name: Lint Lua Code
+    name: Lint Lua
     runs-on: ubuntu-latest
     
     steps:
