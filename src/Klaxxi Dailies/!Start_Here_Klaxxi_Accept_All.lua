@@ -159,7 +159,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         repeat
             -- Skip if we've already fully processed this NPC
             if _G.checkedNpcs[npcId] then
-                BANETO_Print("NPC " .. npcId .. " already fully processed, skipping!")
+                BANETO_Print("NPC: " .. npcId .. " already fully processed, skipping!")
                 break
             end
 
@@ -176,14 +176,13 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
             local questGiver = GetObjectWithId(npcId)
 
+            -- If no NPC found, mark as complete and continue
             if not questGiver then
                 _G.checkedNpcs[npcId] = true
                 checked = false
                 BANETO_Print("No NPC found for " .. npcId .. " - marking as complete")
                 return
             end
-
-            BANETO_Print("Interacting with NPC: " .. npcId)
 
             local availableQuests = C_GossipInfo.GetAvailableQuests()
 
