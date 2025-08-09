@@ -5,10 +5,6 @@ BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(31268)
 
--- NPC Information
--- BANETO_DefineQuestPickupNPC(139.79104614258, 3234.7741699219, 212.32595825195, 63758)  -- Kaz'tik the Manipulator
--- BANETO_DefineQuestTurninNPC(139.79104614258, 3234.7741699219, 212.325958251954, 63758) -- Kaz'tik the Manipulator
-
 -- Quest Objective
 BANETO_DefineQuestTargetId(63728) -- Ik'thik Amberstinger
 

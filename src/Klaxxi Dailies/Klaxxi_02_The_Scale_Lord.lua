@@ -5,10 +5,6 @@ BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(31269)
 
--- NPC Information
--- BANETO_DefineQuestPickupNPC(130.63441467285, 3231.4921875, 215.64880371094, 62180) -- Korven the Prime
--- BANETO_DefineQuestTurninNPC(130.63441467285, 3231.4921875, 215.64880371094, 62180) -- Korven the Prime
-
 -- Quest Objective
 BANETO_DefineQuestTargetId(63179) -- Mistblade Scale-Lord
 

@@ -5,10 +5,6 @@ BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(31235)
 
--- NPC Information
--- BANETO_DefineQuestPickupNPC(136.87948608398, 3193.1166992188, 214.7607421875, 62538) -- Kil'ruk the Wind-Reaver
--- BANETO_DefineQuestTurninNPC(136.87948608398, 3193.1166992188, 214.7607421875, 62538) -- Kil'ruk the Wind-Reaver
-
 -- Quest item
 -- BANETO_DefineQuestTargetId(82807) -- Shado-Pan Dragon Gun
 
