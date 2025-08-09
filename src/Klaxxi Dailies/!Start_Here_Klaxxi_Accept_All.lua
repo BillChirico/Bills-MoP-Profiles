@@ -17,11 +17,7 @@ local questAccepts = {
         npcId = 62180,
         questName = "The Scale-Lord",
     },
-    {
-        questId = 31496,
-        npcId = 62180,
-        questName = "Sampling the Empire's Finest",
-    },
+
     {
         questId = 31232,
         npcId = 62180,
@@ -36,16 +32,6 @@ local questAccepts = {
         questId = 31271,
         npcId = 63072,
         questName = "Bad Genes",
-    },
-    {
-        questId = 31502,
-        npcId = 63072,
-        questName = "Wing Clip",
-    },
-    {
-        questId = 31503,
-        npcId = 63072,
-        questName = "Shortcut to Ruin",
     },
     {
         questId = 31234,
@@ -63,39 +49,19 @@ local questAccepts = {
         questName = "Kunchong Treats",
     },
     {
-        questId = 31487,
-        npcId = 63758,
-        questName = "Sonic Disruption",
-    },
-    {
-        questId = 31494,
-        npcId = 63758,
-        questName = "Free From Her Clutches",
-    },
-    {
         questId = 31238,
         npcId = 63758,
         questName = "Brain Food",
     },
     {
-        questId = 31808,
-        npcId = 63758,
-        questName = "Brain Food",
-    },
-    {
-        questId = 31267,
-        npcId = 63758,
-        questName = "Rampage Against the Machine",
-    },
-    {
-        questId = 31109,
-        npcId = 62538,
-        questName = "Culling the Swarm",
-    },
-    {
         questId = 31231,
         npcId = 62538,
         questName = "Dreadspinner Extermination",
+    },
+    {
+        questId = 31267,
+        npcId = 62538,
+        questName = "Mistblade Destruction",
     },
     {
         questId = 31235,

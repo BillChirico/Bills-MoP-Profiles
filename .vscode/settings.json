@@ -1,10 +1,13 @@
 {
 	"cSpell.words": [
 		"Amberstinger",
+		"Amberstingers",
 		"BANETO",
+		"Celestials",
 		"Chillwater",
 		"Dreadspinner",
 		"Genemancer",
+		"Genemancers",
 		"Greatback",
 		"Gurthani",
 		"Horrorscale",
@@ -18,10 +21,15 @@
 		"Mistfall",
 		"Mushan",
 		"Npcs",
+		"Pandaria",
+		"Pathfinding",
 		"Pomfruit",
+		"pomfruits",
 		"Questmaster",
 		"Scorpid",
+		"Scorpids",
 		"Shado",
+		"Shieldwall",
 		"Shiyo",
 		"Slateskin",
 		"Thundermaw",
@@ -96,6 +104,7 @@
 		"Dreadspinner",
 		"Npcs",
 		"Klaxxi",
-		"Guid"
+		"Guid",
+		"Mistblade"
 	]
 }
