@@ -17,6 +17,7 @@
 		"Kunchong",
 		"Landingspot",
 		"Laosy",
+		"Luabox",
 		"Mistblade",
 		"Mistfall",
 		"Mushan",
@@ -89,7 +90,9 @@
 		"BANETO_Interact",
 		"BANETO_UseItem",
 		"BANETO_HasItem",
-		"GetObjectWithId"
+		"GetObjectWithId",
+		"BANETO_GetFacingValue",
+		"BANETO_SetPlayerAnglesLuabox"
 	],
 	"Lua.diagnostics.disable": ["duplicate-set-field"],
 	"emmylua.spell.dict": [
@@ -105,6 +108,7 @@
 		"Npcs",
 		"Klaxxi",
 		"Guid",
-		"Mistblade"
+		"Mistblade",
+		"Luabox"
 	]
 }

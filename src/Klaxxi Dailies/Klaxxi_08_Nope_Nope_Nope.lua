@@ -40,6 +40,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
     if currentTarget and object and BANETO_HasItem(82807) then
         if not wait and BANETO_PlayerPosition(targetX, targetY, targetZ, 5) then
+            local facing = BANETO_GetFacingValue(targetX, targetY, targetZ)
+            BANETO_SetPlayerAnglesLuabox(facing)
+
             BANETO_UseItem(82807)
             wait = time() + 5
         elseif wait and time() > wait then
