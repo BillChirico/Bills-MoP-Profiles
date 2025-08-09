@@ -98,7 +98,7 @@
    - Start Baneto
    - Navigate to the quest profile directory
    - **For Golden Lotus:** Load `Part01_!Start_Here_Golden_Lotus_Accept_All.lua` to automatically accept all available quests and start the full quest chain
-   - **For Klaxxi:** Load `!Start_Here_Klaxxi_Accept_All.lua` to automatically accept all available quests and start the full quest chain
+   - **For Klaxxi:** Load `Klaxxi_00_Start_Here_Klaxxi_Accept_All.lua` to automatically accept all available quests and start the full quest chain
 
 ## 📁 Project Structure
 
@@ -125,7 +125,7 @@ Baneto-MoP-Dailies/
     │   ├── 🔄 Part02_Golden_Lotus_TurnIn_All_Mistfall_Village.lua
     │   └── 🏆 Part03_Golden_Lotus_01_Quid_Pro_Quo_Mistfall_Village.lua
     └── 📂 Klaxxi Dailies/
-        ├── ✅ !Start_Here_Klaxxi_Accept_All.lua
+        ├── ✅ Klaxxi_00_Start_Here_Klaxxi_Accept_All.lua
         ├── ⚔️ Klaxxi_01_The_Fight_Against_Fear.lua
         ├── 🐉 Klaxxi_02_The_Scale_Lord.lua
         ├── 🧠 Klaxxi_03_A_Little_Brain_Work.lua

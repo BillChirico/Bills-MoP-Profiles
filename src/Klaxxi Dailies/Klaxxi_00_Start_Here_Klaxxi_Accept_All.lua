@@ -9,7 +9,7 @@
 --
 -- The Klaxxi daily system rotates quests each day, so not all 12 quests
 -- will be available every day. This handler adapts to whatever is offered.
-BANETO_DefineProfileName("!Start_Here_Klaxxi_Accept_All")
+BANETO_DefineProfileName("Klaxxi_00_Start_Here_Klaxxi_Accept_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
@@ -267,7 +267,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                             -- Switch to normal Baneto behavior to accept quest
                             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
                             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-                            BANETO_SetNextLocalQuestProfile([[!Start_Here_Klaxxi_Accept_All]])
+                            BANETO_SetNextLocalQuestProfile([[Klaxxi_00_Start_Here_Klaxxi_Accept_All]])
                             inProgress = true
 
                             return
