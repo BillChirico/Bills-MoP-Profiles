@@ -71,6 +71,9 @@ globals = {
     "BANETO_GetState",
     "BANETO_ReadFile",
     "BANETO_JsonDecode",
+    
+    -- BANETO Custom Quest Pulse Functions
+    "BANETO_ExecuteCustomQuestPulse",
 
     -- Object Search Functions
     "GetObjectWithId",
@@ -91,5 +94,15 @@ globals = {
     "time",
 }
 
+-- Writable globals (set by profiles but read by BANETO framework)
+stds.baneto = {
+    globals = {
+        "BANETO_ExecuteCustomQuestPulse_Questmaster",
+        "BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior",
+    }
+}
+
 -- File-specific configurations
-files["src/**/*.lua"] = {}
+files["src/**/*.lua"] = {
+    std = "+baneto"
+}

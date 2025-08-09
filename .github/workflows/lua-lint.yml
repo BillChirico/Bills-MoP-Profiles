@@ -15,20 +15,53 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Install Lua and LuaRocks
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y lua5.1 luarocks
+    - name: Check for Lua file changes
+      uses: dorny/paths-filter@v3
+      id: changes
+      with:
+        filters: |
+          lua:
+            - '**/*.lua'
+            - '.luacheckrc'
+            - '.github/workflows/lua-lint.yml'
+    
+    - name: Setup Lua
+      if: steps.changes.outputs.lua == 'true'
+      uses: leafo/gh-actions-lua@v11
+      with:
+        luaVersion: "5.1"
+    
+    - name: Setup LuaRocks
+      if: steps.changes.outputs.lua == 'true'
+      uses: leafo/gh-actions-luarocks@v5
+    
+    - name: Cache LuaRocks packages
+      if: steps.changes.outputs.lua == 'true'
+      uses: actions/cache@v4
+      id: cache-luarocks
+      with:
+        path: ~/.luarocks
+        key: ${{ runner.os }}-luarocks-${{ hashFiles('.luacheckrc') }}
+        restore-keys: |
+          ${{ runner.os }}-luarocks-
     
     - name: Install luacheck
+      if: steps.changes.outputs.lua == 'true' && steps.cache-luarocks.outputs.cache-hit != 'true'
       run: |
-        sudo luarocks install luacheck
+        luarocks install luacheck --local
+    
+    - name: Add LuaRocks to PATH
+      if: steps.changes.outputs.lua == 'true'
+      run: |
+        echo "$HOME/.luarocks/bin" >> $GITHUB_PATH
     
     - name: Run luacheck
+      if: steps.changes.outputs.lua == 'true'
       run: |
         luacheck src/ --config .luacheckrc
     
     - name: Run luacheck formatter
+      if: steps.changes.outputs.lua == 'true'
       run: |
         luacheck src/ --config .luacheckrc --formatter plain > luacheck-results.txt || true
         echo "## Luacheck Results" >> $GITHUB_STEP_SUMMARY
@@ -37,9 +70,15 @@ jobs:
         echo '```' >> $GITHUB_STEP_SUMMARY
     
     - name: Upload luacheck results
-      if: always()
+      if: steps.changes.outputs.lua == 'true' && always()
       uses: actions/upload-artifact@v4
       with:
         name: luacheck-results
         path: luacheck-results.txt
         retention-days: 7
+    
+    - name: Skip message
+      if: steps.changes.outputs.lua != 'true'
+      run: |
+        echo "## Lua Lint Skipped" >> $GITHUB_STEP_SUMMARY
+        echo "No Lua files, .luacheckrc, or workflow files were changed - skipping lint check." >> $GITHUB_STEP_SUMMARY
