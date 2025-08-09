@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Part02_Golden_Lotus_04_Sprite_Plight_Mistfall_Village")
+BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_05_Sprite_Plight")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
@@ -18,4 +18,4 @@ BANETO_DefineCenter(681.00341796875, 1493.0206298828, 412.3415222168, 130)
 BANETO_DefineCenter(572.55438232422, 1536.2253417969, 412.3576965332, 130)
 
 -- Next Quest - Chain to Part 2 turn-in handler
-BANETO_SetNextLocalQuestProfile([[Part02_Golden_Lotus_TurnIn_All_Mistfall_Village]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_06_TurnIn_All]])

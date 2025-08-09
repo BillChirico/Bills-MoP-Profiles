@@ -1,5 +1,5 @@
 -- Golden Lotus Part 2 Quest Turn-In Handler
-BANETO_DefineProfileName("Part02_Golden_Lotus_TurnIn_All_Mistfall_Village")
+BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_06_TurnIn_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
@@ -89,7 +89,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             BANETO_DefineQuestTurninNPC(quest.coords.x, quest.coords.y, quest.coords.z, quest.npcId)
             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-            BANETO_SetNextLocalQuestProfile([[Part02_Golden_Lotus_TurnIn_All_Mistfall_Village]])
+            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_06_TurnIn_All]])
             inProgress = true
 
             return
@@ -97,5 +97,5 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     end
 
     BANETO_Print("All Part 2 quests completed! Starting Part 3...")
-    BANETO_LoadQuestProfile([[Part03_Golden_Lotus_01_Quid_Pro_Quo_Mistfall_Village]])
+    BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_07_Quid_Pro_Quo]])
 end

@@ -1,7 +1,7 @@
 -- Golden Lotus Part 2 Quest Accept Handler
 -- ⭐ START HERE: This is the entry point for Golden Lotus Part 2 dailies!
 -- This profile will automatically accept all available Part 2 quests and start the quest chain.
-BANETO_DefineProfileName("Part02_!Golden_Lotus_Accept_All_Mistfall_Village")
+BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_01_Accept_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
@@ -70,7 +70,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             BANETO_DefineQuestPickupNPC(quest.coords.x, quest.coords.y, quest.coords.z, quest.npcId)
             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-            BANETO_SetNextLocalQuestProfile([[Part02_!Golden_Lotus_Accept_All_Mistfall_Village]])
+            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_01_Accept_All]])
             inProgress = true
 
             return
@@ -78,5 +78,5 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     end
 
     BANETO_Print("All available Part 2 quests accepted! Starting quest chain...")
-    BANETO_LoadQuestProfile([[Part02_Golden_Lotus_01_Pomfruit_Pickup_Mistfall_Village]])
+    BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_02_Pomfruit_Pickup]])
 end

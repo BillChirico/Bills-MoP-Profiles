@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Part02_Golden_Lotus_Transition_Mistfall_Village")
+BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_00_Transition")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[TalkTo]])
@@ -14,4 +14,4 @@ BANETO_DefineQuestTurninNPC(727.81665039062, 1621.7716064453, 377.74417114258, 5
 -- Quest Locations
 
 -- Next Quest - Chain to Part 2 accept all handler after transition
-BANETO_SetNextLocalQuestProfile([[Part02_!Golden_Lotus_Accept_All_Mistfall_Village]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_01_Accept_All]])

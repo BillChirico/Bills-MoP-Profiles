@@ -97,7 +97,7 @@
 3. **Load profiles in Baneto**
    - Start Baneto
    - Navigate to the quest profile directory
-   - **For Golden Lotus:** Load `Part01_!Start_Here_Golden_Lotus_Accept_All.lua` to automatically accept all available quests and start the full quest chain
+   - **For Golden Lotus:** Load `Golden_Lotus_00_Start_Here_Accept_All.lua` to automatically accept all available quests and start the full quest chain
    - **For Klaxxi:** Load `Klaxxi_00_Start_Here_Klaxxi_Accept_All.lua` to automatically accept all available quests and start the full quest chain
 
 ## 📁 Project Structure
@@ -109,21 +109,21 @@ Baneto-MoP-Dailies/
 ├── ⚙️ .luacheckrc              # Lua linting configuration
 └── 📂 src/
     ├── 📂 Golden Lotus Dailies/
-    │   ├── ✅ Part01_!Start_Here_Golden_Lotus_Accept_All.lua
-    │   ├── 🔍 Part01_Golden_Lotus_01_Laosy_Scouting.lua
-    │   ├── 👻 Part01_Golden_Lotus_02_Unleashed_Spirits.lua
-    │   ├── 🎯 Part01_Golden_Lotus_03_The_Eternal_Vigil.lua
-    │   ├── 🗿 Part01_Golden_Lotus_04_Crumbling_Behemoth.lua
-    │   ├── 💚 Part01_Golden_Lotus_05_Given_a_Second_Chance.lua
-    │   ├── 🔄 Part01_Golden_Lotus_TurnIn_All.lua
-    │   ├── 🚶 Part02_!!Golden_Lotus_Transition_Mistfall_Village.lua
-    │   ├── ✅ Part02_!Golden_Lotus_Accept_All_Mistfall_Village.lua
-    │   ├── 🍎 Part02_Golden_Lotus_01_Pomfruit_Pickup_Mistfall_Village.lua
-    │   ├── ⚡ Part02_Golden_Lotus_02_Encroaching_Storm_Mistfall_Village.lua
-    │   ├── 🔥 Part02_Golden_Lotus_03_My_Town_Its_on_Fire_Mistfall_Village.lua
-    │   ├── 🧚 Part02_Golden_Lotus_04_Sprite_Plight_Mistfall_Village.lua
-    │   ├── 🔄 Part02_Golden_Lotus_TurnIn_All_Mistfall_Village.lua
-    │   └── 🏆 Part03_Golden_Lotus_01_Quid_Pro_Quo_Mistfall_Village.lua
+    │   ├── ✅ Golden_Lotus_00_Start_Here_Accept_All.lua
+    │   ├── 🔍 Golden_Lotus_01_Laosy_Scouting.lua
+    │   ├── 👻 Golden_Lotus_02_Unleashed_Spirits.lua
+    │   ├── 🎯 Golden_Lotus_03_The_Eternal_Vigil.lua
+    │   ├── 🗿 Golden_Lotus_04_Crumbling_Behemoth.lua
+    │   ├── 💚 Golden_Lotus_05_Given_a_Second_Chance.lua
+    │   ├── 🔄 Golden_Lotus_06_TurnIn_All.lua
+    │   ├── 🚶 Golden_Lotus_Mistfall_Village_00_Transition.lua
+    │   ├── ✅ Golden_Lotus_Mistfall_Village_01_Accept_All.lua
+    │   ├── 🍎 Golden_Lotus_Mistfall_Village_02_Pomfruit_Pickup.lua
+    │   ├── ⚡ Golden_Lotus_Mistfall_Village_03_Encroaching_Storm.lua
+    │   ├── 🔥 Golden_Lotus_Mistfall_Village_04_My_Town_Its_on_Fire.lua
+    │   ├── 🧚 Golden_Lotus_Mistfall_Village_05_Sprite_Plight.lua
+    │   ├── 🔄 Golden_Lotus_Mistfall_Village_06_TurnIn_All.lua
+    │   └── 🏆 Golden_Lotus_Mistfall_Village_07_Quid_Pro_Quo.lua
     └── 📂 Klaxxi Dailies/
         ├── ✅ Klaxxi_00_Start_Here_Klaxxi_Accept_All.lua
         ├── ⚔️ Klaxxi_01_The_Fight_Against_Fear.lua

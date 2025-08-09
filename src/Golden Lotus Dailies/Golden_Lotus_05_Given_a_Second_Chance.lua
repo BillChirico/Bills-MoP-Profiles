@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Part01_Golden_Lotus_05_Given_a_Second_Chance")
+BANETO_DefineProfileName("Golden_Lotus_05_Given_a_Second_Chance")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[UseItemOnNpc]])
@@ -22,7 +22,7 @@ BANETO_DefineCenter(1443.3646240234, 1143.2777099609, 429.45077514648, 200)
 BANETO_DefineWhitelist(1443.3646240234, 1143.2777099609, 429.45077514648, 200)
 
 -- Next Quest - Chain to consolidated turn-in handler after completing all quest objectives
-BANETO_SetNextLocalQuestProfile([[Part01_Golden_Lotus_TurnIn_All]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_06_TurnIn_All]])
 
 -- Quest Pulse
 _G.BANETO_ExecuteCustomQuestPulse_Questmaster = true

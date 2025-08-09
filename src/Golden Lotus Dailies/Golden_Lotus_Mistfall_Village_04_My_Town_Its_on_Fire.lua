@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Part02_Golden_Lotus_03_My_Town_Its_on_Fire_Mistfall_Village")
+BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_04_My_Town_Its_on_Fire")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[GatherObject]])
@@ -21,4 +21,4 @@ BANETO_DefineCenter(706.97039794922, 1628.9475097656, 377.74404907227, 130)
 BANETO_DefineCenter(680.28063964844, 1654.4566650391, 377.74417114258, 130)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Part02_Golden_Lotus_04_Sprite_Plight_Mistfall_Village]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_05_Sprite_Plight]])
