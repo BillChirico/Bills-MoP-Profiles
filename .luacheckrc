@@ -98,3 +98,9 @@ globals = {
 
 -- File-specific configurations
 files["src/**/*.lua"] = {}
+
+-- Ignore warnings for BANETO configuration variables that are set but read by the framework
+ignore = {
+    "211/BANETO_ExecuteCustomQuestPulse_Questmaster",  -- Unused global variable
+    "211/BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior",  -- Unused global variable
+}
