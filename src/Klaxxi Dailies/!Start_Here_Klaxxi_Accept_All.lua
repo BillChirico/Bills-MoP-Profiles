@@ -165,22 +165,21 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
             BANETO_Print("Checking NPC: " .. npcId .. " for " .. #npcQuests .. " quests!")
 
-            local questGiver = GetObjectWithId(npcId)
-
-            if not questGiver then
-                -- NPC not found, mesh and set wait
-                BANETO_MeshTo(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z)
-                wait = time() + 5
-                BANETO_Print("Mesh to NPC: " .. npcId .. " (waiting 5s)")
-                return
-            end
-
             -- Check if in position
             if not BANETO_PlayerPosition(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z, 5) then
                 -- Not in position, mesh and set wait
                 BANETO_MeshTo(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z)
                 wait = time() + 5
                 BANETO_Print("Not in position for NPC " .. npcId .. " - meshing (waiting 5s)")
+                return
+            end
+
+            local questGiver = GetObjectWithId(npcId)
+
+            if not questGiver then
+                _G.checkedNpcs[npcId] = true
+                checked = false
+                BANETO_Print("No NPC found for " .. npcId .. " - marking as complete")
                 return
             end
 
