@@ -200,7 +200,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 else
                     -- Second attempt: still no quests found
                     -- For single-quest NPCs, we'll try direct acceptance as fallback
-                    BANETO_Print("No quests found via API for NPC " .. npcId .. ", trying direct acceptance")
+                    BANETO_Print("No quests found for NPC " .. npcId .. ", trying direct acceptance")
                     checked = false
                 end
             else
@@ -251,7 +251,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                             return
                         elseif not availableQuests or #availableQuests == 0 then
                             -- No API results (single quest NPC case) - use AcceptQuest() directly
-                            BANETO_Print("No quests in API, trying AcceptQuest() for " ..
+                            BANETO_Print("No quests found, trying AcceptQuest() for " ..
                                 quest.questName .. " (" .. quest.questId .. ")")
 
                             -- Try to accept the quest directly using WoW API
