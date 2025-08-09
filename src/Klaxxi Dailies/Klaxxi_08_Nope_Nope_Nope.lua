@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Klaxxi_09_Nope_Nope_Nope")
+BANETO_DefineProfileName("Klaxxi_08_Nope_Nope_Nope")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
@@ -17,7 +17,7 @@ BANETO_DefineCenter(360.16882324219, 2507.5568847656, 218.33654785156, 300)
 BANETO_DefineCenter(406.19610595703, 2618.5681152344, 218.66253662109, 300)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Klaxxi_10_Putting_An_Eye_Out]])
+BANETO_SetNextLocalQuestProfile([[Klaxxi_09_Dreadspinner_Extermination]])
 
 -- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
@@ -28,7 +28,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     if not BANETO_HasQuest(31235) then
         BANETO_Print("Quest not found, skipping!")
 
-        BANETO_LoadQuestProfile([[Klaxxi_10_Putting_An_Eye_Out]])
+        BANETO_LoadQuestProfile([[Klaxxi_09_Dreadspinner_Extermination]])
         return
     end
 

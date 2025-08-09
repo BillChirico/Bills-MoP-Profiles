@@ -133,8 +133,8 @@ Baneto-MoP-Dailies/
         ├── 🧬 Klaxxi_05_Bad_Genes.lua
         ├── ⚔️ Klaxxi_06_Mistblade_Destruction.lua
         ├── 🏺 Klaxxi_07_An_Ancient_Empire.lua
-        ├── 🕷️ Klaxxi_08_Dreadspinner_Extermination.lua
-        ├── 🚫 Klaxxi_09_Nope_Nope_Nope.lua
+        ├── 🚫 Klaxxi_08_Nope_Nope_Nope.lua
+        ├── 🕷️ Klaxxi_09_Dreadspinner_Extermination.lua
         ├── 👁️ Klaxxi_10_Putting_An_Eye_Out.lua
         ├── 🍖 Klaxxi_11_Brain_Food.lua
         ├── 🌳 Klaxxi_12_Sap_Tapping.lua

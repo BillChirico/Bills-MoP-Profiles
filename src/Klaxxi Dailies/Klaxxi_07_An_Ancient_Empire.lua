@@ -14,7 +14,7 @@ BANETO_DefineCenter(360.16882324219, 2507.5568847656, 218.33654785156, 300)
 BANETO_DefineCenter(406.19610595703, 2618.5681152344, 218.66253662109, 300)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Klaxxi_08_Dreadspinner_Extermination]])
+BANETO_SetNextLocalQuestProfile([[Klaxxi_08_Nope_Nope_Nope]])
 
 -- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
@@ -23,7 +23,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     if not BANETO_HasQuest(31232) then
         BANETO_Print("Quest not found, skipping!")
 
-        BANETO_LoadQuestProfile([[Klaxxi_08_Dreadspinner_Extermination]])
+        BANETO_LoadQuestProfile([[Klaxxi_08_Nope_Nope_Nope]])
         return
     else
         BANETO_ExecuteCustomQuestPulse_Questmaster = false
