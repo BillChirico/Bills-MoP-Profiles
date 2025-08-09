@@ -22,6 +22,8 @@
 
 ### 🏮 Golden Lotus Faction
 
+**Available Daily Quests (Rotating Pool):**
+
 **Part 1 - Temple of the White Tiger:**
 | Quest Name | Type | Description |
 | ------------------------- | ------------ | ---------------------------------------- |
@@ -62,7 +64,9 @@
 | **Brain Food** | Kaz'tik the Manipulator | KillAndLoot | Hunt Greatback Mushan for 4 Mushan Tongues |
 | **Sap Tapping** | Korven the Prime | GatherObject | Collect 6 Amber Sap from extractors on trees |
 
-**Note:** Klaxxi dailies are a rotating pool of quests that change each day. The system automatically detects which quests are available and completes them. Not all quests will be available every day.
+**Note:** Both Golden Lotus and Klaxxi dailies are rotating pools of quests that change each day. The system automatically detects which quests are available and completes them. Not all quests will be available every day.
+
+⚠️ **Faction Note:** These profiles have only been tested on **Horde** characters. Alliance compatibility is not guaranteed.
 
 **Total: 12 Different Daily Quests in Rotation**
 
@@ -72,7 +76,8 @@
 
 - ✅ World of Warcraft: Mists of Pandaria
 - ✅ [Baneto Bot](https://baneto-bot.com) installed and configured
-- ✅ Character with access to quests you want to do
+- ✅ **Horde** character with access to quests you want to do
+- ⚠️ **Note:** These profiles have only been tested on Horde. Alliance compatibility not guaranteed.
 
 ### Installation
 
