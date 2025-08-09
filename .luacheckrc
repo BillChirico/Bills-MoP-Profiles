@@ -9,6 +9,9 @@ unused_args = false
 -- Allow unused variables starting with underscore
 unused = false
 
+-- Allow unused global variables (many are read by the BANETO framework)
+unused_globals = false
+
 -- Allow accessing undefined fields in tables
 allow_defined_top = true
 
@@ -98,9 +101,3 @@ globals = {
 
 -- File-specific configurations
 files["src/**/*.lua"] = {}
-
--- Ignore warnings for BANETO configuration variables that are set but read by the framework
-ignore = {
-    "211/BANETO_ExecuteCustomQuestPulse_Questmaster",  -- Unused global variable
-    "211/BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior",  -- Unused global variable
-}
