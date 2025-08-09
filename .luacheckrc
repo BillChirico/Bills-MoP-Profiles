@@ -12,20 +12,83 @@ unused = false
 -- Allow accessing undefined fields in tables
 allow_defined_top = true
 
--- Define global functions used in BANETO profiles
+-- Define global functions used in BANETO profiles and WoW API
 globals = {
-	-- BANETO Profile Definition Functions
-	"BANETO_DefineProfileName",
-	"BANETO_DefineProfileType",
-	"BANETO_SetToSkipPulseQuest",
-	"BANETO_SetToSkipTurnInQuest",
-	"BANETO_DefineQuestStepType",
-	"BANETO_DefineQuestId",
-	"BANETO_DefineCenter",
-	"BANETO_DefineQuestPickupNPC",
-	"BANETO_DefineQuestTurninNPC",
-	"BANETO_DefineQuestTargetId",
-	"BANETO_SetNextLocalQuestProfile",
+    -- BANETO Profile Definition Functions
+    "BANETO_DefineProfileName",
+    "BANETO_DefineProfileType",
+    "BANETO_SetToSkipPulseQuest",
+    "BANETO_SetToSkipTurnInQuest",
+    "BANETO_DefineQuestStepType",
+    "BANETO_DefineQuestId",
+    "BANETO_DefineCenter",
+    "BANETO_DefineQuestPickupNPC",
+    "BANETO_DefineQuestTurninNPC",
+    "BANETO_DefineQuestTargetId",
+    "BANETO_SetNextLocalQuestProfile",
+    "BANETO_DefineProfileUnstuck",
+    "BANETO_DefineWhitelist",
+    "BANETO_DefineBlacklistIDGlobal",
+
+    -- BANETO Quest Functions
+    "BANETO_HasQuest",
+    "BANETO_HasQuestCompleted",
+    "BANETO_LoadQuestProfile",
+    "BANETO_LoadProfile",
+    "BANETO_Stop",
+
+    -- BANETO Object/Target Functions
+    "BANETO_Object",
+    "BANETO_ObjectId",
+    "BANETO_ObjectPosition",
+    "BANETO_GetTarget",
+    "BANETO_GetTargetId",
+    "BANETO_ClearTarget",
+    "BANETO_GetDistance3D",
+    "BANETO_UnitHealth",
+    "BANETO_GetUnitMovementFlags",
+
+    -- BANETO Movement Functions
+    "BANETO_MeshTo",
+    "BANETO_PlayerPosition",
+    "BANETO_RecordLandingspot",
+    "BANETO_GetFacingValue",
+    "BANETO_SetPlayerAnglesLuabox",
+
+    -- BANETO Blacklist Functions
+    "BANETO_AddMobToGuidBlacklist",
+    "BANETO_IsGuidContainedInGuidBlacklist",
+    "BANETO_BlacklistID",
+    "BlacklistID",
+
+    -- BANETO Interaction Functions
+    "BANETO_Interact",
+    "BANETO_UseItem",
+    "BANETO_HasItem",
+
+    -- BANETO Utility Functions
+    "BANETO_Print",
+    "BANETO_GetState",
+    "BANETO_ReadFile",
+    "BANETO_JsonDecode",
+
+    -- Object Search Functions
+    "GetObjectWithId",
+    "GetObjectWithIdClose",
+    "GetObjectWithIdMedium",
+    "GetObjectWithIdIncludingBlacklistCheck",
+    "UnlockedTargetUnit",
+
+    -- WoW API Functions
+    "C_QuestLog",
+    "C_GossipInfo",
+    "GetTime",
+    "UnitGUID",
+    "UnitExists",
+    "AcceptQuest",
+
+    -- Lua standard
+    "time",
 }
 
 -- File-specific configurations
