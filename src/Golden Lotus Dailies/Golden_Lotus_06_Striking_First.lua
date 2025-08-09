@@ -9,7 +9,7 @@ BANETO_DefineQuestId(31760)
 BANETO_DefineQuestTargetId(65978) -- Mogu Target
 
 -- Quest Locations
-BANETO_DefineCenter(1673.4184570312, 1360.3067626953, 453.59228515625, 40)
+BANETO_DefineCenter(1673.4184570312, 1360.3067626953, 453.59228515625, 60)
 
 -- Next Quest
 BANETO_SetNextLocalQuestProfile([[Golden_Lotus_07_Acts_of_Cruelty]])
