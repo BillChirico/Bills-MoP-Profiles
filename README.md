@@ -220,10 +220,11 @@ Some quests include custom logic for advanced automation:
 
 ### Code Quality
 
-- 🔍 **Automated Lua Linting** - GitHub Actions runs luacheck on every push and PR
+- 🔍 **Automated Lua Linting** - GitHub Actions runs luacheck on every push and PR with intelligent caching
 - 📝 **Documentation** - All functions and sections properly commented  
 - 🧪 **Testing** - Validate coordinates and quest IDs
-- ✅ **CI/CD Pipeline** - Automated code quality checks via GitHub Actions
+- ✅ **CI/CD Pipeline** - Automated code quality checks via GitHub Actions with dependency caching for faster builds
+- ⚡ **Performance Optimized** - LuaRocks packages are cached between runs for improved build times
 
 #### Running Linting Locally
 
