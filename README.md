@@ -1,4 +1,4 @@
-# 🏮 Baneto MoP Profiles
+# 🏮 Bill's MoP Profiles
 
 > **Premium Daily Quest Profiles for World of Warcraft: Mists of Pandaria**  
 > Automated quest execution using the Baneto framework
