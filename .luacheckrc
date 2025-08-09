@@ -13,11 +13,11 @@ unused = false
 -- (BANETO framework reads these configuration variables externally)
 unused_globals = false
 
--- These globals can be written to without generating warnings
-new_globals = {
-    "BANETO_ExecuteCustomQuestPulse_Questmaster",
-    "BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior",
-}
+-- Allow implicit global variable definitions without generating unused warnings
+allow_defined = true
+
+-- Suppress specific warning codes for unused globals (131 = unused global variable)
+ignore = {"131"}
 
 -- Allow accessing undefined fields in tables
 allow_defined_top = true
@@ -84,6 +84,8 @@ globals = {
 
     -- BANETO Custom Quest Pulse Functions
     "BANETO_ExecuteCustomQuestPulse",
+    "BANETO_ExecuteCustomQuestPulse_Questmaster",
+    "BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior",
 
     -- Object Search Functions
     "GetObjectWithId",
