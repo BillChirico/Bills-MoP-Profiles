@@ -9,8 +9,15 @@ unused_args = false
 -- Allow unused variables starting with underscore
 unused = false
 
--- Allow unused global variables (many are read by the BANETO framework)
+-- Allow setting global variables without warnings about them being unused
+-- (BANETO framework reads these configuration variables externally)
 unused_globals = false
+
+-- These globals can be written to without generating warnings
+new_globals = {
+    "BANETO_ExecuteCustomQuestPulse_Questmaster",
+    "BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior",
+}
 
 -- Allow accessing undefined fields in tables
 allow_defined_top = true
@@ -74,11 +81,9 @@ globals = {
     "BANETO_GetState",
     "BANETO_ReadFile",
     "BANETO_JsonDecode",
-    
+
     -- BANETO Custom Quest Pulse Functions
     "BANETO_ExecuteCustomQuestPulse",
-    "BANETO_ExecuteCustomQuestPulse_Questmaster",
-    "BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior",
 
     -- Object Search Functions
     "GetObjectWithId",
