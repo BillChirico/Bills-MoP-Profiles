@@ -129,5 +129,5 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     end
 
     BANETO_Print("No more completed quests to turn in at the main hub! Starting transition to the next hub...")
-    BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_00_Transition]])
+    BANETO_LoadQuestProfile([[Golden_Lotus_10_Quest_Router]])
 end
