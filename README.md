@@ -1,6 +1,6 @@
 # 🏮 Bill's MoP Profiles
 
-> **Fully Automated Questing Profiles by Bill**  
+> **Fully Automated Baneto Profiles by Bill**  
 > Golden Lotus and Klaxxi daily quest automation for World of Warcraft: Mists of Pandaria
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -24,6 +24,7 @@
 ### 🏮 Golden Lotus Faction
 
 **Two-Hub Daily System:**
+
 - **Main Hub:** Temple of the White Tiger (always same location, rotating quests)
 - **Secondary Hub:** Assigned by Leven Dawnblade (changes daily - currently only Mistfall Village implemented)
 - **Challenge Quest:** Final quest at the secondary hub after completing all hub quests
@@ -86,7 +87,7 @@
 ### 📋 Prerequisites
 
 - ✅ **World of Warcraft: Mists of Pandaria** (any private server)
-- ✅ **[Baneto Bot](https://baneto-bot.com)** installed and configured  
+- ✅ **[Baneto Bot](https://baneto-bot.com)** installed and configured
 - ✅ **Horde character** level 90 with access to:
   - 🏛️ Vale of Eternal Blossoms (Golden Lotus hub)
   - 🦂 Dread Wastes (Klaxxi hub)
@@ -96,21 +97,24 @@
 ### 📦 Installation
 
 1. **📥 Clone the repository**
+
    ```bash
    git clone https://github.com/BillChirico/Bills-MoP-Profiles.git
    cd Bills-MoP-Profiles
    ```
 
 2. **📋 Copy profiles to Baneto**
+
    ```bash
    cp -r src/* /path/to/baneto/profiles/
    ```
 
 3. **🎮 Launch in Baneto**
+
    - 🟢 Start Baneto and navigate to quest profiles
    - 🏮 **Golden Lotus:** Load `Golden_Lotus_00_Start_Here_Accept_All.lua`
    - 🦂 **Klaxxi:** Load `Klaxxi_00_Start_Here_Klaxxi_Accept_All.lua`
-   
+
    **That's it!** 🎉 The system will automatically handle everything else!
 
 ## 📁 Project Structure
@@ -132,8 +136,9 @@ Bills-MoP-Profiles/
     │   ├── ⚔️ Golden_Lotus_06_Striking_First.lua
     │   ├── 🔥 Golden_Lotus_07_Acts_of_Cruelty.lua
     │   ├── 🌧️ Golden_Lotus_08_High_Chance_of_Rain.lua
-    │   ├── 🔄 Golden_Lotus_09_TurnIn_All.lua
-    │   ├── 🗺️ Golden_Lotus_10_Quest_Router.lua
+    │   ├── 🗿 Golden_Lotus_09_Stone_Hard_Quilen.lua
+    │   ├── 🔄 Golden_Lotus_10_TurnIn_All.lua
+    │   ├── 🗺️ Golden_Lotus_11_Quest_Router.lua
     │   ├── 🚶 Golden_Lotus_Mistfall_Village_00_Transition.lua
     │   ├── ✅ Golden_Lotus_Mistfall_Village_01_Accept_All.lua
     │   ├── 🍎 Golden_Lotus_Mistfall_Village_02_Pomfruit_Pickup.lua
@@ -182,12 +187,12 @@ Transition → Accept All → Execute Quests → Turn In All → Challenge Quest
 ```
 
 🎯 **How It Works:**
+
 - **Main Hub:** Always at Temple of the White Tiger
   - `Golden_Lotus_00_Start_Here_Accept_All.lua` accepts all available dailies
   - Execute 8 rotating quests (different each day, same location)
-  - `Golden_Lotus_09_TurnIn_All.lua` turns in completed quests
-  - `Golden_Lotus_10_Quest_Router.lua` talks to Leven Dawnblade for secondary hub assignment
-  
+  - `Golden_Lotus_10_TurnIn_All.lua` turns in completed quests
+  - `Golden_Lotus_11_Quest_Router.lua` talks to Leven Dawnblade for secondary hub assignment
 - **Secondary Hub:** Location changes daily
   - Currently implemented: **Mistfall Village**
   - Coming soon: Ruins of Guo-Lai, Setting Sun Garrison, Whitepetal Lake
@@ -203,6 +208,7 @@ Accept All → Execute Individual Quests (Daily Rotation) → TurnIn All
 ```
 
 🎯 **How It Works:**
+
 - **Accept Phase:** `Klaxxi_00_Start_Here_Klaxxi_Accept_All.lua` visits 4 NPCs and accepts available dailies
 - **Execute Phase:** 12 individual quest profiles with smart skip logic for unavailable quests
 - **TurnIn Phase:** `Klaxxi_TurnIn_All.lua` efficiently turns in completed quests
@@ -284,7 +290,7 @@ We welcome contributions! Please follow these guidelines:
   - [ ] Additional secondary hubs: Ruins of Guo-Lai, Setting Sun Garrison, Whitepetal Lake
 - [x] 🦂 **Klaxxi** faction dailies (12 rotating daily quests with comprehensive accept/turn-in system)
 - [ ] 🏛️ **August Celestials** faction dailies
-- [ ] 🐉 **Order of the Cloud Serpent** faction dailies  
+- [ ] 🐉 **Order of the Cloud Serpent** faction dailies
 - [ ] 🌅 **Shado-Pan** faction dailies
 - [ ] 🎣 **The Anglers** faction dailies
 - [ ] 👥 **Operation: Shieldwall** / **Dominance Offensive** dailies
