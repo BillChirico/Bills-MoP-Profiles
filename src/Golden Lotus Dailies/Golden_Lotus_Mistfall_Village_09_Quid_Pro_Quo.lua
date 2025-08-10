@@ -5,8 +5,8 @@ BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(30235)
 
 -- NPC Information
-BANETO_DefineQuestPickupNPC(727.81665039062, 1621.7716064453, 377.74417114258, 59338) -- Che Wildwalker
-BANETO_DefineQuestTurninNPC(727.81665039062, 1621.7716064453, 377.74417114258, 59338) -- Che Wildwalker
+BANETO_DefineQuestPickupNPC(730.33160400391, 1623.9477539062, 377.74407958984, 59338) -- Che Wildwalker
+BANETO_DefineQuestTurninNPC(730.33160400391, 1623.9477539062, 377.74407958984, 59338) -- Che Wildwalker
 
 -- Quest Objective
 BANETO_DefineQuestTargetId(244995) -- Quid

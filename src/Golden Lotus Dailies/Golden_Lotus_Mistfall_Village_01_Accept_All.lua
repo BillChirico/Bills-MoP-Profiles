@@ -9,9 +9,9 @@ BANETO_DefineQuestStepType([[TalkTo]])
 local npcCoords = {
     -- Che Wildwalker
     [59338] = {
-        x = 727.81665039062,
-        y = 1621.7716064453,
-        z = 377.74417114258,
+        x = 730.33160400391,
+        y = 1623.9477539062,
+        z = 377.74407958984,
     },
     -- Shen-zin Su
     [58818] = {
