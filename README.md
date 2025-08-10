@@ -23,11 +23,12 @@
 
 ### 🏮 Golden Lotus Faction
 
-**Two-Part Daily System:**
-- **Part 1:** Main hub at Temple of the White Tiger (always same location, rotating quests)
-- **Part 2:** Secondary hub assigned by Leven Dawnblade (changes daily - currently only Mistfall Village implemented)
+**Two-Hub Daily System:**
+- **Main Hub:** Temple of the White Tiger (always same location, rotating quests)
+- **Secondary Hub:** Assigned by Leven Dawnblade (changes daily - currently only Mistfall Village implemented)
+- **Challenge Quest:** Final quest at the secondary hub after completing all hub quests
 
-**Part 1 - Temple of the White Tiger (Main Hub):**
+**Main Hub - Temple of the White Tiger:**
 | Quest Name | Type | Description |
 | ------------------------- | ------------ | ---------------------------------------- |
 | [**Laosy Scouting**](https://www.wowhead.com/quest=31758/laosy-scouting) | GatherObject | Gather intelligence from enemy cages |
@@ -39,7 +40,7 @@
 | [**Acts of Cruelty**](https://www.wowhead.com/quest=31755/acts-of-cruelty) | KillAndLoot | Eliminate cruel oppressors |
 | [**High Chance of Rain**](https://www.wowhead.com/quest=31756/high-chance-of-rain) | GatherObject | Collect weather monitoring devices |
 
-**Part 2 - Mistfall Village (Secondary Hub):**
+**Secondary Hub - Mistfall Village:**
 | Quest Name | Type | Description |
 | ------------------------- | ------------ | ---------------------------------------- |
 | [**Pomfruit Pickup**](https://www.wowhead.com/quest=30231/pomfruit-pickup) | GatherObject | Collect pomfruits for the village |
@@ -49,10 +50,10 @@
 | [**Steer Clear of the Beer Here**](https://www.wowhead.com/quest=30191/steer-clear-of-the-beer-here) | GatherObject | Recover stolen ale kegs |
 | [**Sprite Plight**](https://www.wowhead.com/quest=30190/sprite-plight) | KillAndLoot | Eliminate Slateskin Troublemakers |
 
-**Final Quest (After Part 2):**
+**Challenge Quest (Mistfall Village):**
 | Quest Name | Type | Description |
 | ------------------------- | ------------ | ---------------------------------------- |
-| [**Quid Pro Quo**](https://www.wowhead.com/quest=30235/quid-pro-quo) | KillAndLoot | Defeat Quid in the final challenge |
+| [**Quid Pro Quo**](https://www.wowhead.com/quest=30235/quid-pro-quo) | KillAndLoot | Final challenge quest after completing all Mistfall Village quests |
 
 📌 **Note:** Additional secondary hubs (Ruins of Guo-Lai, Setting Sun Garrison, Whitepetal Lake) will be added as they are discovered in the daily rotation.
 
@@ -166,31 +167,32 @@ Bills-MoP-Profiles/
 
 Quest profiles are designed to chain together automatically:
 
-**Golden Lotus Chain (Two-Part Structure):**
+**Golden Lotus Chain (Two-Hub System):**
 
 ```
-Part 1: Temple of the White Tiger (Main Hub)
+Main Hub: Temple of the White Tiger
   ↓
 Accept All → Execute Quests → Turn In All → Quest Router (Leven Dawnblade)
                                                     ↓
-                                        Assigns secondary hub for Part 2
+                                        Assigns secondary hub
                                                     ↓
-Part 2: Secondary Hub (Changes Daily)
+Secondary Hub (Changes Daily)
   ↓
-Transition → Accept All → Execute Quests → Turn In All → Final Quest
+Transition → Accept All → Execute Quests → Turn In All → Challenge Quest
 ```
 
 🎯 **How It Works:**
-- **Part 1 - Main Hub:** Always at Temple of the White Tiger
+- **Main Hub:** Always at Temple of the White Tiger
   - `Golden_Lotus_00_Start_Here_Accept_All.lua` accepts all available dailies
   - Execute 8 rotating quests (different each day, same location)
   - `Golden_Lotus_09_TurnIn_All.lua` turns in completed quests
-  - `Golden_Lotus_10_Quest_Router.lua` talks to Leven Dawnblade for Part 2 assignment
+  - `Golden_Lotus_10_Quest_Router.lua` talks to Leven Dawnblade for secondary hub assignment
   
-- **Part 2 - Secondary Hub:** Location changes daily
+- **Secondary Hub:** Location changes daily
   - Currently implemented: **Mistfall Village**
   - Coming soon: Ruins of Guo-Lai, Setting Sun Garrison, Whitepetal Lake
-  - Each hub has its own set of quests and final challenge
+  - Complete all hub quests, then receive challenge quest
+  - Challenge quest completes the daily chain
 
 **Klaxxi Chain (Simple 3-Phase):**
 
@@ -278,8 +280,8 @@ We welcome contributions! Please follow these guidelines:
 
 ## 🗺️ Roadmap
 
-- [x] 🏮 **Golden Lotus** faction dailies - Part 1 (Main Hub) complete, Part 2 (Mistfall Village) complete
-  - [ ] Additional Part 2 hubs: Ruins of Guo-Lai, Setting Sun Garrison, Whitepetal Lake
+- [x] 🏮 **Golden Lotus** faction dailies - Main Hub complete, Mistfall Village secondary hub complete
+  - [ ] Additional secondary hubs: Ruins of Guo-Lai, Setting Sun Garrison, Whitepetal Lake
 - [x] 🦂 **Klaxxi** faction dailies (12 rotating daily quests with comprehensive accept/turn-in system)
 - [ ] 🏛️ **August Celestials** faction dailies
 - [ ] 🐉 **Order of the Cloud Serpent** faction dailies  
