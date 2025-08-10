@@ -1,49 +1,56 @@
 -- Golden Lotus Part 2 Quest Turn-In Handler
-BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_06_TurnIn_All")
+BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_07_TurnIn_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
--- Golden Lotus Part 2 Quest Turn-In Information Table
+-- NPC Coordinates Table - Centralized coordinate data
+local npcCoords = {
+    -- Shen-zin Su
+    [58818] = {
+        x = 758.8076171875,
+        y = 1624.3572998047,
+        z = 370.361328125,
+    },
+    -- Mayor Shiyo
+    [58819] = {
+        x = 699.212890625,
+        y = 1587.1867675781,
+        z = 384.44644165039,
+    },
+    -- Che Wildwalker
+    [59338] = {
+        x = 727.81665039062,
+        y = 1621.7716064453,
+        z = 377.74417114258,
+    },
+}
+
+-- Quest Turn-In Information Table - No repeated coordinates
 local questTurnIns = {
     {
         questId = 30231,
         npcId = 58818,
         questName = "Pomfruit Pickup",
-        coords = {
-            x = 758.8076171875,
-            y = 1624.3572998047,
-            z = 370.361328125,
-        }
     },
     {
         questId = 30194,
         npcId = 59338,
         questName = "Encroaching Storm",
-        coords = {
-            x = 727.81665039062,
-            y = 1621.7716064453,
-            z = 377.74417114258,
-        }
+    },
+    {
+        questId = 30232,
+        npcId = 59338,
+        questName = "Ruffling Some Feathers",
     },
     {
         questId = 30192,
         npcId = 58819,
         questName = "My Town, It's on Fire",
-        coords = {
-            x = 699.212890625,
-            y = 1587.1867675781,
-            z = 384.44644165039,
-        }
     },
     {
         questId = 30190,
         npcId = 58819,
         questName = "Sprite Plight",
-        coords = {
-            x = 699.212890625,
-            y = 1587.1867675781,
-            z = 384.44644165039,
-        }
     }
 }
 
@@ -84,12 +91,13 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         then
             BANETO_Print("Turning in " .. quest.questName .. " (" .. quest.questId .. ")!")
 
+            local coords = npcCoords[quest.npcId]
             BANETO_DefineQuestId(quest.questId)
-            BANETO_DefineQuestPickupNPC(quest.coords.x, quest.coords.y, quest.coords.z, quest.npcId)
-            BANETO_DefineQuestTurninNPC(quest.coords.x, quest.coords.y, quest.coords.z, quest.npcId)
+            BANETO_DefineQuestPickupNPC(coords.x, coords.y, coords.z, quest.npcId)
+            BANETO_DefineQuestTurninNPC(coords.x, coords.y, coords.z, quest.npcId)
             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_06_TurnIn_All]])
+            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_07_TurnIn_All]])
             inProgress = true
 
             return
@@ -97,5 +105,5 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     end
 
     BANETO_Print("All Part 2 quests completed! Starting Part 3...")
-    BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_07_Quid_Pro_Quo]])
+    BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_08_Quid_Pro_Quo]])
 end

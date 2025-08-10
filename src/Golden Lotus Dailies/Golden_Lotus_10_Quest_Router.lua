@@ -17,7 +17,7 @@ local levenCoords = {
 -- Hub routing based on quest accepted from Leven Dawnblade
 -- Each quest ID maps to a specific hub transition profile
 local hubRoutes = {
-    [31242] = "Golden_Lotus_Mistfall_Village_00_Transition"
+    [31242] = "Golden_Lotus_Mistfall_Village_00_Transition",  -- Unknown quest name (leads to Mistfall Village)
 }
 
 -- Quest Pulse Configuration
