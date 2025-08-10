@@ -18,8 +18,8 @@ jobs:
       
       - name: Validate version format
         run: |
-          if [[ ! "${{ github.event.inputs.version }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Error: Version must be in format v1.0.0"
+          if [[ ! "${{ github.event.inputs.version }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-beta)?$ ]]; then
+            echo "Error: Version must be in format v1.0.0 or v1.0.0-beta"
             exit 1
           fi
       
@@ -80,7 +80,7 @@ jobs:
           name: Bill's MoP Profiles ${{ github.event.inputs.version }}
           body_path: release_notes.md
           draft: false
-          prerelease: false
+          prerelease: ${{ contains(github.event.inputs.version, 'beta') }}
           files: |
             ${{ env.ZIP_FILE }}
         env:
