@@ -186,12 +186,12 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                             -- Accept the quest
                             BANETO_Print("Accepting " .. quest.questName .. " (" .. quest.questId .. ")")
                             _G.mistfallCheckedQuests[quest.questId] = true
-                            
-                            local coords = npcCoords[quest.npcId]
+
+                            local questCoords = npcCoords[quest.npcId]
                             BANETO_DefineQuestId(quest.questId)
                             BANETO_SetToSkipTurnInQuest()
-                            BANETO_DefineQuestPickupNPC(coords.x, coords.y, coords.z, quest.npcId)
-                            
+                            BANETO_DefineQuestPickupNPC(questCoords.x, questCoords.y, questCoords.z, quest.npcId)
+
                             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
                             BANETO_ExecuteCustomQuestPulse_Questmaster = false
                             BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_01_Accept_All]])
