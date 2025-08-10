@@ -293,6 +293,11 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         until true
     end
 
+    _G.checkedNpcs = nil
+    _G.checkedQuests = nil
+    _G.processedCount = nil
+    _G.totalQuests = nil
+
     -- All NPCs have been checked and all available quests accepted
     -- Now start the quest execution chain
     BANETO_Print("All available quests accepted! Starting quest chain...")
