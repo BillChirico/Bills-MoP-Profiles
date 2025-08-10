@@ -14,7 +14,7 @@ BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
 -- Quest Information Table
--- Contains all 8 possible Golden Lotus daily quests with their associated NPCs
+-- Contains all 9 possible Golden Lotus daily quests with their associated NPCs
 -- Each quest has a rotating availability - not all will be offered each day
 local questAccepts = {
     {
@@ -36,6 +36,11 @@ local questAccepts = {
         questId = 31760,
         npcId = 58465,
         questName = "Striking First",
+    },
+    {
+        questId = 30308,
+        npcId = 58465,
+        questName = "Stone Hard Quilen",
     },
     {
         questId = 31758,

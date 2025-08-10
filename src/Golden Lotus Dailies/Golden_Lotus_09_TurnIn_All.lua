@@ -4,7 +4,7 @@ BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
 -- Golden Lotus Quest Turn-In Information Table
--- Contains all 8 possible Golden Lotus daily quests that can be turned in
+-- Contains all 9 possible Golden Lotus daily quests that can be turned in
 local questTurnIns = {
     {
         questId = 30307,
@@ -25,6 +25,11 @@ local questTurnIns = {
         questId = 31760,
         npcId = 58465,
         questName = "Striking First",
+    },
+    {
+        questId = 30308,
+        npcId = 58465,
+        questName = "Stone Hard Quilen",
     },
     {
         questId = 31758,
