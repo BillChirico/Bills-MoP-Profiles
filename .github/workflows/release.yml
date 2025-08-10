@@ -1,0 +1,93 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0)'
+        required: true
+        type: string
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Validate version format
+        run: |
+          if [[ ! "${{ github.event.inputs.version }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: Version must be in format v1.0.0"
+            exit 1
+          fi
+      
+      - name: Create zip archive
+        run: |
+          cd src
+          zip -r ../Bills-MoP-Profiles-${{ github.event.inputs.version }}.zip */ -x "*/.*"
+          cd ..
+          echo "ZIP_FILE=Bills-MoP-Profiles-${{ github.event.inputs.version }}.zip" >> $GITHUB_ENV
+      
+      - name: Generate release notes
+        run: |
+          cat << EOF > release_notes.md
+          # Bill's MoP Profiles ${{ github.event.inputs.version }}
+          
+          ## 📦 Installation
+          
+          1. Download the attached \`Bills-MoP-Profiles-${{ github.event.inputs.version }}.zip\`
+          2. Extract the contents to your Baneto profiles directory
+          3. Load profiles in Baneto:
+             - **Golden Lotus:** Load \`Golden Lotus Dailies/Golden_Lotus_00_Start_Here_Accept_All.lua\`
+             - **Klaxxi:** Load \`Klaxxi Dailies/Klaxxi_00_Start_Here_Klaxxi_Accept_All.lua\`
+          
+          ## ✨ Features
+          
+          ### Golden Lotus Dailies
+          - Main hub at Temple of the White Tiger (8 rotating quests)
+          - Secondary hub at Mistfall Village (6 quests + challenge)
+          - Automatic quest routing via Leven Dawnblade
+          - Smart skip logic for unavailable quests
+          
+          ### Klaxxi Dailies
+          - 12 rotating daily quests from 4 different NPCs
+          - Intelligent quest acceptance and turn-in
+          - Automatic quest chaining
+          
+          ## 📝 Requirements
+          
+          - World of Warcraft: Mists of Pandaria
+          - Baneto Bot framework
+          - Level 90 character
+          - Friendly+ reputation with factions
+          
+          ## 🔗 Links
+          
+          - [GitHub Repository](https://github.com/BillChirico/Bills-MoP-Profiles)
+          - [Report Issues](https://github.com/BillChirico/Bills-MoP-Profiles/issues)
+          
+          ---
+          
+          **Note:** These profiles have been tested on Horde characters only.
+          EOF
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          name: Bill's MoP Profiles ${{ github.event.inputs.version }}
+          body_path: release_notes.md
+          draft: false
+          prerelease: false
+          files: |
+            ${{ env.ZIP_FILE }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Bills-MoP-Profiles-${{ github.event.inputs.version }}
+          path: ${{ env.ZIP_FILE }}
