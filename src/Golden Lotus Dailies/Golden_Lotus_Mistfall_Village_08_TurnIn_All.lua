@@ -1,5 +1,5 @@
 -- Golden Lotus Part 2 Quest Turn-In Handler
-BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_07_TurnIn_All")
+BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_08_TurnIn_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
@@ -46,6 +46,11 @@ local questTurnIns = {
         questId = 30192,
         npcId = 58819,
         questName = "My Town, It's on Fire",
+    },
+    {
+        questId = 30191,
+        npcId = 58819,
+        questName = "Steer Clear of the Beer Here",
     },
     {
         questId = 30190,
@@ -97,7 +102,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             BANETO_DefineQuestTurninNPC(coords.x, coords.y, coords.z, quest.npcId)
             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_07_TurnIn_All]])
+            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_08_TurnIn_All]])
             inProgress = true
 
             return
@@ -105,5 +110,5 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     end
 
     BANETO_Print("All Part 2 quests completed! Starting Part 3...")
-    BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_08_Quid_Pro_Quo]])
+    BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_09_Quid_Pro_Quo]])
 end

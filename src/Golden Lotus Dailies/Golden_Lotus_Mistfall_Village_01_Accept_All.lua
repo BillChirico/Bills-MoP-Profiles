@@ -53,6 +53,11 @@ local questAccepts = {
         questName = "My Town, It's on Fire",
     },
     {
+        questId = 30191,
+        npcId = 58819,
+        questName = "Steer Clear of the Beer Here",
+    },
+    {
         questId = 30190,
         npcId = 58819,
         questName = "Sprite Plight",
