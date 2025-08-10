@@ -5,16 +5,11 @@ BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(30232)
 
--- NPC Information
-BANETO_DefineQuestPickupNPC(727.81665039062, 1621.7716064453, 377.74417114258, 59338) -- Che Wildwalker
-BANETO_DefineQuestTurninNPC(727.81665039062, 1621.7716064453, 377.74417114258, 59338) -- Che Wildwalker
-
 -- Quest Objective
-BANETO_DefineQuestTargetId(58434)  -- Wildscale Saurok
-BANETO_DefineQuestTargetId(58432)  -- Wildscale Herbalist
+BANETO_DefineQuestTargetId(58457) -- Silkfeather Hawk
 
 -- Quest Locations
-BANETO_DefineCenter(1800.5, 1650.2, 450.3, 200)
+BANETO_DefineCenter(978.77215576172,1798.9145507812,350.58459472656 300)
 BANETO_DefineCenter(1850.3, 1700.8, 455.1, 200)
 BANETO_DefineCenter(1900.7, 1750.4, 460.8, 200)
 

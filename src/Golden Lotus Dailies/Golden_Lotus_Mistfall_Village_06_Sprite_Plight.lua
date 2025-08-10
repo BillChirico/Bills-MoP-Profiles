@@ -5,10 +5,6 @@ BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(30190)
 
--- NPC Information
-BANETO_DefineQuestPickupNPC(699.212890625, 1587.1867675781, 384.44644165039, 58819) -- Mayor Shiyo
-BANETO_DefineQuestTurninNPC(699.212890625, 1587.1867675781, 384.44644165039, 58819) -- Mayor Shiyo
-
 -- Quest Objective
 BANETO_DefineQuestTargetId(58673) -- Slateskin Troublemaker
 

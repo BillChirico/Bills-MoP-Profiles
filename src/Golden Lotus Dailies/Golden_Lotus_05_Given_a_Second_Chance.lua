@@ -5,10 +5,6 @@ BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[UseItemOnNpc]])
 BANETO_DefineQuestId(30312)
 
--- NPC Information
-BANETO_DefineQuestPickupNPC(1215.7375488281, 1047.44921875, 425.9674987793, 58468)
-BANETO_DefineQuestTurninNPC(1215.7375488281, 1047.44921875, 425.9674987793, 58468)
-
 -- Quest Item
 BANETO_DefineQuestTargetId(84242)
 

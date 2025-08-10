@@ -5,10 +5,6 @@ BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[GatherObject]])
 BANETO_DefineQuestId(30231)
 
--- NPC Information
-BANETO_DefineQuestPickupNPC(758.8076171875, 1624.3572998047, 370.361328125, 58818) -- Cook Tope
-BANETO_DefineQuestTurninNPC(758.8076171875, 1624.3572998047, 370.361328125, 58818) -- Cook Tope
-
 -- Quest Objective
 BANETO_DefineQuestTargetId(58767) -- Pomfruit
 

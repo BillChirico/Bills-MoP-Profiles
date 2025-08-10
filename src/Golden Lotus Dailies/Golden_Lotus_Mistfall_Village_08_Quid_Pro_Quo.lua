@@ -14,4 +14,4 @@ BANETO_DefineQuestTargetId(244995) -- Quid
 -- Quest Locations
 BANETO_DefineCenter(603.54644775391, 1698.8565673828, 364.26226806641, 60)
 
--- Final Quest - No next quest, this completes the Golden Lotus dailies
+-- Final Quest - No next quest, this completes the Golden Lotus Mistfall Village dailies

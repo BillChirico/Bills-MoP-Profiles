@@ -5,10 +5,6 @@ BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[GatherObject]])
 BANETO_DefineQuestId(30192)
 
--- NPC Information
-BANETO_DefineQuestPickupNPC(699.212890625, 1587.1867675781, 384.44644165039, 58819) -- Mayor Shiyo
-BANETO_DefineQuestTurninNPC(699.212890625, 1587.1867675781, 384.44644165039, 58819) -- Mayor Shiyo
-
 -- Quest Item
 BANETO_DefineQuestTargetId(213369) -- Mistfall Water Bucket
 
