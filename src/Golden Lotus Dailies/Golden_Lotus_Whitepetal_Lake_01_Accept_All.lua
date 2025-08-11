@@ -29,7 +29,7 @@ local npcCoords = {
 
 -- Quest Accept Information Table - No repeated coordinates
 local questAccepts = {
-    -- He Softfoot (59342) - Single quest
+    -- He Softfoot (59342)
     {
         questId = 30313,
         npcId = 59342,
@@ -40,7 +40,7 @@ local questAccepts = {
         npcId = 59342,
         questName = "The Displaced Paleblade",
     },
-    -- Ren Firetongue (59343) - Multiple quests
+    -- Ren Firetongue (59343)
     {
         questId = 30342,
         npcId = 59343,
@@ -56,7 +56,7 @@ local questAccepts = {
         npcId = 59343,
         questName = "Sparkle in the Eye",
     },
-    -- Merchant Tantan (59341) - Single quest
+    -- Merchant Tantan (59341)
     {
         questId = 30340,
         npcId = 59341,
@@ -164,6 +164,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             if not availableQuests or #availableQuests == 0 then
                 if not checked then
                     UnlockedTargetUnit(questGiver)
+                    BANETO_SetBanetoTarget(questGiver)
                     BANETO_Interact(questGiver)
                     wait = time() + 2
                     BANETO_Print("Checking NPC " .. npcId .. " for quests")

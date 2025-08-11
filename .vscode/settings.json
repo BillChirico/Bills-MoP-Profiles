@@ -40,6 +40,7 @@
 		"pomfruits",
 		"Questmaster",
 		"Quilen",
+		"Saurok",
 		"Scorpid",
 		"Scorpids",
 		"Shado",
@@ -115,7 +116,8 @@
 		"BANETO_GetFacingValue",
 		"BANETO_SetPlayerAnglesLuabox",
 		"AcceptQuest",
-		"BANETO_StopMovement"
+		"BANETO_StopMovement",
+		"BANETO_SetBanetoTarget"
 	],
 	"Lua.diagnostics.disable": ["duplicate-set-field"],
 	"emmylua.spell.dict": [
@@ -138,6 +140,7 @@
 		"Whitepetal",
 		"Cannonfire",
 		"Quilen",
-		"Paleblade"
+		"Paleblade",
+		"Baneto"
 	]
 }
