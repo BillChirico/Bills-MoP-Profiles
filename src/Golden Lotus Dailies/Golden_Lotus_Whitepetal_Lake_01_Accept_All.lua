@@ -135,7 +135,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 for _, availableQuest in ipairs(availableQuests) do
                     for _, questInfo in ipairs(quests) do
                         -- Check if we already have this quest
-                        if not BANETO_HasQuest(questInfo.questId) and not BANETO_HasQuestCompleted(questInfo.questId) then
+                        if
+                            not BANETO_HasQuest(questInfo.questId) and not BANETO_HasQuestCompleted(questInfo.questId)
+                        then
                             -- Accept quest by selecting it
                             C_GossipInfo.SelectAvailableQuest(availableQuest.questID)
                             BANETO_Print("Accepted quest: " .. questInfo.questName .. " (" .. questInfo.questId .. ")")
