@@ -136,6 +136,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
             -- Clear target before looking for new NPC
             BANETO_ClearTarget()
+
             -- Try to find the NPC
             local questGiver = GetObjectWithId(npcId)
             if not questGiver then
@@ -182,6 +183,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                     if BANETO_HasQuest(quest.questId) or BANETO_HasQuestCompleted(quest.questId) then
                         _G.whitepetalCheckedQuests[quest.questId] = true
                         _G.whitepetalProcessedCount = _G.whitepetalProcessedCount + 1
+                        BANETO_ClearTarget()
                     else
                         -- Check if NPC is offering this quest
                         local offeredInfo = GetAvailableQuestInfoByID(availableQuests, quest.questId)
@@ -199,16 +201,19 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                             BANETO_ExecuteCustomQuestPulse_Questmaster = false
                             BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Whitepetal_Lake_01_Accept_All]])
                             inProgress = true
+
                             return
                         elseif not availableQuests or #availableQuests == 0 then
                             -- Try direct acceptance
                             AcceptQuest()
                             _G.whitepetalCheckedQuests[quest.questId] = true
                             _G.whitepetalProcessedCount = _G.whitepetalProcessedCount + 1
+                            BANETO_ClearTarget()
                         else
                             -- Quest not offered today
                             _G.whitepetalCheckedQuests[quest.questId] = true
                             _G.whitepetalProcessedCount = _G.whitepetalProcessedCount + 1
+                            BANETO_ClearTarget()
                         end
                     end
                 end
@@ -217,6 +222,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             -- Mark NPC as complete
             if _G.whitepetalProcessedCount >= _G.whitepetalTotalQuests then
                 _G.whitepetalCheckedNpcs[npcId] = true
+                BANETO_ClearTarget()
                 BANETO_Print("Finished checking NPC " .. npcId)
             end
 

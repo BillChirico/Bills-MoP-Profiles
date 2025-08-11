@@ -32,4 +32,6 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         BANETO_LoadQuestProfile([[Golden_Lotus_Whitepetal_Lake_03_Fiery_Tongue_Fragile_Feet]])
         return
     end
+
+    BANETO_ExecuteCustomQuestPulse_Questmaster = false
 end

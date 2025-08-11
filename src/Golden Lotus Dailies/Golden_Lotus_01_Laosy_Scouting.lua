@@ -17,11 +17,6 @@ BANETO_DefineCenter(1511.4365234375, 1475.9962158203, 441.88012695312, 130)
 BANETO_DefineCenter(1559.9156494141, 1524.8381347656, 439.8486328125, 130)
 
 -- Quest Pulse
---[[
-    @Description:
-        This quest pulse monitors quest progress and blacklists cage objects only after successful interaction.
-        It tracks quest objective progress to ensure the bot doesn't blacklist cages prematurely.
-]]
 _G.BANETO_ExecuteCustomQuestPulse_Questmaster = true
 local lastQuestProgress = nil
 local lastTargetGuid = nil

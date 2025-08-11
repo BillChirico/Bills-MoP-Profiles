@@ -32,4 +32,6 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         BANETO_LoadQuestProfile([[Golden_Lotus_Whitepetal_Lake_04_Stunning_Display]])
         return
     end
+
+    BANETO_ExecuteCustomQuestPulse_Questmaster = false
 end
