@@ -1,5 +1,5 @@
 -- Golden Lotus Quest Turn-In Handler
-BANETO_DefineProfileName("Golden_Lotus_10_TurnIn_All")
+BANETO_DefineProfileName("Golden_Lotus_11_TurnIn_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
@@ -35,6 +35,11 @@ local questTurnIns = {
         questId = 31758,
         npcId = 58471,
         questName = "Laosy Scouting",
+    },
+    {
+        questId = 31754,
+        npcId = 58471,
+        questName = "Cannonfire",
     },
     {
         questId = 31756,
@@ -126,7 +131,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             BANETO_DefineQuestTurninNPC(coords.x, coords.y, coords.z, quest.npcId)
             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_10_TurnIn_All]])
+            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_11_TurnIn_All]])
             inProgress = true
 
             return
@@ -134,5 +139,5 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     end
 
     BANETO_Print("No more completed quests to turn in at the main hub! Starting transition to the next hub...")
-    BANETO_LoadQuestProfile([[Golden_Lotus_11_Quest_Router]])
+    BANETO_LoadQuestProfile([[Golden_Lotus_12_Quest_Router]])
 end

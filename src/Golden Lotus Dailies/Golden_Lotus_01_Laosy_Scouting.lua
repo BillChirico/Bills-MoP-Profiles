@@ -32,7 +32,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     if not BANETO_HasQuest(31758) then
         BANETO_Print("Quest not found, skipping!")
 
-        BANETO_LoadQuestProfile([[Golden_Lotus_02_Unleashed_Spirits]])
+        BANETO_LoadQuestProfile([[Golden_Lotus_02_Cannonfire]])
         return
     end
 
@@ -96,4 +96,4 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 end
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_02_Unleashed_Spirits]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_02_Cannonfire]])

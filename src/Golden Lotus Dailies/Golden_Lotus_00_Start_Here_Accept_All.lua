@@ -48,6 +48,11 @@ local questAccepts = {
         questName = "Laosy Scouting",
     },
     {
+        questId = 31754,
+        npcId = 58471,
+        questName = "Cannonfire",
+    },
+    {
         questId = 31756,
         npcId = 58471,
         questName = "High Chance of Rain",

@@ -2,7 +2,7 @@
 -- This profile talks to Leven Dawnblade to accept his quest and determines the next hub
 -- Based on which quest he offers, routes to the appropriate area (Mistfall Village or other hubs)
 
-BANETO_DefineProfileName("Golden_Lotus_11_Quest_Router")
+BANETO_DefineProfileName("Golden_Lotus_12_Quest_Router")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 

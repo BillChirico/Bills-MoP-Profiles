@@ -5,6 +5,7 @@
 		"Anji",
 		"Autumnlight",
 		"BANETO",
+		"Cannonfire",
 		"Celestials",
 		"Chillwater",
 		"Crocolisk",
@@ -28,6 +29,7 @@
 		"luacheck",
 		"Mistblade",
 		"Mistfall",
+		"Mogu",
 		"Mushan",
 		"Npcs",
 		"Pandaria",
@@ -129,6 +131,8 @@
 		"Luabox",
 		"Landingspot",
 		"Dawnblade",
-		"Whitepetal"
+		"Whitepetal",
+		"Cannonfire",
+		"Quilen"
 	]
 }

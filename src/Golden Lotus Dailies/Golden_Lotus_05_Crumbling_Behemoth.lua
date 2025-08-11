@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Golden_Lotus_04_Crumbling_Behemoth")
+BANETO_DefineProfileName("Golden_Lotus_05_Crumbling_Behemoth")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
@@ -15,7 +15,7 @@ BANETO_DefineCenter(1392.3897705078, 1291.5573730469, 401.01940917969, 300)
 BANETO_DefineCenter(1674.5532226562, 1352.6085205078, 453.59204101562, 300)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_05_Given_a_Second_Chance]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_06_Given_a_Second_Chance]])
 
 -- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
@@ -24,7 +24,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     if not BANETO_HasQuest(31762) then
         BANETO_Print("Quest not found, skipping!")
 
-        BANETO_LoadQuestProfile([[Golden_Lotus_05_Given_a_Second_Chance]])
+        BANETO_LoadQuestProfile([[Golden_Lotus_06_Given_a_Second_Chance]])
         return
     else
         BANETO_ExecuteCustomQuestPulse_Questmaster = false

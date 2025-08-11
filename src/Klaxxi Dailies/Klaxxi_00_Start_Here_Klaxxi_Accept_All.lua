@@ -201,12 +201,19 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
             -- Try to find the NPC object in the game world
             local questGiver = GetObjectWithId(npcId)
+            local questGiverId = BANETO_GetTargetId()
 
             -- If NPC not found (out of range, not spawned, etc.), mark as complete
             if not questGiver then
                 _G.checkedNpcs[npcId] = true
                 checked = false
                 BANETO_Print("NPC " .. npcId .. " not found")
+                return
+            end
+
+            -- If the target is not the NPC, clear the target and return
+            if questGiverId ~= npcId then
+                BANETO_ClearTarget()
                 return
             end
 
@@ -277,6 +284,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                             -- Quest not offered by this NPC today - mark as processed
                             _G.checkedQuests[quest.questId] = true
                             _G.processedCount = _G.processedCount + 1
+                            BANETO_ClearTarget()
                         end
                     end
                 end
@@ -287,6 +295,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 _G.checkedNpcs[npcId] = true
                 BANETO_Print("Finished checking NPC " ..
                     npcId .. " (" .. _G.processedCount .. "/" .. _G.totalQuests .. " quests processed)")
+                BANETO_ClearTarget()
             end
 
             -- Reset state for next NPC
@@ -299,6 +308,8 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     _G.checkedQuests = nil
     _G.processedCount = nil
     _G.totalQuests = nil
+
+    BANETO_ClearTarget()
 
     -- All NPCs have been checked and all available quests accepted
     -- Now start the quest execution chain

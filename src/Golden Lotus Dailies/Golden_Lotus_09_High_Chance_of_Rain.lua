@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Golden_Lotus_08_High_Chance_of_Rain")
+BANETO_DefineProfileName("Golden_Lotus_09_High_Chance_of_Rain")
 BANETO_DefineProfileType("Questing")
 BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[GatherObject]])
@@ -18,7 +18,7 @@ BANETO_DefineCenter(1639.8022460938, 1548.3728027344, 440.14541625977, 150)
 BANETO_DefineCenter(1573.4532470703, 1190.1579589844, 445.09268188477, 150)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_09_Stone_Hard_Quilen]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_10_Stone_Hard_Quilen]])
 
 -- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
@@ -30,7 +30,7 @@ local maxWaitTime = 10000 -- 10 seconds max wait before blacklisting
 function _G.BANETO_ExecuteCustomQuestPulse()
     if not BANETO_HasQuest(31756) then
         BANETO_Print("Quest not found, skipping!")
-        BANETO_LoadQuestProfile([[Golden_Lotus_09_Stone_Hard_Quilen]])
+        BANETO_LoadQuestProfile([[Golden_Lotus_10_Stone_Hard_Quilen]])
         return
     end
 
