@@ -46,6 +46,16 @@ local questTurnIns = {
         questId = 30340,
         npcId = 59341,
         questName = "Stick in the Mud",
+    },
+    {
+        questId = 30314,
+        npcId = 59342,
+        questName = "The Displaced Paleblade",
+    },
+    {
+        questId = 30265,
+        npcId = 59343,
+        questName = "Sparkle in the Eye",
     }
 }
 

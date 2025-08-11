@@ -35,6 +35,11 @@ local questAccepts = {
         npcId = 59342,
         questName = "The Moving Mists",
     },
+    {
+        questId = 30314,
+        npcId = 59342,
+        questName = "The Displaced Paleblade",
+    },
     -- Ren Firetongue (59343) - Multiple quests
     {
         questId = 30342,
@@ -45,6 +50,11 @@ local questAccepts = {
         questId = 30291,
         npcId = 59343,
         questName = "Stunning Display",
+    },
+    {
+        questId = 30265,
+        npcId = 59343,
+        questName = "Sparkle in the Eye",
     },
     -- Merchant Tantan (59341) - Single quest
     {
