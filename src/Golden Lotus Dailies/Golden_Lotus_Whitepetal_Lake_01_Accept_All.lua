@@ -134,7 +134,6 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
             -- Clear target before looking for new NPC
             BANETO_ClearTarget()
-            
             -- Try to find the NPC
             local questGiver = GetObjectWithId(npcId)
             if not questGiver then
