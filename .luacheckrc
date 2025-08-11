@@ -17,7 +17,7 @@ unused_globals = false
 allow_defined = true
 
 -- Suppress specific warning codes for unused globals (131 = unused global variable)
-ignore = {"131"}
+ignore = { "131" }
 
 -- Allow accessing undefined fields in tables
 allow_defined_top = true
@@ -64,6 +64,7 @@ globals = {
     "BANETO_RecordLandingspot",
     "BANETO_GetFacingValue",
     "BANETO_SetPlayerAnglesLuabox",
+    "BANETO_StopMovement",
 
     -- BANETO Blacklist Functions
     "BANETO_AddMobToGuidBlacklist",
