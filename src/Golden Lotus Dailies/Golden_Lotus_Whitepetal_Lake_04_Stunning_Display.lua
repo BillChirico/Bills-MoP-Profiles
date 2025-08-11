@@ -1,5 +1,6 @@
 BANETO_DefineProfileName("Golden_Lotus_Whitepetal_Lake_04_Stunning_Display")
 BANETO_DefineProfileType("Questing")
+BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[GatherObject]])
 BANETO_DefineQuestId(30291)
 

@@ -1,5 +1,6 @@
 BANETO_DefineProfileName("Golden_Lotus_Whitepetal_Lake_05_Stick_in_the_Mud")
 BANETO_DefineProfileType("Questing")
+BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[GatherObject]])
 BANETO_DefineQuestId(30340)
 

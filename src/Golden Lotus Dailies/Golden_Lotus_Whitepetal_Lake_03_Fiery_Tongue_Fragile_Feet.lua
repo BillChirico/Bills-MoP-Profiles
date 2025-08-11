@@ -1,5 +1,6 @@
 BANETO_DefineProfileName("Golden_Lotus_Whitepetal_Lake_03_Fiery_Tongue_Fragile_Feet")
 BANETO_DefineProfileType("Questing")
+BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(30342)
 

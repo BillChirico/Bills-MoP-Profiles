@@ -54,145 +54,185 @@ local questAccepts = {
     },
 }
 
--- Group quests by NPC for efficient processing
-local questsByNpc = {}
-for _, quest in ipairs(questAccepts) do
-    if not questsByNpc[quest.npcId] then
-        questsByNpc[quest.npcId] = {}
+-- Helper function to find quest info from WoW's available quest API
+local function GetAvailableQuestInfoByID(available, questID)
+    for i = 1, #available do
+        local info = available[i]
+        if info and info.questID == questID then
+            return info
+        end
     end
-    table.insert(questsByNpc[quest.npcId], quest)
+    return nil
 end
 
 -- Quest Pulse Configuration
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
 BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = true
 
+local inProgress = false
 local wait = nil
-local currentNpcIndex = 1
-local npcIds = {}
-local npcQueued = false
-local questsAccepted = false
-local questsChecked = false
-
--- Build ordered list of NPCs
-for npcId, _ in pairs(questsByNpc) do
-    table.insert(npcIds, npcId)
-end
-
--- Sort NPCs by ID for consistent order
-table.sort(npcIds)
+local checked = false
 
 function _G.BANETO_ExecuteCustomQuestPulse()
+    if inProgress then
+        inProgress = false
+        checked = false
+        wait = nil
+        return
+    end
+
     -- Handle wait timer
     if wait and time() < wait then
         return
     end
 
-    -- Process NPCs in order
-    if currentNpcIndex <= #npcIds then
-        local npcId = npcIds[currentNpcIndex]
-        local coords = npcCoords[npcId]
-        local quests = questsByNpc[npcId]
+    -- Initialize global tracking variables
+    if not _G.whitepetalCheckedNpcs then
+        _G.whitepetalCheckedNpcs = {}
+    end
+    if not _G.whitepetalCheckedQuests then
+        _G.whitepetalCheckedQuests = {}
+    end
+    if not _G.whitepetalProcessedCount then
+        _G.whitepetalProcessedCount = 0
+    end
+    if not _G.whitepetalTotalQuests then
+        _G.whitepetalTotalQuests = 0
+    end
 
-        -- Move to NPC if not in position
-        if not BANETO_PlayerPosition(coords.x, coords.y, coords.z, 5) then
-            if not npcQueued then
+    -- Group quests by NPC for efficient processing
+    local questsByNpc = {}
+    for i = 1, #questAccepts do
+        local quest = questAccepts[i]
+        local npcId = quest.npcId
+        if not questsByNpc[npcId] then
+            questsByNpc[npcId] = {}
+        end
+        table.insert(questsByNpc[npcId], quest)
+    end
+
+    -- Process each NPC and their quests
+    for npcId, npcQuests in pairs(questsByNpc) do
+        repeat
+            BANETO_ClearTarget()
+
+            -- Skip if we've already processed this NPC
+            if _G.whitepetalCheckedNpcs[npcId] then
+                break
+            end
+
+            BANETO_Print("Checking NPC: " .. npcId .. " for " .. #npcQuests .. " possible quests")
+
+            -- Ensure we're in position to interact with the NPC
+            local coords = npcCoords[npcId]
+            if not BANETO_PlayerPosition(coords.x, coords.y, coords.z, 5) then
                 BANETO_MeshTo(coords.x, coords.y, coords.z)
-                BANETO_Print("Moving to NPC " .. npcId .. " for quest acceptance")
-                npcQueued = true
+                wait = time() + 5
+                BANETO_Print("Moving to NPC " .. npcId)
+                return
             end
-            wait = time() + 5
-            return
-        end
 
-        -- Target and interact with NPC
-        if not questsChecked then
+            -- Clear target before looking for new NPC
+            BANETO_ClearTarget()
+            
+            -- Try to find the NPC
             local questGiver = GetObjectWithId(npcId)
-            if questGiver then
-                UnlockedTargetUnit(questGiver)
-                BANETO_Interact(questGiver)
-                BANETO_Print("Interacting with NPC " .. npcId)
-                wait = time() + 2
-                questsChecked = true
-                return
-            else
-                BANETO_Print("NPC " .. npcId .. " not found, skipping...")
-                currentNpcIndex = currentNpcIndex + 1
-                npcQueued = false
-                questsChecked = false
-                questsAccepted = false
+            if not questGiver then
+                _G.whitepetalCheckedNpcs[npcId] = true
+                checked = false
+                BANETO_Print("NPC " .. npcId .. " not found")
+                wait = time() + 1
                 return
             end
-        end
 
-        -- Get available quests from gossip
-        if not questsAccepted then
+            -- Get available quests
             local availableQuests = C_GossipInfo.GetAvailableQuests()
-            if availableQuests and #availableQuests > 0 then
-                BANETO_Print("Found " .. #availableQuests .. " available quests from NPC " .. npcId)
 
-                -- Check each available quest against our quest list for this NPC
-                for _, availableQuest in ipairs(availableQuests) do
-                    for _, questInfo in ipairs(quests) do
-                        -- Check if we already have this quest
-                        if
-                            not BANETO_HasQuest(questInfo.questId) and not BANETO_HasQuestCompleted(questInfo.questId)
-                        then
-                            -- Accept quest by selecting it
-                            C_GossipInfo.SelectAvailableQuest(availableQuest.questID)
-                            BANETO_Print("Accepted quest: " .. questInfo.questName .. " (" .. questInfo.questId .. ")")
-                            wait = time() + 1
+            -- If no quests available, try interacting
+            if not availableQuests or #availableQuests == 0 then
+                if not checked then
+                    UnlockedTargetUnit(questGiver)
+                    BANETO_Interact(questGiver)
+                    wait = time() + 2
+                    BANETO_Print("Checking NPC " .. npcId .. " for quests")
+                    checked = true
+                    return
+                else
+                    BANETO_Print("No quests found for NPC " .. npcId)
+                    checked = false
+                end
+            else
+                BANETO_Print("Found " .. #availableQuests .. " available quests from NPC " .. npcId)
+                checked = false
+            end
+
+            -- Process each quest for this NPC
+            _G.whitepetalProcessedCount = 0
+            _G.whitepetalTotalQuests = #npcQuests
+
+            for j = 1, #npcQuests do
+                local quest = npcQuests[j]
+
+                -- Skip already processed quests
+                if _G.whitepetalCheckedQuests[quest.questId] then
+                    _G.whitepetalProcessedCount = _G.whitepetalProcessedCount + 1
+                else
+                    -- Check if we already have this quest
+                    if BANETO_HasQuest(quest.questId) or BANETO_HasQuestCompleted(quest.questId) then
+                        _G.whitepetalCheckedQuests[quest.questId] = true
+                        _G.whitepetalProcessedCount = _G.whitepetalProcessedCount + 1
+                    else
+                        -- Check if NPC is offering this quest
+                        local offeredInfo = GetAvailableQuestInfoByID(availableQuests, quest.questId)
+                        if offeredInfo then
+                            -- Accept the quest
+                            BANETO_Print("Accepting " .. quest.questName .. " (" .. quest.questId .. ")")
+                            _G.whitepetalCheckedQuests[quest.questId] = true
+
+                            local questCoords = npcCoords[quest.npcId]
+                            BANETO_DefineQuestId(quest.questId)
+                            BANETO_SetToSkipTurnInQuest()
+                            BANETO_DefineQuestPickupNPC(questCoords.x, questCoords.y, questCoords.z, quest.npcId)
+
+                            BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
+                            BANETO_ExecuteCustomQuestPulse_Questmaster = false
+                            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Whitepetal_Lake_01_Accept_All]])
+                            inProgress = true
+                            return
+                        elseif not availableQuests or #availableQuests == 0 then
+                            -- Try direct acceptance
+                            AcceptQuest()
+                            _G.whitepetalCheckedQuests[quest.questId] = true
+                            _G.whitepetalProcessedCount = _G.whitepetalProcessedCount + 1
                         else
-                            BANETO_Print("Skipping quest " .. questInfo.questName .. " - already have or completed")
+                            -- Quest not offered today
+                            _G.whitepetalCheckedQuests[quest.questId] = true
+                            _G.whitepetalProcessedCount = _G.whitepetalProcessedCount + 1
                         end
                     end
                 end
-
-                questsAccepted = true
-                wait = time() + 2
-                return
-            else
-                -- No quests available from this NPC
-                BANETO_Print("No quests available from NPC " .. npcId)
-                questsAccepted = true
             end
-        end
 
-        -- Move to next NPC
-        if questsAccepted then
-            currentNpcIndex = currentNpcIndex + 1
-            npcQueued = false
-            questsChecked = false
-            questsAccepted = false
-            wait = time() + 1
-            return
-        end
+            -- Mark NPC as complete
+            if _G.whitepetalProcessedCount >= _G.whitepetalTotalQuests then
+                _G.whitepetalCheckedNpcs[npcId] = true
+                BANETO_Print("Finished checking NPC " .. npcId)
+            end
+
+            BANETO_ClearTarget()
+            checked = false
+            wait = nil
+        until true
     end
 
-    -- All NPCs processed - check which quests we actually have and chain to appropriate profile
-    BANETO_Print("========================================")
-    BANETO_Print("All Whitepetal Lake NPCs processed!")
-    BANETO_Print("========================================")
+    -- All NPCs processed - start quest chain
+    _G.whitepetalCheckedNpcs = nil
+    _G.whitepetalCheckedQuests = nil
+    _G.whitepetalProcessedCount = nil
+    _G.whitepetalTotalQuests = nil
 
-    -- Priority order for quest execution
-    local questPriority = {
-        { questId = 30313, profile = "Golden_Lotus_Whitepetal_Lake_02_The_Moving_Mists" },
-        { questId = 30342, profile = "Golden_Lotus_Whitepetal_Lake_03_Fiery_Tongue_Fragile_Feet" },
-        { questId = 30291, profile = "Golden_Lotus_Whitepetal_Lake_04_Stunning_Display" },
-        { questId = 30340, profile = "Golden_Lotus_Whitepetal_Lake_05_Stick_in_the_Mud" },
-    }
+    BANETO_ClearTarget()
 
-    -- Find first available quest and load its profile
-    for _, questInfo in ipairs(questPriority) do
-        if BANETO_HasQuest(questInfo.questId) and not BANETO_HasQuestCompleted(questInfo.questId) then
-            BANETO_Print("Starting quest chain with: " .. questInfo.profile)
-            BANETO_LoadQuestProfile(questInfo.profile)
-            return
-        end
-    end
-
-    -- No quests found - likely all completed for today
-    BANETO_Print("No Whitepetal Lake quests available or all completed!")
-    BANETO_Print("Moving to turn-in phase...")
-    BANETO_LoadQuestProfile([[Golden_Lotus_Whitepetal_Lake_TurnIn_All]])
+    BANETO_Print("All available Whitepetal Lake quests accepted! Starting quest chain...")
+    BANETO_LoadQuestProfile([[Golden_Lotus_Whitepetal_Lake_02_The_Moving_Mists]])
 end

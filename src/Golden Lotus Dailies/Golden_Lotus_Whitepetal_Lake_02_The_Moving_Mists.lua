@@ -1,5 +1,6 @@
 BANETO_DefineProfileName("Golden_Lotus_Whitepetal_Lake_02_The_Moving_Mists")
 BANETO_DefineProfileType("Questing")
+BANETO_SetToSkipTurnInQuest()
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(30313)
 
