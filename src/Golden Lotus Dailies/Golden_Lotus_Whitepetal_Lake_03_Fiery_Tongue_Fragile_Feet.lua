@@ -5,7 +5,7 @@ BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(30342)
 
 -- Quest Objective
-BANETO_DefineQuestTargetId(58673) -- Stillwater Crocolisk
+BANETO_DefineQuestTargetId(58455) -- Stillwater Crocolisk
 
 -- Quest Locations
 BANETO_DefineCenter(1082.5245361328, 1374.8916015625, 354.11651611328, 200)
