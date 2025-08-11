@@ -56,6 +56,8 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         return
     end
 
+    BANETO_StopMovement()
+
     -- Find Leven Dawnblade (NPC 58408)
     local questGiver = GetObjectWithId(58408)
     if not questGiver then

@@ -139,6 +139,8 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 return
             end
 
+            BANETO_StopMovement()
+
             -- Try to find the NPC
             local questGiver = GetObjectWithId(npcId)
             if not questGiver then

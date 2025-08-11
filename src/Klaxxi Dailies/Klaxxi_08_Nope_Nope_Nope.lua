@@ -41,6 +41,8 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     -- If we have a target and the Dragon Gun item, proceed with destruction
     if currentTarget and object and BANETO_HasItem(82807) then
         if not wait and BANETO_PlayerPosition(targetX, targetY, targetZ, 5) then
+            BANETO_StopMovement()
+
             -- Face the target properly before using Dragon Gun
             local facing = BANETO_GetFacingValue(targetX, targetY, targetZ)
             BANETO_SetPlayerAnglesLuabox(facing)

@@ -108,7 +108,8 @@
 		"GetObjectWithId",
 		"BANETO_GetFacingValue",
 		"BANETO_SetPlayerAnglesLuabox",
-		"AcceptQuest"
+		"AcceptQuest",
+		"BANETO_StopMovement"
 	],
 	"Lua.diagnostics.disable": ["duplicate-set-field"],
 	"emmylua.spell.dict": [

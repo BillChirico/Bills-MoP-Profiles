@@ -183,6 +183,8 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 return
             end
 
+            BANETO_StopMovement()
+
             -- Try to find the NPC object in the game world
             local questGiver = GetObjectWithId(npcId)
 

@@ -132,6 +132,8 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 return
             end
 
+            BANETO_StopMovement()
+
             -- Clear target before looking for new NPC
             BANETO_ClearTarget()
             -- Try to find the NPC
