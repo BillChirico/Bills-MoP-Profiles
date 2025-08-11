@@ -18,6 +18,7 @@ local levenCoords = {
 -- Each quest ID maps to a specific hub transition profile
 local hubRoutes = {
     [31242] = "Golden_Lotus_Mistfall_Village_00_Transition", -- Unknown quest name (leads to Mistfall Village)
+    [31131] = "Golden_Lotus_Whitepetal_Lake_00_Transition", -- Whitepetal Lake quest
 }
 
 -- Quest Pulse Configuration

@@ -7,8 +7,10 @@
 		"BANETO",
 		"Celestials",
 		"Chillwater",
+		"Crocolisk",
 		"Dawnblade",
 		"Dreadspinner",
+		"Firetongue",
 		"Genemancer",
 		"Genemancers",
 		"Greatback",
@@ -41,9 +43,13 @@
 		"Shiyo",
 		"Silkfeather",
 		"Slateskin",
+		"Softfoot",
+		"Stillwater",
+		"Tantan",
 		"Tenderheart",
 		"Thundermaw",
 		"Turnin",
+		"Whitepetal",
 		"Wildwalker"
 	],
 	"Lua.diagnostics.globals": [
@@ -121,6 +127,7 @@
 		"Mistblade",
 		"Luabox",
 		"Landingspot",
-		"Dawnblade"
+		"Dawnblade",
+		"Whitepetal"
 	]
 }

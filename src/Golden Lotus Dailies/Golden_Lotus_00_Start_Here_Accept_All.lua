@@ -203,7 +203,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                     -- First attempt: target and interact with NPC to open quest dialog
                     UnlockedTargetUnit(questGiver)
                     BANETO_Interact(questGiver)
-                    wait = time() + 2 -- Wait for interaction to process
+                    wait = time() + 5 -- Wait for interaction to process
                     BANETO_Print("Checking NPC " .. npcId .. " for quests")
                     checked = true
                     return
