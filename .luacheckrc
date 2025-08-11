@@ -57,6 +57,7 @@ globals = {
     "BANETO_GetDistance3D",
     "BANETO_UnitHealth",
     "BANETO_GetUnitMovementFlags",
+    "BANETO_SetBanetoTarget",
 
     -- BANETO Movement Functions
     "BANETO_MeshTo",
