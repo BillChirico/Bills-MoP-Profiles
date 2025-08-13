@@ -37,7 +37,7 @@ jobs:
   deploy-golden-lotus:
     name: Deploy Golden Lotus Dailies
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' || inputs.deploy_golden_lotus
+    if: github.event_name == 'release' || github.event_name == 'workflow_dispatch' && inputs.deploy_golden_lotus || github.event_name == 'workflow_call' && inputs.deploy_golden_lotus
     
     steps:
       - name: Checkout repository
@@ -152,7 +152,7 @@ jobs:
   deploy-klaxxi:
     name: Deploy Klaxxi Dailies
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' || inputs.deploy_klaxxi
+    if: github.event_name == 'release' || github.event_name == 'workflow_dispatch' && inputs.deploy_klaxxi || github.event_name == 'workflow_call' && inputs.deploy_klaxxi
     
     steps:
       - name: Checkout repository
