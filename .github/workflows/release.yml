@@ -7,28 +7,83 @@ on:
         description: "Release version (e.g., v1.0.0 or v1.0.0-beta)"
         required: true
         type: string
+      auto_deploy:
+        description: "Automatically deploy to Baneto after release"
+        required: false
+        default: true
+        type: boolean
+      release_notes:
+        description: "Additional release notes (optional)"
+        required: false
+        type: string
 
 jobs:
   create-release:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ github.event.inputs.version }}
+      release_url: ${{ steps.create_release.outputs.html_url }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0  # Fetch all history for changelog generation
 
       - name: Validate version format
         run: |
-          if [[ ! "${{ github.event.inputs.version }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-beta)?$ ]]; then
-            echo "Error: Version must be in format v1.0.0 or v1.0.0-beta"
+          if [[ ! "${{ github.event.inputs.version }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-z]+[0-9]*)?$ ]]; then
+            echo "Error: Version must be in format v1.0.0, v1.0.0-beta, v1.0.0-rc1, etc."
+            exit 1
+          fi
+          
+          # Check if tag already exists
+          if git rev-parse "${{ github.event.inputs.version }}" >/dev/null 2>&1; then
+            echo "Error: Tag ${{ github.event.inputs.version }} already exists"
             exit 1
           fi
 
+      - name: Count profiles
+        id: count
+        run: |
+          GOLDEN_LOTUS_COUNT=$(find "src/Golden Lotus Dailies" -name "*.lua" | wc -l)
+          KLAXXI_COUNT=$(find "src/Klaxxi Dailies" -name "*.lua" | wc -l)
+          TOTAL_COUNT=$((GOLDEN_LOTUS_COUNT + KLAXXI_COUNT))
+          echo "golden_lotus_count=$GOLDEN_LOTUS_COUNT" >> $GITHUB_OUTPUT
+          echo "klaxxi_count=$KLAXXI_COUNT" >> $GITHUB_OUTPUT
+          echo "total_count=$TOTAL_COUNT" >> $GITHUB_OUTPUT
+          
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Get the last tag
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          
+          if [ -z "$LAST_TAG" ]; then
+            echo "No previous tags found, showing all commits"
+            COMMITS=$(git log --pretty=format:"- %s (%an)" --no-merges | head -20)
+          else
+            echo "Generating changelog since $LAST_TAG"
+            COMMITS=$(git log $LAST_TAG..HEAD --pretty=format:"- %s (%an)" --no-merges)
+          fi
+          
+          if [ -z "$COMMITS" ]; then
+            COMMITS="- No changes since last release"
+          fi
+          
+          # Save to file for the release notes
+          echo "$COMMITS" > changelog.txt
+          
       - name: Create zip archive
         run: |
           cd src
-          zip -r ../Bills-MoP-Profiles-${{ github.event.inputs.version }}.zip */ -x "*/.*"
+          zip -r ../Bills-MoP-Profiles-${{ github.event.inputs.version }}.zip */ -x "*/.*" -x "*/__pycache__/*" -x "*.pyc"
           cd ..
           echo "ZIP_FILE=Bills-MoP-Profiles-${{ github.event.inputs.version }}.zip" >> $GITHUB_ENV
+          
+          # Calculate file size
+          FILE_SIZE=$(ls -lh Bills-MoP-Profiles-${{ github.event.inputs.version }}.zip | awk '{print $5}')
+          echo "FILE_SIZE=$FILE_SIZE" >> $GITHUB_ENV
 
       - name: Generate release notes
         run: |
@@ -37,46 +92,86 @@ jobs:
 
           Automated Baneto profiles for Mists of Pandaria dailies. Download, extract, and load the start files to begin.
 
+          ## 📊 Statistics
+          - **Total Profiles**: ${{ steps.count.outputs.total_count }}
+          - **Golden Lotus**: ${{ steps.count.outputs.golden_lotus_count }} profiles
+          - **Klaxxi**: ${{ steps.count.outputs.klaxxi_count }} profiles
+          - **Archive Size**: ${{ env.FILE_SIZE }}
+
+          ## 🚀 What's Changed
+          $(cat changelog.txt)
+
           ## ✅ What's Included
-          - **Golden Lotus Dailies**
-            - Temple of the White Tiger and Mistfall Village hubs with rotating objectives
+          - **Golden Lotus Dailies** (${{ steps.count.outputs.golden_lotus_count }} profiles)
+            - Temple of the White Tiger hub with rotating objectives
+            - Mistfall Village hub for Part 2 quests
+            - Whitepetal Lake hub for advanced reputation
             - Smart routing and skip logic for unavailable or completed quests
-          - **Klaxxi Dailies**
-            - 12 rotating daily quests from multiple NPCs
-            - Automatic acceptance, chaining, and turn-ins
+            - Automatic quest chain transitions
+          - **Klaxxi Dailies** (${{ steps.count.outputs.klaxxi_count }} profiles)
+            - 12+ rotating daily quests from multiple NPCs
+            - Automatic acceptance from 4 different quest givers
+            - Intelligent quest chaining and turn-ins
 
           ## 📥 Installation
-          1. Download the asset: `Bills-MoP-Profiles-${{ github.event.inputs.version }}.zip`
+          1. Download the asset: \`Bills-MoP-Profiles-${{ github.event.inputs.version }}.zip\`
           2. Extract the ZIP into your Baneto profiles directory
           3. In Baneto Local Profiles, load:
-             - **Golden Lotus**: `Golden Lotus Dailies/Golden_Lotus_00_Start_Here_Accept_All.lua`
-             - **Klaxxi**: `Klaxxi Dailies/Klaxxi_00_Start_Here_Klaxxi_Accept_All.lua`
+             - **Golden Lotus**: \`Golden Lotus Dailies/Golden_Lotus_00_Start_Here_Accept_All.lua\`
+             - **Klaxxi**: \`Klaxxi Dailies/Klaxxi_00_Start_Here_Klaxxi_Accept_All.lua\`
 
           ## 🧩 Requirements
-          - World of Warcraft: Mists of Pandaria
-          - Baneto Bot framework
+          - World of Warcraft: Mists of Pandaria Classic
+          - Baneto Bot framework (latest version)
           - Level 90 character
           - Faction reputation: Friendly+ recommended
 
+          ## ⚙️ Deployment Status
+          EOF
+          
+          if [ "${{ github.event.inputs.auto_deploy }}" == "true" ]; then
+            echo "- 🔄 Automatic deployment to Baneto servers: **Enabled**" >> release_notes.md
+            echo "- Profiles will be automatically deployed after release creation" >> release_notes.md
+          else
+            echo "- ⏸️ Automatic deployment to Baneto servers: **Disabled**" >> release_notes.md
+            echo "- Manual deployment required via Actions tab" >> release_notes.md
+          fi
+          
+          cat << EOF >> release_notes.md
+
           ## ℹ️ Notes
-          - Tested primarily on Horde
+          - Tested primarily on Horde characters
           - If you get stuck, restart from the listed start files
+          - Daily quests rotate - not all quests available each day
+          EOF
+          
+          # Add user's custom release notes if provided
+          if [ -n "${{ github.event.inputs.release_notes }}" ]; then
+            echo "" >> release_notes.md
+            echo "## 📝 Additional Notes" >> release_notes.md
+            echo "${{ github.event.inputs.release_notes }}" >> release_notes.md
+          fi
+          
+          cat << EOF >> release_notes.md
 
           ## 🔗 Links
           - [GitHub Repository](https://github.com/BillChirico/Bills-MoP-Profiles)
           - [Report Issues](https://github.com/BillChirico/Bills-MoP-Profiles/issues)
+          - [View All Releases](https://github.com/BillChirico/Bills-MoP-Profiles/releases)
           EOF
 
       - name: Create GitHub Release
+        id: create_release
         uses: softprops/action-gh-release@v2.3.2
         with:
           tag_name: ${{ github.event.inputs.version }}
           name: Bill's MoP Profiles ${{ github.event.inputs.version }}
           body_path: release_notes.md
           draft: false
-          prerelease: ${{ contains(github.event.inputs.version, 'beta') }}
+          prerelease: ${{ contains(github.event.inputs.version, 'beta') || contains(github.event.inputs.version, 'alpha') || contains(github.event.inputs.version, 'rc') }}
           files: |
             ${{ env.ZIP_FILE }}
+          generate_release_notes: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -85,3 +180,29 @@ jobs:
         with:
           name: Bills-MoP-Profiles-${{ github.event.inputs.version }}
           path: ${{ env.ZIP_FILE }}
+          retention-days: 30
+
+      - name: Release Summary
+        run: |
+          echo "## 🎉 Release Created Successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version**: ${{ github.event.inputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Total Profiles**: ${{ steps.count.outputs.total_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Archive Size**: ${{ env.FILE_SIZE }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Release URL**: ${{ steps.create_release.outputs.html_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ github.event.inputs.auto_deploy }}" == "true" ]; then
+            echo "🔄 **Deployment**: Will trigger automatically" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⏸️ **Deployment**: Manual trigger required" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  deploy-to-baneto:
+    name: Deploy to Baneto Servers
+    needs: create-release
+    if: github.event.inputs.auto_deploy == 'true'
+    uses: ./.github/workflows/deploy-baneto-profiles.yml
+    secrets: inherit
+    with:
+      deploy_golden_lotus: true
+      deploy_klaxxi: true
