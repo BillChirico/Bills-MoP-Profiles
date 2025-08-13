@@ -103,6 +103,7 @@ globals = {
     "UnitGUID",
     "UnitExists",
     "AcceptQuest",
+    "QuestDetailScrollFrame",
 
     -- Lua standard
     "time",
