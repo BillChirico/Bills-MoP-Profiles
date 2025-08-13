@@ -9,6 +9,9 @@
 --
 -- The Golden Lotus daily system rotates quests each day, so not all 8 quests
 -- will be available every day. This handler adapts to whatever is offered.
+
+-- luacheck: globals GossipFrame QuestDetailScrollFrame AcceptQuest
+
 BANETO_DefineProfileName("Golden_Lotus_00_Start_Here_Accept_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
@@ -174,6 +177,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             -- Skip if we've already fully processed this NPC
             if _G.checkedNpcs[npcId] then
                 BANETO_Print("NPC " .. npcId .. " already processed")
+                
                 break
             end
 
@@ -185,6 +189,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 BANETO_MeshTo(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z)
                 wait = time() + 5 -- Wait 5 seconds for movement
                 BANETO_Print("Moving to NPC " .. npcId)
+
                 return
             end
 
@@ -192,12 +197,23 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
             -- Try to find the NPC object in the game world
             local questGiver = GetObjectWithId(npcId)
+            local questGiverId = BANETO_GetTargetId()
 
             -- If NPC not found (out of range, not spawned, etc.), mark as complete
             if not questGiver then
                 _G.checkedNpcs[npcId] = true
                 checked = false
                 BANETO_Print("NPC " .. npcId .. " not found")
+                C_GossipInfo.CloseGossip()
+
+                return
+            end
+
+            -- If the target is not the NPC, clear the target and return
+            if questGiverId ~= npcId then
+                BANETO_ClearTarget()
+                C_GossipInfo.CloseGossip()
+
                 return
             end
 
@@ -213,6 +229,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                     wait = time() + 5 -- Wait for interaction to process
                     BANETO_Print("Checking NPC " .. npcId .. " for quests")
                     checked = true
+
                     return
                 else
                     -- Second attempt: still no quests found
@@ -295,6 +312,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
 
             -- Reset state for next NPC
             BANETO_ClearTarget()
+            C_GossipInfo.CloseGossip()
             checked = false
             wait = nil
         until true
@@ -306,6 +324,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     _G.checkedQuests = nil
     _G.processedCount = nil
     _G.totalQuests = nil
+
+    BANETO_ClearTarget()
+    C_GossipInfo.CloseGossip()
 
     BANETO_Print("All available quests accepted! Starting quest chain...")
     BANETO_LoadQuestProfile([[Golden_Lotus_01_Laosy_Scouting]])
