@@ -183,6 +183,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             -- Skip if we've already fully processed this NPC
             if _G.checkedNpcs[npcId] then
                 BANETO_Print("NPC " .. npcId .. " already processed")
+
                 break
             end
 
@@ -194,6 +195,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 BANETO_MeshTo(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z)
                 wait = time() + 5 -- Wait 5 seconds for movement
                 BANETO_Print("Moving to NPC " .. npcId)
+
                 return
             end
 
@@ -208,12 +210,16 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 _G.checkedNpcs[npcId] = true
                 checked = false
                 BANETO_Print("NPC " .. npcId .. " not found")
+                C_GossipInfo.CloseGossip()
+
                 return
             end
 
             -- If the target is not the NPC, clear the target and return
             if questGiverId ~= npcId then
                 BANETO_ClearTarget()
+                C_GossipInfo.CloseGossip()
+
                 return
             end
 
@@ -226,17 +232,20 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                     -- First attempt: target and interact with NPC to open quest dialog
                     UnlockedTargetUnit(questGiver)
                     BANETO_Interact(questGiver)
-                    wait = time() + 2 -- Wait for interaction to process
+                    wait = time() + 5 -- Wait for interaction to process
                     BANETO_Print("Checking NPC " .. npcId .. " for quests")
                     checked = true
+                    
                     return
                 else
-                    -- Second attempt: no quests found, mark NPC as complete
-                    _G.checkedNpcs[npcId] = true
+                    -- Second attempt: still no quests found
+                    -- For single-quest NPCs, we'll try direct acceptance as fallback
+                    BANETO_Print("No quests found for NPC " .. npcId .. ", trying direct acceptance")
                     checked = false
-                    BANETO_Print("No quests available from NPC " .. npcId)
-                    return
                 end
+            else
+                BANETO_Print("Found " .. #availableQuests .. " available quests from NPC " .. npcId)
+                checked = false
             end
 
             -- Process each potential quest for this NPC
@@ -280,11 +289,21 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                             inProgress = true
 
                             return
+                        elseif (not availableQuests or #availableQuests == 0) and
+                            QuestDetailScrollFrame:IsVisible() then
+                            -- No API results (single quest NPC case) - use AcceptQuest() directly
+                            BANETO_Print("Single quest found, trying AcceptQuest() for " ..
+                                quest.questName .. " (" .. quest.questId .. ")")
+
+                            AcceptQuest()
+
+                            -- Mark quest as processed to avoid retrying
+                            _G.checkedQuests[quest.questId] = true
+                            _G.processedCount = _G.processedCount + 1
                         else
                             -- Quest not offered by this NPC today - mark as processed
                             _G.checkedQuests[quest.questId] = true
                             _G.processedCount = _G.processedCount + 1
-                            BANETO_ClearTarget()
                         end
                     end
                 end
@@ -295,10 +314,11 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 _G.checkedNpcs[npcId] = true
                 BANETO_Print("Finished checking NPC " ..
                     npcId .. " (" .. _G.processedCount .. "/" .. _G.totalQuests .. " quests processed)")
-                BANETO_ClearTarget()
             end
 
             -- Reset state for next NPC
+            BANETO_ClearTarget()
+            C_GossipInfo.CloseGossip()
             checked = false
             wait = nil
         until true
@@ -310,6 +330,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     _G.totalQuests = nil
 
     BANETO_ClearTarget()
+    C_GossipInfo.CloseGossip()
 
     -- All NPCs have been checked and all available quests accepted
     -- Now start the quest execution chain
