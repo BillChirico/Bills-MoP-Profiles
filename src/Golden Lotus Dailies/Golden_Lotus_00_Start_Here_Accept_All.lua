@@ -177,7 +177,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             -- Skip if we've already fully processed this NPC
             if _G.checkedNpcs[npcId] then
                 BANETO_Print("NPC " .. npcId .. " already processed")
-                
+
                 break
             end
 
@@ -283,7 +283,8 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                             inProgress = true
 
                             return
-                        elseif not availableQuests or #availableQuests == 0 then
+                        elseif (not availableQuests or #availableQuests == 0) and
+                            QuestDetailScrollFrame:IsVisible() then
                             -- No API results (single quest NPC case) - use AcceptQuest() directly
                             BANETO_Print("No quests found, trying AcceptQuest() for " ..
                                 quest.questName .. " (" .. quest.questId .. ")")
