@@ -210,10 +210,10 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             end
 
             -- If the target is not the NPC, clear the target and return
-            if questGiverId ~= npcId then
+            if questGiverId and questGiverId ~= npcId then
                 BANETO_ClearTarget()
                 C_GossipInfo.CloseGossip()
-
+                BANETO_Print("Different NPC target found, clearing target")
                 return
             end
 
