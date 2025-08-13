@@ -1,0 +1,296 @@
+name: Deploy Baneto Quest Profiles
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      deploy_golden_lotus:
+        description: 'Deploy Golden Lotus Dailies'
+        required: false
+        default: true
+        type: boolean
+      deploy_klaxxi:
+        description: 'Deploy Klaxxi Dailies'
+        required: false
+        default: true
+        type: boolean
+
+env:
+  API_BASE_URL: http://h2884491.stratoserver.net:8081
+  GOLDEN_LOTUS_PROJECT: "Bill's MoP Golden Lotus Dailies"
+  KLAXXI_PROJECT: "Bill's MoP Klaxxi Dailies"
+
+jobs:
+  deploy-golden-lotus:
+    name: Deploy Golden Lotus Dailies
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || inputs.deploy_golden_lotus
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Wipe existing Golden Lotus files
+        run: |
+          echo "Wiping existing files for Golden Lotus project..."
+          response=$(curl -X POST "${{ env.API_BASE_URL }}/creators/project/wipefiles" \
+            -H "Content-Type: application/json" \
+            -H "creatorcode: ${{ secrets.BANETO_API_KEY }}" \
+            -d "{\"projectname\": \"${{ env.GOLDEN_LOTUS_PROJECT }}\"}" \
+            -w "\n%{http_code}" \
+            -s \
+            -o /tmp/wipe_response.txt)
+          
+          http_code=$(echo "$response" | tail -n 1)
+          response_body=$(cat /tmp/wipe_response.txt)
+          
+          if [ "$http_code" -ne 200 ] && [ "$http_code" -ne 201 ] && [ "$http_code" -ne 204 ]; then
+            echo "Failed to wipe files. HTTP Status: $http_code"
+            echo "Response: $response_body"
+            exit 1
+          fi
+          
+          echo "Successfully wiped existing files"
+          
+      - name: Deploy Golden Lotus files
+        run: |
+          echo "Deploying Golden Lotus Dailies..."
+          
+          # Counter for files
+          total_files=0
+          deployed_files=0
+          failed_files=0
+          
+          # Create a temporary file to store failed uploads
+          touch /tmp/failed_uploads.txt
+          
+          # Find and deploy all Lua files in Golden Lotus Dailies folder
+          for file in "src/Golden Lotus Dailies"/*.lua; do
+            if [ -f "$file" ]; then
+              total_files=$((total_files + 1))
+              filename=$(basename "$file")
+              
+              echo "Uploading: $filename"
+              
+              # Read file content and escape for JSON
+              filecontent=$(cat "$file" | jq -Rs .)
+              
+              # Create JSON payload
+              json_payload=$(jq -n \
+                --arg pn "${{ env.GOLDEN_LOTUS_PROJECT }}" \
+                --arg fn "$filename" \
+                --argjson fc "$filecontent" \
+                '{projectname: $pn, filename: $fn, filecontent: $fc, isRemove: null}')
+              
+              # Upload file
+              response=$(curl -X POST "${{ env.API_BASE_URL }}/creators/project/file" \
+                -H "Content-Type: application/json" \
+                -H "creatorcode: ${{ secrets.BANETO_API_KEY }}" \
+                -d "$json_payload" \
+                -w "\n%{http_code}" \
+                -s \
+                -o /tmp/upload_response.txt)
+              
+              http_code=$(echo "$response" | tail -n 1)
+              response_body=$(cat /tmp/upload_response.txt)
+              
+              if [ "$http_code" -eq 200 ] || [ "$http_code" -eq 201 ] || [ "$http_code" -eq 204 ]; then
+                echo "  ✓ Successfully uploaded: $filename"
+                deployed_files=$((deployed_files + 1))
+              else
+                echo "  ✗ Failed to upload: $filename (HTTP $http_code)"
+                echo "    Response: $response_body"
+                echo "$filename" >> /tmp/failed_uploads.txt
+                failed_files=$((failed_files + 1))
+              fi
+              
+              # Small delay between uploads to avoid overwhelming the server
+              sleep 0.5
+            fi
+          done
+          
+          echo ""
+          echo "=== Golden Lotus Deployment Summary ==="
+          echo "Total files: $total_files"
+          echo "Successfully deployed: $deployed_files"
+          echo "Failed: $failed_files"
+          
+          if [ $failed_files -gt 0 ]; then
+            echo ""
+            echo "Failed uploads:"
+            cat /tmp/failed_uploads.txt
+            exit 1
+          fi
+          
+      - name: Deployment status
+        if: always()
+        run: |
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "✅ Golden Lotus Dailies deployment completed successfully!"
+          else
+            echo "❌ Golden Lotus Dailies deployment failed!"
+          fi
+
+  deploy-klaxxi:
+    name: Deploy Klaxxi Dailies
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || inputs.deploy_klaxxi
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Wipe existing Klaxxi files
+        run: |
+          echo "Wiping existing files for Klaxxi project..."
+          response=$(curl -X POST "${{ env.API_BASE_URL }}/creators/project/wipefiles" \
+            -H "Content-Type: application/json" \
+            -H "creatorcode: ${{ secrets.BANETO_API_KEY }}" \
+            -d "{\"projectname\": \"${{ env.KLAXXI_PROJECT }}\"}" \
+            -w "\n%{http_code}" \
+            -s \
+            -o /tmp/wipe_response.txt)
+          
+          http_code=$(echo "$response" | tail -n 1)
+          response_body=$(cat /tmp/wipe_response.txt)
+          
+          if [ "$http_code" -ne 200 ] && [ "$http_code" -ne 201 ] && [ "$http_code" -ne 204 ]; then
+            echo "Failed to wipe files. HTTP Status: $http_code"
+            echo "Response: $response_body"
+            exit 1
+          fi
+          
+          echo "Successfully wiped existing files"
+          
+      - name: Deploy Klaxxi files
+        run: |
+          echo "Deploying Klaxxi Dailies..."
+          
+          # Counter for files
+          total_files=0
+          deployed_files=0
+          failed_files=0
+          
+          # Create a temporary file to store failed uploads
+          touch /tmp/failed_uploads.txt
+          
+          # Find and deploy all Lua files in Klaxxi Dailies folder
+          for file in "src/Klaxxi Dailies"/*.lua; do
+            if [ -f "$file" ]; then
+              total_files=$((total_files + 1))
+              filename=$(basename "$file")
+              
+              echo "Uploading: $filename"
+              
+              # Read file content and escape for JSON
+              filecontent=$(cat "$file" | jq -Rs .)
+              
+              # Create JSON payload
+              json_payload=$(jq -n \
+                --arg pn "${{ env.KLAXXI_PROJECT }}" \
+                --arg fn "$filename" \
+                --argjson fc "$filecontent" \
+                '{projectname: $pn, filename: $fn, filecontent: $fc, isRemove: null}')
+              
+              # Upload file
+              response=$(curl -X POST "${{ env.API_BASE_URL }}/creators/project/file" \
+                -H "Content-Type: application/json" \
+                -H "creatorcode: ${{ secrets.BANETO_API_KEY }}" \
+                -d "$json_payload" \
+                -w "\n%{http_code}" \
+                -s \
+                -o /tmp/upload_response.txt)
+              
+              http_code=$(echo "$response" | tail -n 1)
+              response_body=$(cat /tmp/upload_response.txt)
+              
+              if [ "$http_code" -eq 200 ] || [ "$http_code" -eq 201 ] || [ "$http_code" -eq 204 ]; then
+                echo "  ✓ Successfully uploaded: $filename"
+                deployed_files=$((deployed_files + 1))
+              else
+                echo "  ✗ Failed to upload: $filename (HTTP $http_code)"
+                echo "    Response: $response_body"
+                echo "$filename" >> /tmp/failed_uploads.txt
+                failed_files=$((failed_files + 1))
+              fi
+              
+              # Small delay between uploads to avoid overwhelming the server
+              sleep 0.5
+            fi
+          done
+          
+          echo ""
+          echo "=== Klaxxi Deployment Summary ==="
+          echo "Total files: $total_files"
+          echo "Successfully deployed: $deployed_files"
+          echo "Failed: $failed_files"
+          
+          if [ $failed_files -gt 0 ]; then
+            echo ""
+            echo "Failed uploads:"
+            cat /tmp/failed_uploads.txt
+            exit 1
+          fi
+          
+      - name: Deployment status
+        if: always()
+        run: |
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "✅ Klaxxi Dailies deployment completed successfully!"
+          else
+            echo "❌ Klaxxi Dailies deployment failed!"
+          fi
+
+  deployment-summary:
+    name: Deployment Summary
+    runs-on: ubuntu-latest
+    needs: [deploy-golden-lotus, deploy-klaxxi]
+    if: always()
+    
+    steps:
+      - name: Summary
+        run: |
+          echo "=== Baneto Quest Profiles Deployment Summary ==="
+          echo ""
+          
+          # Check Golden Lotus deployment status
+          if [ "${{ needs.deploy-golden-lotus.result }}" == "success" ]; then
+            echo "✅ Golden Lotus Dailies: Successfully deployed"
+          elif [ "${{ needs.deploy-golden-lotus.result }}" == "skipped" ]; then
+            echo "⏭️ Golden Lotus Dailies: Skipped"
+          else
+            echo "❌ Golden Lotus Dailies: Failed"
+          fi
+          
+          # Check Klaxxi deployment status
+          if [ "${{ needs.deploy-klaxxi.result }}" == "success" ]; then
+            echo "✅ Klaxxi Dailies: Successfully deployed"
+          elif [ "${{ needs.deploy-klaxxi.result }}" == "skipped" ]; then
+            echo "⏭️ Klaxxi Dailies: Skipped"
+          else
+            echo "❌ Klaxxi Dailies: Failed"
+          fi
+          
+          echo ""
+          
+          # Overall status
+          if [ "${{ needs.deploy-golden-lotus.result }}" == "success" ] && [ "${{ needs.deploy-klaxxi.result }}" == "success" ]; then
+            echo "🎉 All deployments completed successfully!"
+          elif [ "${{ needs.deploy-golden-lotus.result }}" == "failure" ] || [ "${{ needs.deploy-klaxxi.result }}" == "failure" ]; then
+            echo "⚠️ Some deployments failed. Check the logs above for details."
+            exit 1
+          else
+            echo "ℹ️ Deployment completed with some projects skipped."
+          fi
