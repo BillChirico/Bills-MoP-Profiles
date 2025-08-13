@@ -1,29 +1,18 @@
 name: Deploy Baneto Quest Profiles
 
 on:
-  release:
-    types: [published, created, released]
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       deploy_golden_lotus:
-        description: 'Deploy Golden Lotus Dailies'
+        description: "Deploy Golden Lotus Dailies"
         required: false
         default: true
         type: boolean
       deploy_klaxxi:
-        description: 'Deploy Klaxxi Dailies'
-        required: false
-        default: true
-        type: boolean
-  workflow_call:
-    inputs:
-      deploy_golden_lotus:
-        description: 'Deploy Golden Lotus Dailies'
-        required: false
-        default: true
-        type: boolean
-      deploy_klaxxi:
-        description: 'Deploy Klaxxi Dailies'
+        description: "Deploy Klaxxi Dailies"
         required: false
         default: true
         type: boolean
@@ -37,17 +26,17 @@ jobs:
   deploy-golden-lotus:
     name: Deploy Golden Lotus Dailies
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' || github.event_name == 'workflow_dispatch' && inputs.deploy_golden_lotus || github.event_name == 'workflow_call' && inputs.deploy_golden_lotus
-    
+    if: github.event_name == 'push' || inputs.deploy_golden_lotus
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          
+          node-version: "20"
+
       - name: Wipe existing Golden Lotus files
         run: |
           echo "Wiping existing files for Golden Lotus project..."
@@ -58,30 +47,30 @@ jobs:
             -w "\n%{http_code}" \
             -s \
             -o /tmp/wipe_response.txt)
-          
+
           http_code=$(echo "$response" | tail -n 1)
           response_body=$(cat /tmp/wipe_response.txt)
-          
+
           if [ "$http_code" -ne 200 ] && [ "$http_code" -ne 201 ] && [ "$http_code" -ne 204 ]; then
             echo "Failed to wipe files. HTTP Status: $http_code"
             echo "Response: $response_body"
             exit 1
           fi
-          
+
           echo "Successfully wiped existing files"
-          
+
       - name: Deploy Golden Lotus files
         run: |
           echo "Deploying Golden Lotus Dailies..."
-          
+
           # Counter for files
           total_files=0
           deployed_files=0
           failed_files=0
-          
+
           # Create a temporary file to store failed uploads
           touch /tmp/failed_uploads.txt
-          
+
           # Find and deploy all Lua files in Golden Lotus Dailies folder
           for file in "src/Golden Lotus Dailies"/*.lua; do
             if [ -f "$file" ]; then
@@ -126,20 +115,20 @@ jobs:
               sleep 0.5
             fi
           done
-          
+
           echo ""
           echo "=== Golden Lotus Deployment Summary ==="
           echo "Total files: $total_files"
           echo "Successfully deployed: $deployed_files"
           echo "Failed: $failed_files"
-          
+
           if [ $failed_files -gt 0 ]; then
             echo ""
             echo "Failed uploads:"
             cat /tmp/failed_uploads.txt
             exit 1
           fi
-          
+
       - name: Deployment status
         if: always()
         run: |
@@ -152,17 +141,17 @@ jobs:
   deploy-klaxxi:
     name: Deploy Klaxxi Dailies
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' || github.event_name == 'workflow_dispatch' && inputs.deploy_klaxxi || github.event_name == 'workflow_call' && inputs.deploy_klaxxi
-    
+    if: github.event_name == 'push' || inputs.deploy_klaxxi
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          
+          node-version: "20"
+
       - name: Wipe existing Klaxxi files
         run: |
           echo "Wiping existing files for Klaxxi project..."
@@ -173,30 +162,30 @@ jobs:
             -w "\n%{http_code}" \
             -s \
             -o /tmp/wipe_response.txt)
-          
+
           http_code=$(echo "$response" | tail -n 1)
           response_body=$(cat /tmp/wipe_response.txt)
-          
+
           if [ "$http_code" -ne 200 ] && [ "$http_code" -ne 201 ] && [ "$http_code" -ne 204 ]; then
             echo "Failed to wipe files. HTTP Status: $http_code"
             echo "Response: $response_body"
             exit 1
           fi
-          
+
           echo "Successfully wiped existing files"
-          
+
       - name: Deploy Klaxxi files
         run: |
           echo "Deploying Klaxxi Dailies..."
-          
+
           # Counter for files
           total_files=0
           deployed_files=0
           failed_files=0
-          
+
           # Create a temporary file to store failed uploads
           touch /tmp/failed_uploads.txt
-          
+
           # Find and deploy all Lua files in Klaxxi Dailies folder
           for file in "src/Klaxxi Dailies"/*.lua; do
             if [ -f "$file" ]; then
@@ -241,20 +230,20 @@ jobs:
               sleep 0.5
             fi
           done
-          
+
           echo ""
           echo "=== Klaxxi Deployment Summary ==="
           echo "Total files: $total_files"
           echo "Successfully deployed: $deployed_files"
           echo "Failed: $failed_files"
-          
+
           if [ $failed_files -gt 0 ]; then
             echo ""
             echo "Failed uploads:"
             cat /tmp/failed_uploads.txt
             exit 1
           fi
-          
+
       - name: Deployment status
         if: always()
         run: |
@@ -269,13 +258,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: [deploy-golden-lotus, deploy-klaxxi]
     if: always()
-    
+
     steps:
       - name: Summary
         run: |
           echo "=== Baneto Quest Profiles Deployment Summary ==="
           echo ""
-          
+
           # Check Golden Lotus deployment status
           if [ "${{ needs.deploy-golden-lotus.result }}" == "success" ]; then
             echo "✅ Golden Lotus Dailies: Successfully deployed"
@@ -284,7 +273,7 @@ jobs:
           else
             echo "❌ Golden Lotus Dailies: Failed"
           fi
-          
+
           # Check Klaxxi deployment status
           if [ "${{ needs.deploy-klaxxi.result }}" == "success" ]; then
             echo "✅ Klaxxi Dailies: Successfully deployed"
@@ -293,9 +282,9 @@ jobs:
           else
             echo "❌ Klaxxi Dailies: Failed"
           fi
-          
+
           echo ""
-          
+
           # Overall status
           if [ "${{ needs.deploy-golden-lotus.result }}" == "success" ] && [ "${{ needs.deploy-klaxxi.result }}" == "success" ]; then
             echo "🎉 All deployments completed successfully!"
