@@ -1,10 +1,21 @@
 name: Deploy Baneto Quest Profiles
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published, created, released]
   workflow_dispatch:
+    inputs:
+      deploy_golden_lotus:
+        description: 'Deploy Golden Lotus Dailies'
+        required: false
+        default: true
+        type: boolean
+      deploy_klaxxi:
+        description: 'Deploy Klaxxi Dailies'
+        required: false
+        default: true
+        type: boolean
+  workflow_call:
     inputs:
       deploy_golden_lotus:
         description: 'Deploy Golden Lotus Dailies'
@@ -26,7 +37,7 @@ jobs:
   deploy-golden-lotus:
     name: Deploy Golden Lotus Dailies
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || inputs.deploy_golden_lotus
+    if: github.event_name == 'release' || inputs.deploy_golden_lotus
     
     steps:
       - name: Checkout repository
@@ -141,7 +152,7 @@ jobs:
   deploy-klaxxi:
     name: Deploy Klaxxi Dailies
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || inputs.deploy_klaxxi
+    if: github.event_name == 'release' || inputs.deploy_klaxxi
     
     steps:
       - name: Checkout repository
