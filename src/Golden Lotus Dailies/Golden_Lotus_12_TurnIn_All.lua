@@ -1,5 +1,5 @@
 -- Golden Lotus Quest Turn-In Handler
-BANETO_DefineProfileName("Golden_Lotus_11_TurnIn_All")
+BANETO_DefineProfileName("Golden_Lotus_12_TurnIn_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
@@ -32,6 +32,11 @@ local questTurnIns = {
         questName = "Stone Hard Quilen",
     },
     {
+        questId = 30309,
+        npcId = 58465,
+        questName = "Set in Stone",
+    },
+    {
         questId = 31758,
         npcId = 58471,
         questName = "Laosy Scouting",
@@ -56,6 +61,11 @@ local questTurnIns = {
         npcId = 58468,
         questName = "Acts of Cruelty",
     },
+    {
+        questId = 30309,
+        npcId = 58465,
+        questName = "Set in Stone",
+    }
 }
 
 -- NPC Coordinates
@@ -139,5 +149,5 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     end
 
     BANETO_Print("No more completed quests to turn in at the main hub! Starting transition to the next hub...")
-    BANETO_LoadQuestProfile([[Golden_Lotus_12_Quest_Router]])
+    BANETO_LoadQuestProfile([[Golden_Lotus_13_Quest_Router]])
 end

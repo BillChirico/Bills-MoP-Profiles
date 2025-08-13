@@ -2,7 +2,7 @@
 -- This profile talks to Leven Dawnblade to accept his quest and determines the next hub
 -- Based on which quest he offers, routes to the appropriate area (Mistfall Village or other hubs)
 
-BANETO_DefineProfileName("Golden_Lotus_12_Quest_Router")
+BANETO_DefineProfileName("Golden_Lotus_13_Quest_Router")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
@@ -18,10 +18,10 @@ local levenCoords = {
 -- Each quest ID maps to a specific hub transition profile
 local hubRoutes = {
     [31242] = "Golden_Lotus_Mistfall_Village_00_Transition", -- Unknown quest name (leads to Mistfall Village)
-    [31131] = "Golden_Lotus_Whitepetal_Lake_00_Transition", -- Whitepetal Lake quest
+    [31131] = "Golden_Lotus_Whitepetal_Lake_00_Transition",  -- Whitepetal Lake quest
 }
 
--- Quest Pulse Configuration
+-- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
 BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = true
 
@@ -36,7 +36,20 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     end
 
     -- First, check if we already have any incomplete main hub quests to finish
-    local mainHubQuests = { 31758, 31757, 30307, 31762, 30312, 31760, 31755, 31756 }
+    -- Keep this list in sync with `Golden_Lotus_00_Start_Here_Accept_All.lua`
+    local mainHubQuests = {
+        30307, -- The Eternal Vigil
+        30308, -- Stone Hard Quilen
+        30309, -- Set in Stone
+        30312, -- Given a Second Chance
+        31754, -- Cannonfire
+        31755, -- Acts of Cruelty
+        31756, -- High Chance of Rain
+        31757, -- Unleashed Spirits
+        31758, -- Laosy Scouting
+        31760, -- Striking First
+        31762, -- Crumbling Behemoth
+    }
 
     for i = 1, #mainHubQuests do
         local questId = mainHubQuests[i]
@@ -53,6 +66,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         BANETO_MeshTo(levenCoords.x, levenCoords.y, levenCoords.z)
         wait = time() + 5
         BANETO_Print("Moving to Leven Dawnblade")
+
         return
     end
 
@@ -63,6 +77,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     if not questGiver then
         BANETO_Print("Leven Dawnblade (58408) not found!")
         BANETO_Stop()
+
         return
     end
 
@@ -73,6 +88,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         BANETO_Interact(questGiver)
         wait = time() + 5
         checked = true
+
         return
     end
 
@@ -82,6 +98,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         AcceptQuest()
         questAccepted = true
         wait = time() + 5 -- Wait for quest to register in quest log
+
         return
     end
 
@@ -90,6 +107,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         if BANETO_HasQuest(questId) then
             BANETO_Print("Accepted quest ID " .. questId .. " - Routing to: " .. hubProfile)
             BANETO_LoadQuestProfile(hubProfile)
+
             return
         end
     end
@@ -99,7 +117,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     BANETO_Print("WARNING: UNSUPPORTED QUEST ACCEPTED!")
     BANETO_Print("===========================================")
     BANETO_Print("Leven Dawnblade gave a quest that is not yet supported.")
-    BANETO_Print("Please report the quest ID to add support for this hub.")
+    BANETO_Print("Please report the quest ID to add support for this hub to Bill on Discord.")
     BANETO_Print("Check your quest log for the new quest from Leven Dawnblade.")
     BANETO_Print("===========================================")
     BANETO_Print("STOPPING BOT - Manual intervention required")

@@ -46,6 +46,11 @@ local questAccepts = {
         questName = "Stone Hard Quilen",
     },
     {
+        questId = 30309,
+        npcId = 58465,
+        questName = "Set in Stone",
+    },
+    {
         questId = 31758,
         npcId = 58471,
         questName = "Laosy Scouting",

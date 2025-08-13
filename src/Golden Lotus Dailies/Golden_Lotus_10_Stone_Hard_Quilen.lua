@@ -15,7 +15,7 @@ BANETO_DefineCenter(1392.3897705078, 1291.5573730469, 401.01940917969, 300)
 BANETO_DefineCenter(1674.5532226562, 1352.6085205078, 453.59204101562, 300)
 
 -- Next Quest
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_11_TurnIn_All]])
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_11_Set_in_Stone]])
 
 -- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
@@ -24,7 +24,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     if not BANETO_HasQuest(30308) then
         BANETO_Print("Quest not found, skipping!")
 
-        BANETO_LoadQuestProfile([[Golden_Lotus_11_TurnIn_All]])
+        BANETO_LoadQuestProfile([[Golden_Lotus_11_Set_in_Stone]])
         return
     else
         BANETO_ExecuteCustomQuestPulse_Questmaster = false
