@@ -38,11 +38,6 @@ local questTurnIns = {
         questName = "Lushroom Rush",
     },
     {
-        questId = 30237,
-        npcId = 58818,
-        questName = "The Pandaren Uprising Relived",
-    },
-    {
         questId = 30194,
         npcId = 59338,
         questName = "Encroaching Storm",
@@ -51,6 +46,11 @@ local questTurnIns = {
         questId = 30232,
         npcId = 59338,
         questName = "Ruffling Some Feathers",
+    },
+    {
+        questId = 30237,
+        npcId = 59338,
+        questName = "The Pandaren Uprising Relived",
     },
     {
         questId = 30192,
