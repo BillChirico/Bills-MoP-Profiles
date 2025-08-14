@@ -272,7 +272,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         _G.checkedNpcs = {} -- Track which NPCs we've fully processed
         DebugPrint("Initialized checkedNpcs table")
     end
-    
+
     if not _G.startedNpcs then
         _G.startedNpcs = {} -- Track which NPCs we've started processing (for counter)
         DebugPrint("Initialized startedNpcs table")
