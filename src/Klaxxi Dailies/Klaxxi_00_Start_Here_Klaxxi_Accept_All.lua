@@ -382,7 +382,8 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                     else
                         -- Second attempt: still no quests found
                         -- For single-quest NPCs, we'll try direct acceptance as fallback
-                        DebugPrint(string.format("No gossip quests from %s, trying direct accept", FormatNpcName(npcId)))
+                        DebugPrint(string.format("No gossip quests from %s, trying direct accept",
+                            FormatNpcName(npcId)))
                         checked = false
                     end
                 else
