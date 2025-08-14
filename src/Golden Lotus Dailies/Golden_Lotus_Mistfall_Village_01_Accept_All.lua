@@ -40,11 +40,21 @@ local questAccepts = {
         npcId = 59338,
         questName = "Ruffling Some Feathers",
     },
-    -- Shen-zin Su (58818) - Single quest
+    {
+        questId = 30237,
+        npcId = 59338,
+        questName = "The Pandaren Uprising Relived",
+    },
+    -- Shen-zin Su (58818) - Multiple quests
     {
         questId = 30231,
         npcId = 58818,
         questName = "Pomfruit Pickup",
+    },
+    {
+        questId = 30196,
+        npcId = 58818,
+        questName = "Lushroom Rush",
     },
     -- Mayor Shiyo (58819) - Multiple quests
     {

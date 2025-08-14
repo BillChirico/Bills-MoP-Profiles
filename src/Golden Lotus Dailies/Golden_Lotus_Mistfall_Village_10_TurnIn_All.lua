@@ -1,5 +1,5 @@
 -- Golden Lotus Part 2 Quest Turn-In Handler
-BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_08_TurnIn_All")
+BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_10_TurnIn_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
 
@@ -31,6 +31,16 @@ local questTurnIns = {
         questId = 30231,
         npcId = 58818,
         questName = "Pomfruit Pickup",
+    },
+    {
+        questId = 30196,
+        npcId = 58818,
+        questName = "Lushroom Rush",
+    },
+    {
+        questId = 30237,
+        npcId = 58818,
+        questName = "The Pandaren Uprising Relived",
     },
     {
         questId = 30194,
@@ -102,7 +112,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             BANETO_DefineQuestTurninNPC(coords.x, coords.y, coords.z, quest.npcId)
             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_08_TurnIn_All]])
+            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_10_TurnIn_All]])
             inProgress = true
 
             return
@@ -110,5 +120,5 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     end
 
     BANETO_Print("All Part 2 quests completed! Starting Part 3...")
-    BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_09_Quid_Pro_Quo]])
+    BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_12_Quid_Pro_Quo]])
 end

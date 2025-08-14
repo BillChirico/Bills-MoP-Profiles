@@ -13,8 +13,8 @@ BANETO_DefineCenter(606.77709960938, 1500.1634521484, 412.3415222168, 130)
 BANETO_DefineCenter(681.00341796875, 1493.0206298828, 412.3415222168, 130)
 BANETO_DefineCenter(572.55438232422, 1536.2253417969, 412.3576965332, 130)
 
--- Next Quest - Chain to Part 2 turn-in handler
-BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_08_TurnIn_All]])
+-- Next Quest
+BANETO_SetNextLocalQuestProfile([[Golden_Lotus_Mistfall_Village_08_Lushroom_Rush]])
 
 -- Quest Pulse
 BANETO_ExecuteCustomQuestPulse_Questmaster = true
@@ -23,7 +23,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     if not BANETO_HasQuest(30190) then
         BANETO_Print("Quest not found, skipping!")
 
-        BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_08_TurnIn_All]])
+        BANETO_LoadQuestProfile([[Golden_Lotus_Mistfall_Village_08_Lushroom_Rush]])
         return
     else
         BANETO_ExecuteCustomQuestPulse_Questmaster = false

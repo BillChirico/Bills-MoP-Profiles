@@ -28,12 +28,14 @@
 		"Laosy",
 		"Luabox",
 		"luacheck",
+		"Lushroom",
 		"Mistblade",
 		"Mistfall",
 		"Mogu",
 		"Mushan",
 		"Npcs",
 		"Paleblade",
+		"Pandaren",
 		"Pandaria",
 		"Pathfinding",
 		"Pomfruit",
@@ -45,6 +47,7 @@
 		"Scorpids",
 		"Shado",
 		"Shao",
+		"Shen",
 		"Shieldwall",
 		"Shiyo",
 		"Silkfeather",
@@ -147,6 +150,9 @@
 		"Korven",
 		"Autumnlight",
 		"Anji",
-		"Tenderheart"
+		"Tenderheart",
+		"Lushroom",
+		"Pandaren",
+		"Mogu"
 	]
 }

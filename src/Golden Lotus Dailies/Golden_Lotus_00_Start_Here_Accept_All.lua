@@ -325,7 +325,8 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             if not BANETO_PlayerPosition(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z, 5) then
                 -- Move to NPC location and wait for arrival
                 BANETO_MeshTo(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z)
-                BANETO_Print(string.format("Moving to %s...", FormatNpcName(npcId)))
+                BANETO_Print(string.format("Moving to %s and waiting %d seconds...", FormatNpcName(npcId),
+                    MOVEMENT_TIMEOUT))
                 wait = time() + MOVEMENT_TIMEOUT
 
                 return

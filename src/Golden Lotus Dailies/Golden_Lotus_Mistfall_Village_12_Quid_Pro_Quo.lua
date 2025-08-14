@@ -1,5 +1,5 @@
 -- Quest Information
-BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_09_Quid_Pro_Quo")
+BANETO_DefineProfileName("Golden_Lotus_Mistfall_Village_12_Quid_Pro_Quo")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(30235)
