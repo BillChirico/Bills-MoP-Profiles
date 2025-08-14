@@ -141,7 +141,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             BANETO_DefineQuestTurninNPC(coords.x, coords.y, coords.z, quest.npcId)
             BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
             BANETO_ExecuteCustomQuestPulse_Questmaster = false
-            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_11_TurnIn_All]])
+            BANETO_SetNextLocalQuestProfile([[Golden_Lotus_12_TurnIn_All]])
             inProgress = true
 
             return
