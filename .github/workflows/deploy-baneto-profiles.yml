@@ -76,16 +76,18 @@ jobs:
             if [ -f "$file" ]; then
               total_files=$((total_files + 1))
               filename=$(basename "$file")
+              # Remove .lua extension from filename for Baneto API
+              filename_without_ext="${filename%.lua}"
               
-              echo "Uploading: $filename"
+              echo "Uploading: $filename as $filename_without_ext"
               
               # Read file content and escape for JSON
               filecontent=$(cat "$file" | jq -Rs .)
               
-              # Create JSON payload
+              # Create JSON payload with filename without extension
               json_payload=$(jq -n \
                 --arg pn "${{ env.GOLDEN_LOTUS_PROJECT }}" \
-                --arg fn "$filename" \
+                --arg fn "$filename_without_ext" \
                 --argjson fc "$filecontent" \
                 '{projectname: $pn, filename: $fn, filecontent: $fc, isRemove: null}')
               
@@ -102,12 +104,12 @@ jobs:
               response_body=$(cat /tmp/upload_response.txt)
               
               if [ "$http_code" -eq 200 ] || [ "$http_code" -eq 201 ] || [ "$http_code" -eq 204 ]; then
-                echo "  ✓ Successfully uploaded: $filename"
+                echo "  ✓ Successfully uploaded: $filename_without_ext"
                 deployed_files=$((deployed_files + 1))
               else
-                echo "  ✗ Failed to upload: $filename (HTTP $http_code)"
+                echo "  ✗ Failed to upload: $filename_without_ext (HTTP $http_code)"
                 echo "    Response: $response_body"
-                echo "$filename" >> /tmp/failed_uploads.txt
+                echo "$filename_without_ext" >> /tmp/failed_uploads.txt
                 failed_files=$((failed_files + 1))
               fi
               
@@ -191,16 +193,18 @@ jobs:
             if [ -f "$file" ]; then
               total_files=$((total_files + 1))
               filename=$(basename "$file")
+              # Remove .lua extension from filename for Baneto API
+              filename_without_ext="${filename%.lua}"
               
-              echo "Uploading: $filename"
+              echo "Uploading: $filename as $filename_without_ext"
               
               # Read file content and escape for JSON
               filecontent=$(cat "$file" | jq -Rs .)
               
-              # Create JSON payload
+              # Create JSON payload with filename without extension
               json_payload=$(jq -n \
                 --arg pn "${{ env.KLAXXI_PROJECT }}" \
-                --arg fn "$filename" \
+                --arg fn "$filename_without_ext" \
                 --argjson fc "$filecontent" \
                 '{projectname: $pn, filename: $fn, filecontent: $fc, isRemove: null}')
               
@@ -217,12 +221,12 @@ jobs:
               response_body=$(cat /tmp/upload_response.txt)
               
               if [ "$http_code" -eq 200 ] || [ "$http_code" -eq 201 ] || [ "$http_code" -eq 204 ]; then
-                echo "  ✓ Successfully uploaded: $filename"
+                echo "  ✓ Successfully uploaded: $filename_without_ext"
                 deployed_files=$((deployed_files + 1))
               else
-                echo "  ✗ Failed to upload: $filename (HTTP $http_code)"
+                echo "  ✗ Failed to upload: $filename_without_ext (HTTP $http_code)"
                 echo "    Response: $response_body"
-                echo "$filename" >> /tmp/failed_uploads.txt
+                echo "$filename_without_ext" >> /tmp/failed_uploads.txt
                 failed_files=$((failed_files + 1))
               fi
               
