@@ -23,10 +23,10 @@
 
 ### 🏮 Golden Lotus Faction
 
-**Two-Hub Daily System:**
+**Three-Hub Daily System:**
 
 - **Main Hub:** Temple of the White Tiger (always same location, rotating quests)
-- **Secondary Hub:** Assigned by Leven Dawnblade (changes daily - currently only Mistfall Village implemented)
+- **Secondary Hub:** Assigned by Leven Dawnblade (changes daily between Mistfall Village and Whitepetal Lake)
 - **Challenge Quest:** Final quest at the secondary hub after completing all hub quests
 
 **Main Hub - Temple of the White Tiger:**
@@ -40,6 +40,8 @@
 | [**Striking First**](https://www.wowhead.com/quest=31760/striking-first) | KillAndLoot | Launch preemptive strikes against enemies |
 | [**Acts of Cruelty**](https://www.wowhead.com/quest=31755/acts-of-cruelty) | KillAndLoot | Eliminate cruel oppressors |
 | [**High Chance of Rain**](https://www.wowhead.com/quest=31756/high-chance-of-rain) | GatherObject | Collect weather monitoring devices |
+| [**Stone Hard Quilen**](https://www.wowhead.com/quest=30308/stone-hard-quilen) | KillAndLoot | Defeat animated stone guardians |
+| [**Set in Stone**](https://www.wowhead.com/quest=30309/set-in-stone) | KillAndLoot | Break mogu stone control |
 
 **Secondary Hub - Mistfall Village:**
 | Quest Name | Type | Description |
@@ -50,13 +52,26 @@
 | [**My Town, It's on Fire**](https://www.wowhead.com/quest=30192/my-town-its-on-fire) | GatherObject | Extinguish fires with water buckets |
 | [**Steer Clear of the Beer Here**](https://www.wowhead.com/quest=30191/steer-clear-of-the-beer-here) | GatherObject | Recover stolen ale kegs |
 | [**Sprite Plight**](https://www.wowhead.com/quest=30190/sprite-plight) | KillAndLoot | Eliminate Slateskin Troublemakers |
+| [**Lushroom Rush**](https://www.wowhead.com/quest=30196/lushroom-rush) | GatherObject | Collect 12 Lushrooms from Tu Shen Burial Ground |
+| [**The Pandaren Uprising Relived**](https://www.wowhead.com/quest=30237/the-pandaren-uprising-relived) | KillAndLoot | Defeat 8 Ancient Mogu Spirits at Tu Shen Burial Ground |
 
 **Challenge Quest (Mistfall Village):**
 | Quest Name | Type | Description |
 | ------------------------- | ------------ | ---------------------------------------- |
 | [**Quid Pro Quo**](https://www.wowhead.com/quest=30235/quid-pro-quo) | KillAndLoot | Final challenge quest after completing all Mistfall Village quests |
+| [**Lao-Fe the Slavebinder**](https://www.wowhead.com/quest=30239/lao-fe-the-slavebinder) | KillAndLoot | Defeat the mogu slaver Lao-Fe |
 
-📌 **Note:** Additional secondary hubs (Ruins of Guo-Lai, Setting Sun Garrison, Whitepetal Lake) will be added as they are discovered in the daily rotation.
+**Secondary Hub - Whitepetal Lake:**
+| Quest Name | Type | Description |
+| ------------------------- | ------------ | ---------------------------------------- |
+| [**The Moving Mists**](https://www.wowhead.com/quest=30313/the-moving-mists) | KillAndLoot | Control the spreading mist creatures |
+| [**Fiery Tongue, Fragile Feet**](https://www.wowhead.com/quest=30342/fiery-tongue-fragile-feet) | KillAndLoot | Eliminate specific enemy threats |
+| [**Stunning Display**](https://www.wowhead.com/quest=30291/stunning-display) | GatherObject | Gather display materials |
+| [**Stick in the Mud**](https://www.wowhead.com/quest=30340/stick-in-the-mud) | GatherObject | Retrieve stuck items from the mud |
+| [**Sparkle in the Eye**](https://www.wowhead.com/quest=30265/sparkle-in-the-eye) | GatherObject | Collect sparkling objects |
+| [**The Displaced Paleblade**](https://www.wowhead.com/quest=30314/the-displaced-paleblade) | KillAndLoot | Deal with displaced Paleblade threats |
+
+📌 **Note:** Additional secondary hubs (Ruins of Guo-Lai, Setting Sun Garrison) may exist but have not been encountered in the daily rotation yet.
 
 ### 🦂 Klaxxi Faction
 
@@ -77,6 +92,9 @@
 | [**Sap Tapping**](https://www.wowhead.com/quest=31233/sap-tapping) | Korven the Prime | GatherObject | Collect 6 Amber Sap from extractors on trees |
 
 **Note:** Both Golden Lotus and Klaxxi dailies are rotating pools of quests that change each day. The system automatically detects which quests are available and completes them. Not all quests will be available every day.
+
+- **Golden Lotus:** 11 possible dailies at main hub (typically 5-7 available), 6-9 dailies at secondary hubs
+- **Klaxxi:** 12 possible dailies (typically 4-6 available)
 
 ⚠️ **Faction Note:** These profiles have only been tested on **Horde** characters. Alliance compatibility is not guaranteed.
 
@@ -129,16 +147,18 @@ Bills-MoP-Profiles/
     ├── 📂 Golden Lotus Dailies/
     │   ├── ✅ Golden_Lotus_00_Start_Here_Accept_All.lua
     │   ├── 🔍 Golden_Lotus_01_Laosy_Scouting.lua
-    │   ├── 👻 Golden_Lotus_02_Unleashed_Spirits.lua
-    │   ├── 🎯 Golden_Lotus_03_The_Eternal_Vigil.lua
-    │   ├── 🗿 Golden_Lotus_04_Crumbling_Behemoth.lua
-    │   ├── 💚 Golden_Lotus_05_Given_a_Second_Chance.lua
-    │   ├── ⚔️ Golden_Lotus_06_Striking_First.lua
-    │   ├── 🔥 Golden_Lotus_07_Acts_of_Cruelty.lua
-    │   ├── 🌧️ Golden_Lotus_08_High_Chance_of_Rain.lua
-    │   ├── 🗿 Golden_Lotus_09_Stone_Hard_Quilen.lua
-    │   ├── 🔄 Golden_Lotus_10_TurnIn_All.lua
-    │   ├── 🗺️ Golden_Lotus_11_Quest_Router.lua
+    │   ├── 💥 Golden_Lotus_02_Cannonfire.lua
+    │   ├── 👻 Golden_Lotus_03_Unleashed_Spirits.lua
+    │   ├── 🎯 Golden_Lotus_04_The_Eternal_Vigil.lua
+    │   ├── 🗿 Golden_Lotus_05_Crumbling_Behemoth.lua
+    │   ├── 💚 Golden_Lotus_06_Given_a_Second_Chance.lua
+    │   ├── ⚔️ Golden_Lotus_07_Striking_First.lua
+    │   ├── 🔥 Golden_Lotus_08_Acts_of_Cruelty.lua
+    │   ├── 🌧️ Golden_Lotus_09_High_Chance_of_Rain.lua
+    │   ├── 🗿 Golden_Lotus_10_Stone_Hard_Quilen.lua
+    │   ├── 🔮 Golden_Lotus_11_Set_in_Stone.lua
+    │   ├── 🔄 Golden_Lotus_12_TurnIn_All.lua
+    │   ├── 🗺️ Golden_Lotus_13_Quest_Router.lua
     │   ├── 🚶 Golden_Lotus_Mistfall_Village_00_Transition.lua
     │   ├── ✅ Golden_Lotus_Mistfall_Village_01_Accept_All.lua
     │   ├── 🍎 Golden_Lotus_Mistfall_Village_02_Pomfruit_Pickup.lua
@@ -147,8 +167,20 @@ Bills-MoP-Profiles/
     │   ├── 🪶 Golden_Lotus_Mistfall_Village_05_Ruffling_Some_Feathers.lua
     │   ├── 🍺 Golden_Lotus_Mistfall_Village_06_Steer_Clear_of_the_Beer_Here.lua
     │   ├── 🧚 Golden_Lotus_Mistfall_Village_07_Sprite_Plight.lua
-    │   ├── 🔄 Golden_Lotus_Mistfall_Village_08_TurnIn_All.lua
-    │   └── 🏆 Golden_Lotus_Mistfall_Village_09_Quid_Pro_Quo.lua
+    │   ├── 🍄 Golden_Lotus_Mistfall_Village_08_Lushroom_Rush.lua
+    │   ├── ⚔️ Golden_Lotus_Mistfall_Village_09_The_Pandaren_Uprising_Relived.lua
+    │   ├── 🔄 Golden_Lotus_Mistfall_Village_10_TurnIn_All.lua
+    │   ├── 🏆 Golden_Lotus_Mistfall_Village_12_Quid_Pro_Quo.lua
+    │   ├── ⚔️ Golden_Lotus_Mistfall_Village_13_Lao-Fe_the_Slavebinder.lua
+    │   ├── 🚶 Golden_Lotus_Whitepetal_Lake_00_Transition.lua
+    │   ├── ✅ Golden_Lotus_Whitepetal_Lake_01_Accept_All.lua
+    │   ├── 🌫️ Golden_Lotus_Whitepetal_Lake_02_The_Moving_Mists.lua
+    │   ├── 🔥 Golden_Lotus_Whitepetal_Lake_03_Fiery_Tongue_Fragile_Feet.lua
+    │   ├── ✨ Golden_Lotus_Whitepetal_Lake_04_Stunning_Display.lua
+    │   ├── 🪵 Golden_Lotus_Whitepetal_Lake_05_Stick_in_the_Mud.lua
+    │   ├── 💎 Golden_Lotus_Whitepetal_Lake_06_Sparkle_in_the_Eye.lua
+    │   ├── ⚔️ Golden_Lotus_Whitepetal_Lake_07_The_Displaced_Paleblade.lua
+    │   └── 🔄 Golden_Lotus_Whitepetal_Lake_TurnIn_All.lua
     └── 📂 Klaxxi Dailies/
         ├── ✅ Klaxxi_00_Start_Here_Klaxxi_Accept_All.lua
         ├── ⚔️ Klaxxi_01_The_Fight_Against_Fear.lua
@@ -172,31 +204,32 @@ Bills-MoP-Profiles/
 
 Quest profiles are designed to chain together automatically:
 
-**Golden Lotus Chain (Two-Hub System):**
+**Golden Lotus Chain (Three-Hub System):**
 
 ```
 Main Hub: Temple of the White Tiger
   ↓
-Accept All → Execute Quests → Turn In All → Quest Router (Leven Dawnblade)
-                                                    ↓
-                                        Assigns secondary hub
-                                                    ↓
-Secondary Hub (Changes Daily)
-  ↓
-Transition → Accept All → Execute Quests → Turn In All → Challenge Quest
+Accept All → Execute 11 Rotating Quests → Turn In All → Quest Router (Leven Dawnblade)
+                                                                ↓
+                                                    Assigns secondary hub
+                                                          ↓            ↓
+                                              Mistfall Village  OR  Whitepetal Lake
+                                                          ↓            ↓
+Transition → Accept All → Execute Hub Quests → Turn In All → Challenge Quest(s)
 ```
 
 🎯 **How It Works:**
 
 - **Main Hub:** Always at Temple of the White Tiger
-  - `Golden_Lotus_00_Start_Here_Accept_All.lua` accepts all available dailies
-  - Execute 8 rotating quests (different each day, same location)
-  - `Golden_Lotus_10_TurnIn_All.lua` turns in completed quests
-  - `Golden_Lotus_11_Quest_Router.lua` talks to Leven Dawnblade for secondary hub assignment
-- **Secondary Hub:** Location changes daily
-  - Currently implemented: **Mistfall Village**
-  - Coming soon: Ruins of Guo-Lai, Setting Sun Garrison, Whitepetal Lake
-  - Complete all hub quests, then receive challenge quest
+  - `Golden_Lotus_00_Start_Here_Accept_All.lua` accepts all available dailies from 4 NPCs
+  - Execute 11 rotating quests (5-7 available each day, same location)
+  - `Golden_Lotus_12_TurnIn_All.lua` turns in completed quests
+  - `Golden_Lotus_13_Quest_Router.lua` talks to Leven Dawnblade for secondary hub assignment
+- **Secondary Hub:** Location changes daily based on quest from Leven
+  - **Mistfall Village:** 8 hub quests + 2 challenge quests (Quid Pro Quo, Lao-Fe the Slavebinder)
+  - **Whitepetal Lake:** 6 hub quests
+  - Possibly more: Ruins of Guo-Lai, Setting Sun Garrison (not yet encountered)
+  - Complete all hub quests, then receive challenge quest(s)
   - Challenge quest completes the daily chain
 
 **Klaxxi Chain (Simple 3-Phase):**
@@ -286,8 +319,8 @@ We welcome contributions! Please follow these guidelines:
 
 ## 🗺️ Roadmap
 
-- [x] 🏮 **Golden Lotus** faction dailies - Main Hub complete, Mistfall Village secondary hub complete
-  - [ ] Additional secondary hubs: Ruins of Guo-Lai, Setting Sun Garrison, Whitepetal Lake
+- [x] 🏮 **Golden Lotus** faction dailies - Main Hub complete, Mistfall Village and Whitepetal Lake secondary hubs complete
+  - [ ] Additional secondary hubs (if they exist): Ruins of Guo-Lai, Setting Sun Garrison
 - [x] 🦂 **Klaxxi** faction dailies (12 rotating daily quests with comprehensive accept/turn-in system)
 - [ ] 🏛️ **August Celestials** faction dailies
 - [ ] 🐉 **Order of the Cloud Serpent** faction dailies

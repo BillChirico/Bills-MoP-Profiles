@@ -283,14 +283,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         DebugPrint("Initialized checkedQuests table")
     end
 
-    if not _G.processedCount then
-        _G.processedCount = 0 -- Count of processed quests for current NPC
-        DebugPrint("Initialized processedCount table")
-    end
-
-    if not _G.totalQuests then
-        _G.totalQuests = 0 -- Total quests for current NPC
-        DebugPrint("Initialized totalQuests table")
+    if not _G.npcProcessedCounts then
+        _G.npcProcessedCounts = {} -- Track processed quest count per NPC
+        DebugPrint("Initialized npcProcessedCounts table")
     end
 
     -- Group quests by NPC for efficient processing
@@ -306,177 +301,193 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         table.insert(questsByNpc[npcId], quest)
     end
 
-    -- Process each NPC and their quests
-    for npcId, npcQuests in pairs(questsByNpc) do
-        repeat
-            -- Skip if we've already fully processed this NPC
-            if _G.checkedNpcs[npcId] then
-                DebugPrint(string.format("Skipping %s - already processed", FormatNpcName(npcId)))
-                break
-            end
+    -- Check if all NPCs have been processed
+    local allNpcsChecked = true
+    for npcId, _ in pairs(questsByNpc) do
+        if not _G.checkedNpcs[npcId] then
+            allNpcsChecked = false
+            break
+        end
+    end
 
-            -- Update progress counter only for first time processing this NPC
-            if not _G.startedNpcs[npcId] then
-                _G.startedNpcs[npcId] = true
-                npcsCheckedCount = npcsCheckedCount + 1
-                PrintSeparator()
-                BANETO_Print(string.format("[PARAGON %d/%d] Checking %s",
-                    npcsCheckedCount, totalNpcsToCheck, FormatNpcName(npcId)))
-                BANETO_Print(string.format("%d possible quests at this Paragon", #npcQuests))
-            end
+    -- Process remaining NPCs if any are unchecked
+    if not allNpcsChecked then
+        for npcId, npcQuests in pairs(questsByNpc) do
+            repeat
+                -- Skip if we've already fully processed this NPC
+                if _G.checkedNpcs[npcId] then
+                    DebugPrint(string.format("Skipping %s - already processed", FormatNpcName(npcId)))
+                    break
+                end
 
-            -- Ensure we're in position to interact with the NPC
-            if not BANETO_PlayerPosition(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z, 5) then
-                -- Move to NPC location and wait for arrival
-                BANETO_MeshTo(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z)
-                BANETO_Print(string.format("Moving to %s...", FormatNpcName(npcId)))
-                wait = time() + MOVEMENT_TIMEOUT
+                -- Update progress counter only for first time processing this NPC
+                if not _G.startedNpcs[npcId] then
+                    _G.startedNpcs[npcId] = true
+                    npcsCheckedCount = npcsCheckedCount + 1
+                    PrintSeparator()
+                    BANETO_Print(string.format("[PARAGON %d/%d] Checking %s",
+                        npcsCheckedCount, totalNpcsToCheck, FormatNpcName(npcId)))
+                    BANETO_Print(string.format("%d possible quests at this Paragon", #npcQuests))
+                end
 
-                return
-            end
-
-            BANETO_StopMovement()
-
-            -- Try to find the NPC object in the game world
-            local questGiver = GetObjectWithId(npcId)
-            local questGiverId = BANETO_GetTargetId()
-
-            -- If NPC not found (out of range, not spawned, etc.), mark as complete
-            if not questGiver then
-                _G.checkedNpcs[npcId] = true
-                checked = false
-                BANETO_Print(string.format("  [!] %s not found - skipping", FormatNpcName(npcId)))
-                C_GossipInfo.CloseGossip()
-                return
-            end
-
-            -- If the target is not the NPC, clear the target and return
-            if questGiverId and questGiverId ~= npcId then
-                BANETO_ClearTarget()
-                C_GossipInfo.CloseGossip()
-                DebugPrint(string.format("Different NPC targeted (ID: %d), clearing", questGiverId))
-                return
-            end
-
-            -- Get list of available quests from this NPC
-            local availableQuests = C_GossipInfo.GetAvailableQuests()
-
-            -- If no quests are immediately available, try interacting with NPC
-            if not availableQuests or #availableQuests == 0 then
-                if not checked then
-                    -- First attempt: target and interact with NPC to open quest dialog
-                    UnlockedTargetUnit(questGiver)
-                    BANETO_Interact(questGiver)
-                    wait = time() + INTERACTION_DELAY
-                    BANETO_Print(string.format("Interacting with %s...", FormatNpcName(npcId)))
-                    checked = true
+                -- Ensure we're in position to interact with the NPC
+                if not BANETO_PlayerPosition(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z, 5) then
+                    -- Move to NPC location and wait for arrival
+                    BANETO_MeshTo(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z)
+                    BANETO_Print(string.format("Moving to %s...", FormatNpcName(npcId)))
+                    wait = time() + MOVEMENT_TIMEOUT
 
                     return
+                end
+
+                BANETO_StopMovement()
+
+                -- Try to find the NPC object in the game world
+                local questGiver = GetObjectWithId(npcId)
+                local questGiverId = BANETO_GetTargetId()
+
+                -- If NPC not found (out of range, not spawned, etc.), mark as complete
+                if not questGiver then
+                    _G.checkedNpcs[npcId] = true
+                    checked = false
+                    BANETO_Print(string.format("[!] %s not found - skipping", FormatNpcName(npcId)))
+                    C_GossipInfo.CloseGossip()
+
+                    return
+                end
+
+                -- If the target is not the NPC, clear the target and return
+                if questGiverId and questGiverId ~= npcId then
+                    BANETO_ClearTarget()
+                    C_GossipInfo.CloseGossip()
+                    DebugPrint(string.format("Different NPC targeted (ID: %d), clearing", questGiverId))
+
+                    return
+                end
+
+                -- Get list of available quests from this NPC
+                local availableQuests = C_GossipInfo.GetAvailableQuests()
+
+                -- If no quests are immediately available, try interacting with NPC
+                if not availableQuests or #availableQuests == 0 then
+                    if not checked then
+                        -- First attempt: target and interact with NPC to open quest dialog
+                        UnlockedTargetUnit(questGiver)
+                        BANETO_Interact(questGiver)
+                        wait = time() + INTERACTION_DELAY
+                        BANETO_Print(string.format("Interacting with %s...", FormatNpcName(npcId)))
+                        checked = true
+
+                        return
+                    else
+                        -- Second attempt: still no quests found
+                        -- For single-quest NPCs, we'll try direct acceptance as fallback
+                        DebugPrint(string.format("No gossip quests from %s, trying direct accept", FormatNpcName(npcId)))
+                        checked = false
+                    end
                 else
-                    -- Second attempt: still no quests found
-                    -- For single-quest NPCs, we'll try direct acceptance as fallback
-                    DebugPrint(string.format("No gossip quests from %s, trying direct accept", FormatNpcName(npcId)))
+                    BANETO_Print(string.format("[OK] Found %d available quest(s) from %s",
+                        #availableQuests, FormatNpcName(npcId)))
                     checked = false
                 end
-            else
-                BANETO_Print(string.format("[OK] Found %d available quest(s) from %s",
-                    #availableQuests, FormatNpcName(npcId)))
-                checked = false
-            end
 
-            -- Process each potential quest for this NPC
-            _G.processedCount = 0
-            _G.totalQuests = #npcQuests
+                -- Initialize per-NPC counter if needed
+                if not _G.npcProcessedCounts[npcId] then
+                    _G.npcProcessedCounts[npcId] = 0
+                end
 
-            for j = 1, #npcQuests do
-                local quest = npcQuests[j]
+                -- Process each potential quest for this NPC
+                local totalQuestsForNpc = #npcQuests
 
-                -- Skip quests we've already processed in previous iterations
-                if _G.checkedQuests[quest.questId] then
-                    -- Quest already processed - increment counter
-                    _G.processedCount = _G.processedCount + 1
-                else
-                    -- Check if we already have this quest or completed it today
-                    if BANETO_HasQuest(quest.questId) or BANETO_HasQuestCompleted(quest.questId) then
-                        -- Quest already in our log or completed - mark as processed
-                        _G.checkedQuests[quest.questId] = true
-                        _G.processedCount = _G.processedCount + 1
+                for j = 1, #npcQuests do
+                    local quest = npcQuests[j]
+
+                    -- Skip quests we've already processed in previous iterations
+                    if _G.checkedQuests[quest.questId] then
+                        -- Quest already processed - increment counter
+                        _G.npcProcessedCounts[npcId] = _G.npcProcessedCounts[npcId] + 1
                     else
-                        -- Quest is not in our log - check if NPC is offering it
-                        local offeredInfo = GetAvailableQuestInfoByID(availableQuests, quest.questId)
-
-                        if offeredInfo then
-                            -- Quest is available! Accept it now
-                            questsAcceptedCount = questsAcceptedCount + 1
-                            BANETO_Print(string.format("[ACCEPTED] %s (ID: %d)",
-                                offeredInfo.title or quest.questName, quest.questId))
-
-                            -- Mark quest as processed and configure Baneto to accept it
+                        -- Check if we already have this quest or completed it today
+                        if BANETO_HasQuest(quest.questId) or BANETO_HasQuestCompleted(quest.questId) then
+                            -- Quest already in our log or completed - mark as processed
                             _G.checkedQuests[quest.questId] = true
-                            local coords = npcCoords[npcId]
-                            BANETO_DefineQuestId(quest.questId)
-                            BANETO_SetToSkipTurnInQuest() -- We'll turn in later via TurnIn_All
-                            BANETO_DefineQuestPickupNPC(coords.x, coords.y, coords.z, npcId)
-
-                            -- Switch to normal Baneto behavior to accept quest
-                            BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
-                            BANETO_ExecuteCustomQuestPulse_Questmaster = false
-                            BANETO_SetNextLocalQuestProfile([[Klaxxi_00_Start_Here_Klaxxi_Accept_All]])
-                            inProgress = true
-
-                            -- Add delay after accepting quest to prevent spam
-                            wait = time() + QUEST_ACCEPT_DELAY
-
-                            return
-                        elseif (not availableQuests or #availableQuests == 0) and
-                            QuestDetailScrollFrame:IsVisible() then
-                            -- No API results (single quest NPC case) - use AcceptQuest() directly
-                            DebugPrint(string.format("Attempting direct accept for %s (ID: %d)",
-                                quest.questName, quest.questId))
-
-                            -- Try to accept the quest directly using WoW API
-                            AcceptQuest()
-                            questsAcceptedCount = questsAcceptedCount + 1
-                            BANETO_Print(string.format("[ACCEPTED] %s (ID: %d) [Direct]",
-                                quest.questName, quest.questId))
-
-                            -- Mark quest as processed to avoid retrying
-                            _G.checkedQuests[quest.questId] = true
-                            _G.processedCount = _G.processedCount + 1
-
-                            -- Add delay after accepting quest to prevent spam
-                            wait = time() + QUEST_ACCEPT_DELAY
+                            _G.npcProcessedCounts[npcId] = _G.npcProcessedCounts[npcId] + 1
                         else
-                            -- Quest not offered by this NPC today - mark as processed
-                            _G.checkedQuests[quest.questId] = true
-                            _G.processedCount = _G.processedCount + 1
+                            -- Quest is not in our log - check if NPC is offering it
+                            local offeredInfo = GetAvailableQuestInfoByID(availableQuests, quest.questId)
+
+                            if offeredInfo then
+                                -- Quest is available! Accept it now
+                                questsAcceptedCount = questsAcceptedCount + 1
+                                BANETO_Print(string.format("[ACCEPTED] %s (ID: %d)",
+                                    offeredInfo.title or quest.questName, quest.questId))
+
+                                -- Mark quest as processed and configure Baneto to accept it
+                                _G.checkedQuests[quest.questId] = true
+                                local coords = npcCoords[npcId]
+                                BANETO_DefineQuestId(quest.questId)
+                                BANETO_SetToSkipTurnInQuest() -- We'll turn in later via TurnIn_All
+                                BANETO_DefineQuestPickupNPC(coords.x, coords.y, coords.z, npcId)
+
+                                -- Switch to normal Baneto behavior to accept quest
+                                BANETO_ExecuteCustomQuestPulse_SkipNormalBehavior = false
+                                BANETO_ExecuteCustomQuestPulse_Questmaster = false
+                                BANETO_SetNextLocalQuestProfile([[Klaxxi_00_Start_Here_Klaxxi_Accept_All]])
+                                inProgress = true
+
+                                -- Add delay after accepting quest to prevent spam
+                                wait = time() + QUEST_ACCEPT_DELAY
+
+                                return
+                            elseif (not availableQuests or #availableQuests == 0) and
+                                QuestDetailScrollFrame:IsVisible() then
+                                -- No API results (single quest NPC case) - use AcceptQuest() directly
+                                DebugPrint(string.format("Attempting direct accept for %s (ID: %d)",
+                                    quest.questName, quest.questId))
+
+                                -- Try to accept the quest directly using WoW API
+                                AcceptQuest()
+                                questsAcceptedCount = questsAcceptedCount + 1
+                                BANETO_Print(string.format("[ACCEPTED] %s (ID: %d) [Direct]",
+                                    quest.questName, quest.questId))
+
+                                -- Mark quest as processed to avoid retrying
+                                _G.checkedQuests[quest.questId] = true
+                                _G.npcProcessedCounts[npcId] = _G.npcProcessedCounts[npcId] + 1
+
+                                -- Add delay after accepting quest to prevent spam
+                                wait = time() + QUEST_ACCEPT_DELAY
+                            else
+                                -- Quest not offered by this NPC today - mark as processed
+                                _G.checkedQuests[quest.questId] = true
+                                _G.npcProcessedCounts[npcId] = _G.npcProcessedCounts[npcId] + 1
+                            end
                         end
                     end
                 end
-            end
 
-            -- Mark NPC as complete if all their quests have been processed
-            if _G.processedCount >= _G.totalQuests then
-                _G.checkedNpcs[npcId] = true
-                BANETO_Print(string.format("Completed %s (%d/%d quests processed)",
-                    FormatNpcName(npcId), _G.processedCount, _G.totalQuests))
-            end
+                -- Mark NPC as complete if all their quests have been processed
+                if _G.npcProcessedCounts[npcId] >= totalQuestsForNpc then
+                    _G.checkedNpcs[npcId] = true
+                    BANETO_Print(string.format("Completed %s (%d/%d quests processed)",
+                        FormatNpcName(npcId), _G.npcProcessedCounts[npcId], totalQuestsForNpc))
+                end
 
-            -- Reset state for next NPC
-            BANETO_ClearTarget()
-            C_GossipInfo.CloseGossip()
-            checked = false
-            wait = nil
-        until true
-    end
+                -- Reset state for next NPC
+                BANETO_ClearTarget()
+                C_GossipInfo.CloseGossip()
+                checked = false
+                wait = nil
+            until true
+        end
+    end -- End of if not allNpcsChecked
 
     -- All NPCs have been checked and all available quests accepted
     -- Clean up tracking variables
     _G.checkedNpcs = nil
     _G.startedNpcs = nil
     _G.checkedQuests = nil
-    _G.processedCount = nil
-    _G.totalQuests = nil
+    _G.npcProcessedCounts = nil
 
     BANETO_ClearTarget()
     C_GossipInfo.CloseGossip()
