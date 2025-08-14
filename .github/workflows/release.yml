@@ -7,11 +7,6 @@ on:
         description: "Release version (e.g., v1.0.0 or v1.0.0-beta)"
         required: true
         type: string
-      auto_deploy:
-        description: "Automatically deploy to Baneto after release"
-        required: false
-        default: true
-        type: boolean
       release_notes:
         description: "Additional release notes (optional)"
         required: false
@@ -20,9 +15,6 @@ on:
 jobs:
   create-release:
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ github.event.inputs.version }}
-      release_url: ${{ steps.create_release.outputs.html_url }}
 
     steps:
       - name: Checkout code
@@ -126,19 +118,6 @@ jobs:
           - Level 90 character
           - Faction reputation: Friendly+ recommended
 
-          ## ⚙️ Deployment Status
-          EOF
-          
-          if [ "${{ github.event.inputs.auto_deploy }}" == "true" ]; then
-            echo "- 🔄 Automatic deployment to Baneto servers: **Enabled**" >> release_notes.md
-            echo "- Profiles will be automatically deployed after release creation" >> release_notes.md
-          else
-            echo "- ⏸️ Automatic deployment to Baneto servers: **Disabled**" >> release_notes.md
-            echo "- Manual deployment required via Actions tab" >> release_notes.md
-          fi
-          
-          cat << EOF >> release_notes.md
-
           ## ℹ️ Notes
           - Tested primarily on Horde characters
           - If you get stuck, restart from the listed start files
@@ -190,19 +169,3 @@ jobs:
           echo "- **Total Profiles**: ${{ steps.count.outputs.total_count }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Archive Size**: ${{ env.FILE_SIZE }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Release URL**: ${{ steps.create_release.outputs.html_url }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          if [ "${{ github.event.inputs.auto_deploy }}" == "true" ]; then
-            echo "🔄 **Deployment**: Will trigger automatically" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "⏸️ **Deployment**: Manual trigger required" >> $GITHUB_STEP_SUMMARY
-          fi
-
-  deploy-to-baneto:
-    name: Deploy to Baneto Servers
-    needs: create-release
-    if: github.event.inputs.auto_deploy == 'true'
-    uses: ./.github/workflows/deploy-baneto-profiles.yml
-    secrets: inherit
-    with:
-      deploy_golden_lotus: true
-      deploy_klaxxi: true

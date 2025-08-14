@@ -20,16 +20,16 @@ SUPPORTED QUESTS (12 total):
     • 31269 - The Scale-Lord
     • 31232 - An Ancient Empire
     • 31233 - Sap Tapping
-    
+
     From Rik'kal the Dissector (63072):
     • 31271 - Bad Genes
     • 31234 - Putting An Eye Out
-    
+
     From Kaz'tik the Manipulator (63758):
     • 31268 - A Little Brain Work
     • 31024 - Kunchong Treats
     • 31238 - Brain Food
-    
+
     From Kil'ruk the Wind-Reaver (62538):
     • 31231 - Dreadspinner Extermination
     • 31267 - Mistblade Destruction
@@ -315,7 +315,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             if not _G.checkedNpcs[npcId] then
                 npcsCheckedCount = npcsCheckedCount + 1
                 PrintSeparator()
-                BANETO_Print(string.format("[PARAGON %d/%d] Checking %s", 
+                BANETO_Print(string.format("[PARAGON %d/%d] Checking %s",
                     npcsCheckedCount, totalNpcsToCheck, FormatNpcName(npcId)))
                 BANETO_Print(string.format("  %d possible quests at this Paragon", #npcQuests))
             end
@@ -374,7 +374,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                     checked = false
                 end
             else
-                BANETO_Print(string.format("[OK] Found %d available quest(s) from %s", 
+                BANETO_Print(string.format("[OK] Found %d available quest(s) from %s",
                     #availableQuests, FormatNpcName(npcId)))
                 checked = false
             end
@@ -403,7 +403,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                         if offeredInfo then
                             -- Quest is available! Accept it now
                             questsAcceptedCount = questsAcceptedCount + 1
-                            BANETO_Print(string.format("[ACCEPTED] %s (ID: %d)", 
+                            BANETO_Print(string.format("[ACCEPTED] %s (ID: %d)",
                                 offeredInfo.title or quest.questName, quest.questId))
 
                             -- Mark quest as processed and configure Baneto to accept it
@@ -418,7 +418,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                             BANETO_ExecuteCustomQuestPulse_Questmaster = false
                             BANETO_SetNextLocalQuestProfile([[Klaxxi_00_Start_Here_Klaxxi_Accept_All]])
                             inProgress = true
-                            
+
                             -- Add delay after accepting quest to prevent spam
                             wait = time() + QUEST_ACCEPT_DELAY
 
@@ -426,19 +426,19 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                         elseif (not availableQuests or #availableQuests == 0) and
                             QuestDetailScrollFrame:IsVisible() then
                             -- No API results (single quest NPC case) - use AcceptQuest() directly
-                            DebugPrint(string.format("Attempting direct accept for %s (ID: %d)", 
+                            DebugPrint(string.format("Attempting direct accept for %s (ID: %d)",
                                 quest.questName, quest.questId))
-                            
+
                             -- Try to accept the quest directly using WoW API
                             AcceptQuest()
                             questsAcceptedCount = questsAcceptedCount + 1
-                            BANETO_Print(string.format("[ACCEPTED] %s (ID: %d) [Direct]", 
+                            BANETO_Print(string.format("[ACCEPTED] %s (ID: %d) [Direct]",
                                 quest.questName, quest.questId))
 
                             -- Mark quest as processed to avoid retrying
                             _G.checkedQuests[quest.questId] = true
                             _G.processedCount = _G.processedCount + 1
-                            
+
                             -- Add delay after accepting quest to prevent spam
                             wait = time() + QUEST_ACCEPT_DELAY
                         else
@@ -453,7 +453,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             -- Mark NPC as complete if all their quests have been processed
             if _G.processedCount >= _G.totalQuests then
                 _G.checkedNpcs[npcId] = true
-                BANETO_Print(string.format("Completed %s (%d/%d quests processed)", 
+                BANETO_Print(string.format("Completed %s (%d/%d quests processed)",
                     FormatNpcName(npcId), _G.processedCount, _G.totalQuests))
             end
 
@@ -479,11 +479,11 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     local sessionDuration = time() - sessionStartTime
     PrintSeparator()
     BANETO_Print("QUEST ACCEPTANCE COMPLETE")
-    BANETO_Print(string.format("Summary: %d quest(s) accepted from %d Paragon(s)", 
+    BANETO_Print(string.format("Summary: %d quest(s) accepted from %d Paragon(s)",
         questsAcceptedCount, totalNpcsToCheck))
     BANETO_Print(string.format("Time elapsed: %d seconds", sessionDuration))
     PrintSeparator()
-    
+
     -- Start quest execution chain
     BANETO_Print("Starting quest execution chain...")
     BANETO_LoadQuestProfile([[Klaxxi_01_The_Fight_Against_Fear]])
