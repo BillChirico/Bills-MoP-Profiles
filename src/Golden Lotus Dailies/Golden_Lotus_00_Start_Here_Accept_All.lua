@@ -266,6 +266,11 @@ function _G.BANETO_ExecuteCustomQuestPulse()
         _G.checkedNpcs = {} -- Track which NPCs we've fully processed
         DebugPrint("Initialized checkedNpcs table")
     end
+    
+    if not _G.startedNpcs then
+        _G.startedNpcs = {} -- Track which NPCs we've started processing (for counter)
+        DebugPrint("Initialized startedNpcs table")
+    end
 
     if not _G.checkedQuests then
         _G.checkedQuests = {} -- Track which quests we've already handled
@@ -306,8 +311,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 break
             end
 
-            -- Update progress counter for new NPC
-            if not _G.checkedNpcs[npcId] then
+            -- Update progress counter only for first time processing this NPC
+            if not _G.startedNpcs[npcId] then
+                _G.startedNpcs[npcId] = true
                 npcsCheckedCount = npcsCheckedCount + 1
                 PrintSeparator()
                 BANETO_Print(string.format("[NPC %d/%d] Checking %s",
@@ -463,6 +469,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     -- All NPCs have been checked and all available quests accepted
     -- Clean up tracking variables
     _G.checkedNpcs = nil
+    _G.startedNpcs = nil
     _G.checkedQuests = nil
     _G.processedCount = nil
     _G.totalQuests = nil

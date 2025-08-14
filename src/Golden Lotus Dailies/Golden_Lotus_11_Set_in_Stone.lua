@@ -8,11 +8,11 @@ BANETO_DefineQuestId(30309)
 -- Quest Objective -
 BANETO_DefineQuestTargetId(58855) -- Mogu Effigies
 
--- Quest Locations - Golden Stair area
-BANETO_DefineCenter(1282.5, 1840.0, 382.0, 100)
-BANETO_DefineCenter(1200.0, 1800.0, 385.0, 100)
-BANETO_DefineCenter(1150.0, 1850.0, 390.0, 100)
-BANETO_DefineCenter(1100.0, 1900.0, 395.0, 100)
+-- Quest Locations
+BANETO_DefineCenter(1467.1362304688, 1356.7120361328, 445.89776611328, 300)
+BANETO_DefineCenter(1533.8942871094, 1442.2365722656, 442.35995483398, 300)
+BANETO_DefineCenter(1392.3897705078, 1291.5573730469, 401.01940917969, 300)
+BANETO_DefineCenter(1674.5532226562, 1352.6085205078, 453.59204101562, 300)
 
 -- Next Quest
 BANETO_SetNextLocalQuestProfile([[Golden_Lotus_12_TurnIn_All]])
