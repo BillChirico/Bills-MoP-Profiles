@@ -57,7 +57,6 @@ LAST UPDATED: 2025
 BANETO_DefineProfileName("Golden_Lotus_00_Start_Here_Accept_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
-BANETO_DefineProfileContinent(870) -- Pandaria
 
 -- ============================================================================
 -- CONFIGURATION OPTIONS

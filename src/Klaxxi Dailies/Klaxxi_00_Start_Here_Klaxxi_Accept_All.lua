@@ -57,7 +57,6 @@ LAST UPDATED: 2025
 BANETO_DefineProfileName("Klaxxi_00_Start_Here_Klaxxi_Accept_All")
 BANETO_DefineProfileType("Questing")
 BANETO_DefineQuestStepType([[TalkTo]])
-BANETO_DefineProfileContinent(870) -- Pandaria
 
 -- ============================================================================
 -- CONFIGURATION OPTIONS
