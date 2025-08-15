@@ -69,7 +69,7 @@ local VISUAL_SEPARATORS = true
 
 -- Interaction delays (in seconds)
 local INTERACTION_DELAY = 5
-local MOVEMENT_TIMEOUT = 5
+local MOVEMENT_TIMEOUT = 1
 local QUEST_ACCEPT_DELAY = 2
 
 -- ============================================================================
@@ -334,7 +334,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 if not BANETO_PlayerPosition(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z, 5) then
                     -- Move to NPC location and wait for arrival
                     BANETO_MeshTo(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z)
-                    BANETO_Print(string.format("Moving to %s...", FormatNpcName(npcId)))
+                    DebugPrint(string.format("Moving to %s...", FormatNpcName(npcId)))
                     wait = time() + MOVEMENT_TIMEOUT
 
                     return

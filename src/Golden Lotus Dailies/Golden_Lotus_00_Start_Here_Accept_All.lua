@@ -69,7 +69,7 @@ local VISUAL_SEPARATORS = true
 
 -- Interaction delays (in seconds)
 local INTERACTION_DELAY = 5
-local MOVEMENT_TIMEOUT = 5
+local MOVEMENT_TIMEOUT = 1
 local QUEST_ACCEPT_DELAY = 2
 
 -- ============================================================================
@@ -132,7 +132,7 @@ local questAccepts = {
         questId = 31755,
         npcId = 58468,
         questName = "Acts of Cruelty",
-    }
+    },
 }
 
 -- ============================================================================
@@ -316,8 +316,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                 _G.startedNpcs[npcId] = true
                 npcsCheckedCount = npcsCheckedCount + 1
                 PrintSeparator()
-                BANETO_Print(string.format("[NPC %d/%d] Checking %s",
-                    npcsCheckedCount, totalNpcsToCheck, FormatNpcName(npcId)))
+                BANETO_Print(
+                    string.format("[NPC %d/%d] Checking %s", npcsCheckedCount, totalNpcsToCheck, FormatNpcName(npcId))
+                )
                 BANETO_Print(string.format("%d possible quests at this NPC", #npcQuests))
             end
 
@@ -325,8 +326,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             if not BANETO_PlayerPosition(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z, 5) then
                 -- Move to NPC location and wait for arrival
                 BANETO_MeshTo(npcCoords[npcId].x, npcCoords[npcId].y, npcCoords[npcId].z)
-                BANETO_Print(string.format("Moving to %s and waiting %d seconds...", FormatNpcName(npcId),
-                    MOVEMENT_TIMEOUT))
+                DebugPrint(
+                    string.format("Moving to %s and waiting %d seconds...", FormatNpcName(npcId), MOVEMENT_TIMEOUT)
+                )
                 wait = time() + MOVEMENT_TIMEOUT
 
                 return
@@ -376,8 +378,9 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                     checked = false
                 end
             else
-                BANETO_Print(string.format("[OK] Found %d available quest(s) from %s",
-                    #availableQuests, FormatNpcName(npcId)))
+                BANETO_Print(
+                    string.format("[OK] Found %d available quest(s) from %s", #availableQuests, FormatNpcName(npcId))
+                )
                 checked = false
             end
 
@@ -405,8 +408,13 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                         if offeredInfo then
                             -- Quest is available! Accept it now
                             questsAcceptedCount = questsAcceptedCount + 1
-                            BANETO_Print(string.format("[ACCEPTED] %s (ID: %d)",
-                                offeredInfo.title or quest.questName, quest.questId))
+                            BANETO_Print(
+                                string.format(
+                                    "[ACCEPTED] %s (ID: %d)",
+                                    offeredInfo.title or quest.questName,
+                                    quest.questId
+                                )
+                            )
 
                             -- Mark quest as processed and configure Baneto to accept it
                             _G.checkedQuests[quest.questId] = true
@@ -425,17 +433,25 @@ function _G.BANETO_ExecuteCustomQuestPulse()
                             wait = time() + QUEST_ACCEPT_DELAY
 
                             return
-                        elseif (not availableQuests or #availableQuests == 0) and
-                            QuestDetailScrollFrame:IsVisible() then
+                        elseif
+                            (not availableQuests or #availableQuests == 0)
+                            and QuestDetailScrollFrame:IsVisible()
+                        then
                             -- No API results (single quest NPC case) - use AcceptQuest() directly
-                            DebugPrint(string.format("Attempting direct accept for %s (ID: %d)",
-                                quest.questName, quest.questId))
+                            DebugPrint(
+                                string.format(
+                                    "Attempting direct accept for %s (ID: %d)",
+                                    quest.questName,
+                                    quest.questId
+                                )
+                            )
 
                             -- Try to accept the quest directly using WoW API
                             AcceptQuest()
                             questsAcceptedCount = questsAcceptedCount + 1
-                            BANETO_Print(string.format("[ACCEPTED] %s (ID: %d) [Direct]",
-                                quest.questName, quest.questId))
+                            BANETO_Print(
+                                string.format("[ACCEPTED] %s (ID: %d) [Direct]", quest.questName, quest.questId)
+                            )
 
                             -- Mark quest as processed to avoid retrying
                             _G.checkedQuests[quest.questId] = true
@@ -455,8 +471,14 @@ function _G.BANETO_ExecuteCustomQuestPulse()
             -- Mark NPC as complete if all their quests have been processed
             if _G.processedCount >= _G.totalQuests then
                 _G.checkedNpcs[npcId] = true
-                BANETO_Print(string.format("Completed %s (%d/%d quests processed)",
-                    FormatNpcName(npcId), _G.processedCount, _G.totalQuests))
+                BANETO_Print(
+                    string.format(
+                        "Completed %s (%d/%d quests processed)",
+                        FormatNpcName(npcId),
+                        _G.processedCount,
+                        _G.totalQuests
+                    )
+                )
             end
 
             -- Reset state for next NPC
@@ -482,8 +504,7 @@ function _G.BANETO_ExecuteCustomQuestPulse()
     local sessionDuration = time() - sessionStartTime
     PrintSeparator()
     BANETO_Print("QUEST ACCEPTANCE COMPLETE")
-    BANETO_Print(string.format("Summary: %d quest(s) accepted from %d NPC(s)",
-        questsAcceptedCount, totalNpcsToCheck))
+    BANETO_Print(string.format("Summary: %d quest(s) accepted from %d NPC(s)", questsAcceptedCount, totalNpcsToCheck))
     BANETO_Print(string.format("Time elapsed: %d seconds", sessionDuration))
     PrintSeparator()
 
