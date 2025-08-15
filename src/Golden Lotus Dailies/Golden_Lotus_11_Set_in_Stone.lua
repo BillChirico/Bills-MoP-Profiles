@@ -6,7 +6,7 @@ BANETO_DefineQuestStepType([[KillAndLoot]])
 BANETO_DefineQuestId(30309)
 
 -- Quest Objective -
-BANETO_DefineQuestTargetId(59196) -- Mogu Effigies
+BANETO_DefineQuestTargetId(59156) -- Mogu Effigies
 
 -- Quest Locations
 BANETO_DefineCenter(1467.1362304688, 1356.7120361328, 445.89776611328, 300)
